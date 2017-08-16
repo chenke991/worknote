@@ -1,0 +1,5 @@
+1,wget https://github.com/vmware/harbor/releases/download/v1.1.2/harbor-offline-installer-v1.1.2.tgz
+2,apt install docker-compose
+3, config harbor.cfg and  run  sh install.sh
+##################################################
+4, access wrong should delete  /etc/sysctl.conf  and reboot system
