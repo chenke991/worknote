@@ -1,0 +1,2 @@
+kubectl create -f https://git.io/kube-dashboard
+kubectl proxy --address='master wanip' --port=59879 --accept-hosts='^*$'
