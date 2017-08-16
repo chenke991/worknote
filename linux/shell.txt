@@ -4,4 +4,5 @@ Shell代码
   2. var=${a:-b} 
 
 
-
+set -o nounset #变量值为空退出
+set -e  或 set -o errexit #一旦出现了返回值非零，整个脚本就会立即退出
