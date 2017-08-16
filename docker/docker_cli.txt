@@ -1,0 +1,2 @@
+docker pull --disable-content-trust  192.168.16.128/public/nginx:testv1.0 #下载未签名镜像
+export DOCKER_CONTENT_TRUST=0  && docker pull  192.168.16.128/public/nginx:testv1.0   #下载未签名镜像
