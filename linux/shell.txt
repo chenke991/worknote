@@ -1,0 +1,7 @@
+Linux-shell给变量设置默认值：
+Shell代码
+  1. #当变量a为null或为空字符串时则var=b  
+  2. var=${a:-b} 
+
+
+
