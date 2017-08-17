@@ -1,0 +1,2 @@
+CMD ["echo"] #docker run 时可被替换掉
+ENTRYPOINT ["echo "] #docker run 指定的命令作为参数传递给echo,而不是替换
