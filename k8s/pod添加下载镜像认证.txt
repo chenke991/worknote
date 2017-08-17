@@ -7,3 +7,4 @@ kubectl create secret docker-registry pushserverdockerhub --docker-server=docker
 
 3,显示secret列表
 kubectl get secret -o yaml
+kubectl delete secret secretname #删除指定secret
