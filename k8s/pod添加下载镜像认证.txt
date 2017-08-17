@@ -1,0 +1,9 @@
+1,新建用于harbor认证的Secret,名为pushserverdockerhub
+kubectl create secret docker-registry pushserverdockerhub --docker-server=dockerhub.ck --docker-username=user --docker-password='xxx' --docker-email=aaa@xx.com
+
+2,deployment.yaml中添加secret 即可
+      imagePullSecrets:
+      - name: pushserverdockerhub
+
+3,显示secret列表
+kubectl get secret -o yaml
