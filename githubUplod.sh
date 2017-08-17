@@ -4,6 +4,6 @@ set -o
 Dir=/media/chenke/home/chenke/worknote
 Time=$(date)
 cd $Dir
-git add * 
-git commit -m "commit at $Time"
-git push
+/usr/bin/git add * 
+/usr/bin/git commit -m "commit at $Time"
+/usr/bin/git push
