@@ -1,3 +1,3 @@
 健康检查：
 1,Liveness Probe: 容器自定义检查，失败将杀死容器，再执行pod重启策略
-2,Readiness Probe:
+2,Readiness Probe:容器自定义准备检查，失败时此pod将从服务代理的后端移除
