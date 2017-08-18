@@ -10,7 +10,7 @@ exec:
   command:
   - cat 
   - /tmp/health
-initialDelaySeconds: 5
+initialDelaySeconds: 5 #容器启动后5秒开始控测
 periodSeconds: 5
 
 2,TCPSokcetAction: 检查tcp端口被占用情况
@@ -20,7 +20,10 @@ tcpSocket:
 3,HTTPGetAction: 发生HTTP请求，返回码介于200-400之间时为成功
 httpGet:
   path: /healthz
-  prot: 80
+  port: 80
+  httpHeaders:
+    - name: X-Custom-Header
+      value: Awesome
 =============================================================================  
 
 POD生命周期回调函数
