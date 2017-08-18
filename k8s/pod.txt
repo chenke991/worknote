@@ -1,3 +1,40 @@
-健康检查：
+POD健康检查
+
+作用域：
 1,Liveness Probe: 容器自定义检查，失败将杀死容器，再执行pod重启策略
 2,Readiness Probe:容器自定义准备检查，失败时此pod将从服务代理的后端移除
+
+检查方法：
+1,ExecAction: 参数command,数组,返回值为0是成功
+exec:
+  command:
+  - cat 
+  - /tmp/health
+initialDelaySeconds: 5
+periodSeconds: 5
+
+2,TCPSokcetAction: 检查tcp端口被占用情况
+tcpSocket:
+  port: 80
+
+3,HTTPGetAction: 发生HTTP请求，返回码介于200-400之间时为成功
+httpGet:
+  path: /healthz
+  prot: 80
+=============================================================================  
+
+POD生命周期回调函数
+
+作用域：
+PostStart: 容器创建成功后调用
+PreStop: 容器被终止前调用
+
+实现方法：
+1,Exec: 执行系统命令或脚本
+exec:
+  command:
+  - cat 
+  - /tmp/health
+
+2,HTTP请求：
+
