@@ -34,10 +34,18 @@ PreStop: 容器被终止前调用
 
 实现方法：
 1,Exec: 执行系统命令或脚本
-exec:
-  command:
-  - cat 
-  - /tmp/health
+2,HTTP请求：请求url
 
-2,HTTP请求：
-
+lifecycle:
+  postStart:
+    exec:
+      command:
+      - cat 
+      - /tmp/health
+  preStop:
+    httpGet:
+      host:a.com
+      path: /
+      port: 80
+      scheme: HTTP
+==============================================================================
