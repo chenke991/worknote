@@ -8,5 +8,8 @@ kubectl label nodes K8S-NODE-1 env=test #设置node label,选择指定lable的no
 kubectl get event #查询所有事件
 kubectl describe pod nginx #查询指定pod事件
 
+kubectl get pod podname
+kubectl logs podname container1 #查看指定容器日志
 
 
+kubectl exec -it podname /bin/bash #远程进入容器

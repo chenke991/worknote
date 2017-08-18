@@ -2,8 +2,11 @@
 kubectl create secret docker-registry pushserverdockerhub --docker-server=dockerhub.ck --docker-username=user --docker-password='xxx' --docker-email=aaa@xx.com
 
 2,deployment.yaml中添加secret 即可
-      imagePullSecrets:
-      - name: pushserverdockerhub
+  spec:
+    containers:
+    - name: xxxx
+    imagePullSecrets:
+    - name: pushserverdockerhub
 
 3,显示secret列表
 kubectl get secret -o yaml
