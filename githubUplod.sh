@@ -1,7 +1,7 @@
 #!/bin/sh
 #上传github
 set -o
-Dir=/media/chenke/home/chenke/worknote
+Dir=$HOME/worknote
 Time=$(date)
 cd $Dir
 /usr/bin/git add * 
