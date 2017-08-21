@@ -18,5 +18,13 @@ kubectl get deployment --selector app=redis -o wide --label-columns=app #查看�
 
 kubectl scale deployment redis-slave --replicas=3 #手动扩缩容
 
-kubectl autoscale deployment redis-slave --min=1 --max=10 --cpu-percent=50#CPU使用50%以上自动扩容，以下缩容
+kubectl autoscale deployment redis-slave --min=1 --max=10 --cpu-percent=50#CPU使用50%以上自动扩容，以下缩容.需要监控配合
 kubectl get horizontalpodautoscalers|hpa redis-slave -o wide #查看扩缩容状态
+
+
+kubectl apply -f mywebv2Deployment.yaml --validate=false #默认滚动升级
+kubectl describe deployment myweb #查看升级状态
+
+ 
+
+
