@@ -1,0 +1,3 @@
+#20170821
+.spec.sessionAffinity: ClientIP #基于源IP地址的会话保持
+
