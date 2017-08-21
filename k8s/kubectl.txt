@@ -17,3 +17,6 @@ kubectl exec -it podname /bin/bash #远程进入容器
 kubectl get deployment --selector app=redis -o wide --label-columns=app #查看指定标签的deployment
 
 kubectl scale deployment redis-slave --replicas=3 #手动扩缩容
+
+kubectl autoscale deployment redis-slave --min=1 --max=10 --cpu-percent=50#CPU使用50%以上自动扩容，以下缩容
+kubectl get horizontalpodautoscalers|hpa redis-slave -o wide #查看扩缩容状态
