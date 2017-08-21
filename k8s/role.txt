@@ -1,0 +1,6 @@
+role:是一系列权限的集合，只在某一个namespace内有权限
+clusterrole:跟role类似，但是可以在集群中到处使用
+
+rolebinding:把角色映射到用户，从而让用户继承角色在namespace中的权限。clusterRoleBinding让用户继承ClusterRole在整个集群中的权限
+
+
