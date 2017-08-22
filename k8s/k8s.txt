@@ -9,3 +9,4 @@
 7,推荐使用Readiness探针检测服务是否真正运行起来了
 8,使用activeDeadlineSeconds避免快速失败的Job无限重启
 9,引入Sidecar处理代理、请求速率控制和连接控制等问题
+

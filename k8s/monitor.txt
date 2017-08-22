@@ -1,0 +1,3 @@
+https://github.com/coreos/prometheus-operator #部署和管理 prometheus
+
+

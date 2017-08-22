@@ -1,0 +1,5 @@
+Filebeat + Elasticsearch + Kibana
+
+Filebeat负责收集日志
+Elasticsearch存储日志并提供搜索
+Kibana负责日志查询和展示
