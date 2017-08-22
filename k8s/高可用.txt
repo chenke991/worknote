@@ -1,0 +1,19 @@
+1,etcd集群模式
+2,apiserver负载均衡:
+  把https://kubernetes.io/docs/admin/high-availability/kube-apiserver.yaml放到每台Master节点的 	/etc/kubernetes/manifests/ ,并把相关的配置放到 /srv/kubernetes/,即可由kubelet自动创建并启动apiserver
+
+3,controller manager、scheduler和cluster autoscaler自动选主(有且仅有一个运行实例) 启动时要设置 	--leader-elect=true
+   把kube-scheduler.yaml和kube-controller-manager.yaml(非GCE平台需要适当修改) 放到每台master节点的 /etc/kubernetes/manifests/ 即可
+
+4,kube-dns,放宽资源
+  dns_replicas:	6
+  dns_cpu_limit:	100m
+  dns_memory_limit:	512Mi
+  dns_cpu_requests	70m
+  dns_memory_requests:	70Mi
+
+5,dnsmasq增加资源：
+  增加缓存大小到10000
+  增加并发处理数量 --dns-forward-max=1000 等
+
+6,kube-proxy 使用IPVS替代iptables,1.6还不支持
