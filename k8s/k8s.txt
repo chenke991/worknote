@@ -1,0 +1,11 @@
+应用管理一般准则:
+
+1,分离构建和运行环境
+2,使用 	dumb-int	 等避免僵尸进程
+3,不推荐直接使用Pod,而是推荐使用Deployment/DaemonSet等
+4,不推荐在容器中使用后台进程,而是推荐将进程前台运行,并使用探针保证服务确实在运行中
+5,推荐容器中应用日志打到stdout和stderr,方便日志插件的处理由于容器采用了COW,大量数据写入有可能会有性能问题,推荐将数据写入到Volume中
+6,不推荐生产环境镜像使用 	latest	 标签,但开发环境推荐使用并设置 	imagePullPolic 为Always
+7,推荐使用Readiness探针检测服务是否真正运行起来了
+8,使用activeDeadlineSeconds避免快速失败的Job无限重启
+9,引入Sidecar处理代理、请求速率控制和连接控制等问题
