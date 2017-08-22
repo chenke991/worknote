@@ -1,0 +1,17 @@
+#chenke 20170822
+
+pvc和pv的关系跟pod和node关系类似，前者消耗后者的资源
+
+PV属性：
+1,storage: 容量
+2,读写属性  
+  2.1 ReadWriteOnce: 单个节点读写
+  2.2 ReadOnlyMany: 多节点只读
+  2.3 ReadWriteMany: 多节点读写
+
+PVC属性：
+1,访问属性与PV相同
+2,容量： 向PV申请的容量 <= PV总容量
+
+
+
