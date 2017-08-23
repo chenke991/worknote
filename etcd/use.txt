@@ -1,5 +1,10 @@
+k8s etcd集群
 /opt/etcd/bin/etcdctl --endpoints="https://192.168.16.130:2379,https://192.168.16.129:2379,https://192.168.16.128:2379" --cert-file=/etc/kubernetes/ssl/kubernetes.pem --key-file=/etc/kubernetes/ssl/kubernetes-key.pem  --ca-file=/etc/kubernetes/ssl/ca.pem cluster-health
 
 /opt/etcd/bin/etcdctl --endpoints="https://192.168.16.130:2379,https://192.168.16.129:2379,https://192.168.16.128:2379" --cert-file=/etc/kubernetes/ssl/kubernetes.pem --key-file=/etc/kubernetes/ssl/kubernetes-key.pem  --ca-file=/etc/kubernetes/ssl/ca.pem member list
 
+calico etcd集群：
 /opt/etcd/bin/etcdctl --endpoints="http://192.168.16.127:3379,https://192.168.16.128:3379,https://192.168.16.129:3379" member list
+
+
+
