@@ -3,8 +3,10 @@ kubectl get pods --selector role=master #显示指定pod
 kubectl create secret docker-registry pushserverdockerhub --docker-server=dockerhub.ck --docker-username=user --docker-password='xxx' --docker-email=aaa@xx.com #https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 
 kubectl label nodes K8S-NODE-1 env=test #设置node label,选择指定lable的node
-   nodeSelector:
-     env: test
+spec:
+  spec:
+    nodeSelector:
+      env: test
 
 kubectl get event #查询所有事件
 kubectl describe pod nginx #查询指定pod事件
