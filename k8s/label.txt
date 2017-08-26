@@ -1,3 +1,5 @@
 kubectl get nodes k8sm-etcd-121.46.16.130 --show-labels #查看label
-kubectl label nodes k8sm-etcd-121.46.16.130 harbor=true  #增加label
-kubectl label nodes k8sm-etcd-121.46.16.130 harbor- #删除label
+kubectl label nodes k8sm-etcd-121.46.16.127 harbor=true  #增加label
+kubectl label nodes k8sm-etcd-121.46.16.127 harbor- #删除label
+
+kubectl get nodes --selector lvs=true --show-labels #查看指定label的node
