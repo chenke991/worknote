@@ -1,0 +1,2 @@
+kubectl label nodes k8sm-etcd-121.46.16.130 harbor=true  #增加label
+kubectl label nodes k8sm-etcd-121.46.16.130 harbor- #删除label
