@@ -2,6 +2,7 @@ kubectl get certificatesigningrequests|grep Pending|awk  '{print $1}'|xargs kube
 kubectl get pods --selector role=master #显示指定pod
 kubectl create secret docker-registry pushserverdockerhub --docker-server=dockerhub.ck --docker-username=user --docker-password='xxx' --docker-email=aaa@xx.com #https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 
+kubectl get node|pods|svc|rs| --show-labels #查看相应的label
 kubectl label nodes K8S-NODE-1 env=test #设置node label,选择指定lable的node
 spec:
   spec:
