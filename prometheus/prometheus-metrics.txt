@@ -1,1 +1,5 @@
-kubelet_running_container_count : 每个node上运行容器个数
+kubelet_running_container_count : 每个node上运行容器个数(READY值相加)
+kubelet_running_pod_count: 各个node上运行pod个数
+machine_cpu_cores: 各node上cpu核数 #sum(machine_cpu_cores) 集群总核数
+machine_memory_bytes: 各node上内存字节数
+
