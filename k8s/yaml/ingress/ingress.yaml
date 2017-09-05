@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: traefik-ingress
+spec:
+  rules:
+  - host: traefik.nginx.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: my-nginx
+          servicePort: 80
+  - host: traefik.frontend.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: frontend
+          servicePort: 80
+  - host: rolling-update-test.traefik.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: rolling-update-test
+          servicePort: 9090
+  - host: prometheus.52xiyoucom
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: prometheus
+          servicePort: 9090
+#edit by chenke
+  - host: kubernetes.default.svc
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kubernetes
+          servicePort: 443
+  - host: grafana.52xiyoucom
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grafana
+          servicePort: 3000
