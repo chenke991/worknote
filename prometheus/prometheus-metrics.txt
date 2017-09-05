@@ -2,4 +2,20 @@ kubelet_running_container_count : 每个node上运行容器个数(READY值相加
 kubelet_running_pod_count: 各个node上运行pod个数
 machine_cpu_cores: 各node上cpu核数 #sum(machine_cpu_cores) 集群总核数
 machine_memory_bytes: 各node上内存字节数
-
+kubernetes_build_info: kubernetes版本信息
+process_cpu_seconds_total: 
+prometheus_local_storage_memory_series: The current number of series held in memory.
+prometheus_local_storage_open_head_chunks: The number of open head chunks.
+prometheus_local_storage_chunks_to_persist: The number of memory chunks that still need to be persisted to disk.
+prometheus_local_storage_memory_chunks: The current number of chunks held in memory. If you substract the previous two, you get the number of persisted chunks (which are evictable if not currently in use by a query).
+prometheus_local_storage_series_chunks_persisted: A histogram of the number of chunks persisted per batch.
+prometheus_local_storage_persistence_urgency_score: The urgency score as discussed above.
+prometheus_local_storage_rushed_mode is 1 if Prometheus is in “rushed mode”, 0 otherwise. Can be used to calculate the percentage of time Prometheus is in rushed mode.
+prometheus_local_storage_checkpoint_last_duration_seconds: How long the last checkpoint took.
+prometheus_local_storage_checkpoint_last_size_bytes: Size of the last checkpoint in bytes.
+prometheus_local_storage_checkpointing is 1 while Prometheus is checkpointing, 0 otherwise. Can be used to calculate the percentage of time Prometheus is checkpointing.
+prometheus_local_storage_inconsistencies_total: Counter for storage inconsistencies found. If this is greater than 0, restart the server for recovery.
+prometheus_local_storage_persist_errors_total: Counter for persist errors.
+prometheus_local_storage_memory_dirty_series: Current number of dirty series.
+process_resident_memory_bytes: Broadly speaking the physical memory occupied by the Prometheus process.
+go_memstats_alloc_bytes: Go heap size (allocated objects in use plus allocated objects not in use anymore but not yet garbage-collected).
