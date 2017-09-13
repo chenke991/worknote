@@ -50,3 +50,4 @@ protocol="org.apache.coyote.http11.Http11AprProtocol #tomcat 7默认优先选apr
 
 查看生效方法： grep 8080 logs/catalina.2017-09-12.log 显示 "INFO: Starting ProtocolHandler ["http-apr-8080"]"
 
+https://github.com/judasn/Linux-Tutorial/blob/master/Tomcat-Install-And-Settings.md
