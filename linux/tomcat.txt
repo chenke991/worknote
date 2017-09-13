@@ -1,0 +1,52 @@
+调优：
+1,调优启动参数
+JAVA_OPTS='-server -Xms256m -Xmx512m'
+java -Xmx4096m -version #测试最大值
+
+
+2,线程优化
+maxThreads="X" 表示最多同时处理X个连接
+minSpareThreads="X" 初始化X个连接
+maxSpareThreads="X" 表示如果最多可以有X个线程，一旦超过X个,则会关闭不在需要的线程
+acceptCount="X" 当同时连接的人数达到maxThreads时,还可以排队,队列大小为X.超过X就不处理
+
+3,IO优化
+同步阻塞IO（JAVA BIO） 同步并阻塞，服务器实现模式为一个连接一个线程(one connection one thread 想想都觉得恐怖,线程可是非常宝贵的资源)，当然可以通过线程池机制改善.
+JAVA NIO:又分为同步非阻塞IO,异步阻塞IO 与BIO最大的区别one request one thread.可以复用同一个线程处理多个connection(多路复用).1异步非阻塞IO(Java NIO2又叫AIO) 主要与NIO的区别主要是操作系统的底层区别
+
+大杀器APR,从操作系统级别来解决异步的IO问题,大幅度的提高性能!!!!!!!!!!!!!!!!!!!!!!!
+3.1 安装apr:
+wget http://mirror.bit.edu.cn/apache//apr/apr-1.6.2.tar.bz2
+wget http://mirror.bit.edu.cn/apache//apr/apr-util-1.6.0.tar.bz2
+wget https://www.openssl.org/source/openssl-1.0.2l.tar.gz
+
+yum -y install openssl-devel
+tar zxf openssl-1.0.2l.tar.gz && ./config shared zlib && make && make install
+mv /usr/bin/openssl /usr/bin/openssl.bak
+mv /usr/include/openssl /usr/include/openssl.bak
+ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
+ln -s /usr/local/ssl/include/openssl /usr/include/openssl
+echo “/usr/local/ssl/lib” >> /etc/ld.so.conf
+ldconfig -v
+openssl version -a
+
+rpmbuild -ts apr-1.6.2.tar.bz2
+rpmbuild -ts apr-util-1.6.0.tar.bz2
+rpm -ivh /root/rpmbuild/SRPMS/apr
+
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/apr/lib" >> /etc/profile
+cd /usr/local/tomcat/bin
+tar zxf tomcat-native.tar.gz 
+cd tomcat-native-1.2.12-src/native
+source /etc/profile
+./configure --with-java-home=/usr/java/jdk1.7.0_80 && make -j 4 && make install
+
+catalina.sh添加：
+JAVA_OPTS="-Djava.library.path=/usr/local/apr/lib
+
+3.2
+server.xml文件中更改
+protocol="org.apache.coyote.http11.Http11AprProtocol #tomcat 7默认优先选apr,如果系统没有安装apr则是bio
+
+查看生效方法： grep 8080 logs/catalina.2017-09-12.log 显示 "INFO: Starting ProtocolHandler ["http-apr-8080"]"
+
