@@ -1,8 +1,8 @@
 POD健康检查
 
 作用域：
-1,Liveness Probe: 容器自定义检查，失败将杀死容器，再执行pod重启策略
-2,Readiness Probe:容器自定义准备检查，失败时此pod将从服务代理的后端移除
+1,Liveness Probe: 容器自定义检查，失败将杀死容器，再执行pod重启策略----容器
+2,Readiness Probe:容器自定义准备检查，失败时此pod将从服务代理的后端移除 ---服务
 
 检查方法：
 1,ExecAction: 参数command,数组,返回值为0是成功
