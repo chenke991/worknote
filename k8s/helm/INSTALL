@@ -1,0 +1,14 @@
+https://www.alibabacloud.com/help/zh/doc-detail/58587.htm
+
+https://github.com/kubernetes/helm/blob/master/docs/install.md?spm=a3c0i.o58587zh.a3.3.631054edCoMLAl&file=install.md
+
+目前版本： 2.6.1
+
+#安装helm client：
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+
+#安装tiller:
+helm init --upgrade -i dockerhub.ck/public/tiller:v2.6.1 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+#默认下载镜像：gcr.io/kubernetes-helm/tiller:v2.6.1
+
+
