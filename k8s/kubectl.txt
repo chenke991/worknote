@@ -30,5 +30,6 @@ kubectl apply -f mywebv2Deployment.yaml --validate=false #默认滚动升级
 kubectl describe deployment myweb #查看升级状态
 
  
-
+#说明
+get pod 时显示 READY=2/2  #此pod中有2个容器，2个容器都正常
 
