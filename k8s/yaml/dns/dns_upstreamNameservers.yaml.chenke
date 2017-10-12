@@ -1,0 +1,9 @@
+apiServer: v1
+kind: ConfigMap
+metadata:
+  name: kube-dns
+  namespace: kube-system
+data:
+  upstreamNameservers: |
+    ["192.168.1.139"]
+#kubectl edit pod/kube-dns-209315428-4t836 -n kube-system -o yaml 将spec:dnsPolicy:由Defalut改成 ClusterFirst 然后 保存即生效（有待考证）
