@@ -1,0 +1,173 @@
+<map version="1.0.1">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1473756963590" ID="ID_1620565933" MODIFIED="1486522676468" TEXT="BT&#x53d1;&#x5e03;&#x66f4;&#x65b0;">
+<font BOLD="true" NAME="SansSerif" SIZE="22"/>
+<icon BUILTIN="help"/>
+<node CREATED="1473757008962" HGAP="49" ID="ID_874836628" MODIFIED="1474179649667" POSITION="right" STYLE="bubble" TEXT="&#x73af;&#x5883;&#x51c6;&#x5907;" VSHIFT="-97">
+<font NAME="SansSerif" SIZE="16"/>
+<icon BUILTIN="full-4"/>
+<node CREATED="1486625373800" HGAP="35" ID="ID_1745298831" MODIFIED="1486625419456" TEXT="state.sls base" VSHIFT="15">
+<node CREATED="1486625530912" ID="ID_1303720776" MODIFIED="1486625543814" TEXT="&#x4f20;&#x9001;deploy.sh&#x81f3;minion"/>
+<node CREATED="1474164157508" ID="ID_1265916080" MODIFIED="1486625573755" TEXT="salt&#x6269;&#x5c55;&#x5305;manager&#x76ee;&#x5f55;&#x540c;&#x6b65;&#x81f3;&#x6240;&#x6709;&#x673a;&#x5668;&#x7684;/var/cache/salt/minion/extmods/modules" VSHIFT="9"/>
+</node>
+<node CREATED="1473757646639" HGAP="25" ID="ID_348768486" MODIFIED="1486625383911" STYLE="bubble" TEXT="sate.sls &#x6e38;&#x620f;&#x7b80;&#x79f0;.base" VSHIFT="60">
+<node CREATED="1486625739586" ID="ID_1421336688" MODIFIED="1486625805969" TEXT="&#x540c;&#x6b65;&#x9700;&#x8981;&#x5148;&#x88ab;&#x63a8;&#x9001;&#x7684;&#x6587;&#x4ef6;"/>
+</node>
+<node CREATED="1473757595400" HGAP="19" ID="ID_1133962644" MODIFIED="1486625584097" STYLE="bubble" TEXT="state.sls &#x6e38;&#x620f;&#x7b80;&#x79f0;" VSHIFT="27">
+<node CREATED="1473767682739" ID="ID_1783186793" MODIFIED="1486625667311" TEXT="&#x540c;&#x6b65;&#x88ab;deploy.sh&#x6240;&#x8c03;&#x7528;&#x7684;&#x811a;&#x672c;&#x81f3;&#x670d;&#x52a1;&#x5668;/data/scripts/&#x4e0b;">
+<icon BUILTIN="full-1"/>
+</node>
+<node CREATED="1473767740575" ID="ID_1146998971" MODIFIED="1486625620560" TEXT="&#x90e8;&#x7f72;&#x6307;&#x5b9a;&#x6e38;&#x620f;&#x73af;&#x5883;">
+<icon BUILTIN="full-2"/>
+</node>
+<node CREATED="1473767768449" ID="ID_1139090133" MODIFIED="1486625597930" TEXT="&#x5b89;&#x88c5;&#x6570;&#x636e;&#x5e93;">
+<icon BUILTIN="full-3"/>
+</node>
+</node>
+</node>
+<node CREATED="1473757101813" HGAP="988" ID="ID_715185670" MODIFIED="1486625450640" POSITION="right" STYLE="bubble" TEXT="&#x90e8;&#x670d;" VSHIFT="131">
+<font NAME="SansSerif" SIZE="14"/>
+<icon BUILTIN="full-5"/>
+<node CREATED="1474163822334" ID="ID_1183650233" MODIFIED="1474163837482" TEXT="sywz.deploy 1"/>
+</node>
+<node CREATED="1473757377577" HGAP="-18" ID="ID_930435969" MODIFIED="1473818237716" POSITION="left" STYLE="bubble" TEXT="&#x914d;&#x7f6e;" VSHIFT="-151">
+<icon BUILTIN="full-1"/>
+<node CREATED="1473818123986" HGAP="19" ID="ID_1769005350" MODIFIED="1486520044829" STYLE="bubble" TEXT="&#x8def;&#x5f84;" VSHIFT="-41">
+<font NAME="SansSerif" SIZE="16"/>
+<icon BUILTIN="folder"/>
+<node CREATED="1473818200028" HGAP="32" ID="ID_1224893135" MODIFIED="1486520872974" STYLE="bubble" TEXT="198MAST:/data/btupload/*.txt" VSHIFT="-26"/>
+</node>
+<node CREATED="1473818253769" ID="ID_1454807824" MODIFIED="1473818262794" TEXT="&#x914d;&#x7f6e;&#x9879;">
+<node CREATED="1473818263893" HGAP="23" ID="ID_1372980643" MODIFIED="1473818370470" TEXT="&#x89c1;&#x5177;&#x4f53;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x5185;&#x5bb9;&#x8bf4;&#x660e;" VSHIFT="-41"/>
+</node>
+</node>
+<node CREATED="1473757406793" HGAP="84" ID="ID_820678419" MODIFIED="1486522215080" POSITION="left" STYLE="bubble" TEXT="&#x529f;&#x80fd;" VSHIFT="-18">
+<font ITALIC="true" NAME="SansSerif" SIZE="16"/>
+<icon BUILTIN="full-2"/>
+<node CREATED="1474171553423" HGAP="22" ID="ID_73402015" MODIFIED="1486521104479" STYLE="bubble" TEXT="&#x8c03;&#x7528;&#x5b50;&#x811a;&#x672c;&#x6253;&#x5305;&#x7a0b;&#x5e8f;&#x6e90;&#x7801;&#x751f;&#x6210;&#x79cd;&#x5b50;&#x6587;&#x4ef6;" VSHIFT="-5"/>
+<node CREATED="1486521157768" ID="ID_1341209691" MODIFIED="1486521290074" TEXT="&#x751f;&#x6210;supervisor&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x5e76;&#x542f;&#x52a8;&#x683c;&#x5f0f; murder-client-xyzl-xiyou.ini "/>
+<node CREATED="1486521292262" ID="ID_1075902493" MODIFIED="1486521319570" TEXT="&#x5c06;&#x79cd;&#x5b50;&#x6587;&#x4ef6;&#x53d1;&#x9001;&#x7ed9;&#x5ba2;&#x6237;&#x7aef;"/>
+<node CREATED="1486521330632" ID="ID_67308274" MODIFIED="1486521379845" TEXT="&#x5ba2;&#x6237;&#x7aef;&#x4e0b;&#x8f7d;&#x6587;&#x4ef6;"/>
+</node>
+<node CREATED="1473757430323" HGAP="-98" ID="ID_1847803750" MODIFIED="1486522175429" POSITION="right" STYLE="bubble" TEXT="&#x76f8;&#x5173;&#x811a;&#x672c;" VSHIFT="15">
+<icon BUILTIN="full-3"/>
+<node CREATED="1473757975897" ID="ID_1781026211" MODIFIED="1473767674824" STYLE="bubble" TEXT="&#x6e38;&#x620f;&#x670d;&#x4e0a;&#x6240;&#x7528;&#x811a;&#x672c;">
+<icon BUILTIN="full-1"/>
+<node CREATED="1473757709779" HGAP="54" ID="ID_1631352045" MODIFIED="1473767277965" STYLE="bubble" TEXT="deploy.sh" VSHIFT="96">
+<font NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="penguin"/>
+<node CREATED="1473759310302" ID="ID_1669144347" MODIFIED="1473767277965" TEXT="&#x811a;&#x672c;&#x53c2;&#x6570;">
+<node CREATED="1473759331014" ID="ID_250632959" MODIFIED="1473767277965" TEXT="/data/servers/game1#&#x6e38;&#x620f;&#x670d;&#x76ee;&#x5f55;"/>
+<node CREATED="1473759340035" ID="ID_1790134790" MODIFIED="1486555163014" TEXT="/data/config/game1#&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x76ee;&#x5f55;"/>
+</node>
+<node CREATED="1473759121005" ID="ID_904924257" MODIFIED="1473767277965" TEXT="&#x8c03;&#x7528;&#x811a;&#x672c;" VSHIFT="19">
+<node CREATED="1473757808423" ID="ID_77135013" MODIFIED="1474169291521" STYLE="bubble" TEXT="changeconfig.sh">
+<icon BUILTIN="penguin"/>
+<node CREATED="1473759785893" ID="ID_1442535574" MODIFIED="1473767277965" TEXT="&#x529f;&#x80fd;">
+<node CREATED="1473759794820" ID="ID_359198127" MODIFIED="1473767277965" TEXT="&#x65b0;&#x4fee;&#x6539;&#x8fde;&#x63a5;&#x6570;&#x636e;&#x5e93;&#x914d;&#x7f6e;">
+<icon BUILTIN="full-1"/>
+</node>
+<node COLOR="#338800" CREATED="1473759890918" ID="ID_1681503090" MODIFIED="1473767277965" TEXT="&#x590d;&#x5236;Run.sh&#x81f3;&#x6e38;&#x620f;&#x670d;&#x76ee;&#x5f55;">
+<icon BUILTIN="full-2"/>
+</node>
+<node CREATED="1473759925136" ID="ID_8166183" MODIFIED="1473767277965" TEXT="&#x751f;&#x6210;systemctl&#x914d;&#x7f6e;&#x6587;&#x4ef6;">
+<icon BUILTIN="full-3"/>
+</node>
+<node CREATED="1473759941605" ID="ID_1032917384" MODIFIED="1473767277965" TEXT="&#x4fee;&#x6539;syslogng&#x5e76;&#x91cd;&#x542f;">
+<icon BUILTIN="full-4"/>
+</node>
+</node>
+</node>
+<node CREATED="1473760029363" ID="ID_1926320816" MODIFIED="1473767277965" TEXT="create_database.sh">
+<icon BUILTIN="penguin"/>
+<node CREATED="1473760270364" ID="ID_1388361455" MODIFIED="1486555282390" TEXT="&#x521b;&#x5efa;&#x6240;&#x7528;&#x6570;&#x636e;&#x5e93;&#x548c;&#x589e;&#x52a0;&#x7528;&#x6237;"/>
+</node>
+<node CREATED="1473757844641" ID="ID_682514596" MODIFIED="1473767277965" STYLE="bubble" TEXT="cp_config.sh">
+<icon BUILTIN="penguin"/>
+<node CREATED="1473760299073" ID="ID_419024738" MODIFIED="1473767277965" TEXT="&#x590d;&#x5236;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x81f3;&#x76f8;&#x5e94;&#x76ee;&#x5f55;"/>
+</node>
+<node CREATED="1474514800614" ID="ID_20943827" MODIFIED="1486555206847" TEXT="&#x8c03;&#x7528; update.sh">
+<node CREATED="1473760328270" ID="ID_787994593" MODIFIED="1473767277965" TEXT="&#x811a;&#x672c;&#x53c2;&#x6570;">
+<node CREATED="1473760362575" ID="ID_1938027862" MODIFIED="1473767277965" TEXT="&#x91cd;&#x542f;&#x6240;&#x6709;&#x670d;&#xff1a;/data/server/sywz"/>
+<node CREATED="1473765567571" ID="ID_1069461343" MODIFIED="1473767277965" TEXT="&#x91cd;&#x542f;&#x5355;&#x4e2a;&#x670d;&#xff1a;/data/server/sywz/game1"/>
+</node>
+</node>
+</node>
+<node CREATED="1473820769855" ID="ID_411549198" MODIFIED="1473820789199" TEXT="&#x88ab;&#x8c03;&#x7528;">
+<node CREATED="1473820790040" HGAP="22" ID="ID_65891826" MODIFIED="1473820875221" TEXT="&#x90e8;&#x7f72;&#x670d;&#x52a1;&#x5668;&#x65f6;:sywz.deploy" VSHIFT="13"/>
+</node>
+</node>
+<node CREATED="1473760531421" HGAP="28" ID="ID_1559024549" MODIFIED="1473833800072" STYLE="bubble" TEXT="&#x811a;&#x672c;&#x8def;&#x5f84;" VSHIFT="-25">
+<icon BUILTIN="folder"/>
+<node CREATED="1473760542062" HGAP="29" ID="ID_318033196" MODIFIED="1473767277965" STYLE="bubble" TEXT="/data/scripts/" VSHIFT="15"/>
+</node>
+<node CREATED="1473757801321" ID="ID_1637957203" MODIFIED="1473767277965" STYLE="bubble" TEXT="update.sh">
+<icon BUILTIN="penguin"/>
+<node CREATED="1473759418039" ID="ID_1747785997" MODIFIED="1473767277965" TEXT="&#x5168;&#x670d;&#x64cd;&#x4f5c;">
+<node CREATED="1473759463921" ID="ID_1142766420" MODIFIED="1473767277965" TEXT="upand_restart /data/servers/sywz"/>
+</node>
+<node CREATED="1473759430617" ID="ID_51914990" MODIFIED="1473767277965" TEXT="&#x5355;&#x670d;&#x64cd;&#x4f5c;">
+<node CREATED="1473759487360" ID="ID_147198708" MODIFIED="1473767277965" TEXT="upand_restart /data/servers/sywz/game1"/>
+</node>
+<node CREATED="1473759162573" ID="ID_1346646690" MODIFIED="1473767277965" TEXT="&#x8c03;&#x7528;&#x811a;&#x672c;">
+<node CREATED="1473818591541" HGAP="22" ID="ID_1630499591" MODIFIED="1486555357135" TEXT="&#x7528;&#x6237;&#x81ea;&#x5b9a;&#x4e49;" VSHIFT="20">
+<icon BUILTIN="penguin"/>
+<node CREATED="1473819322868" ID="ID_1507257521" MODIFIED="1473819495859" TEXT="&#x811a;&#x672c;&#x53c2;&#x6570;" VSHIFT="-5">
+<node CREATED="1473819341882" ID="ID_938095149" MODIFIED="1474171522772" TEXT="&#x65e0;&#x9700;&#x53c2;&#x6570;&#xff0c;&#x53d8;&#x91cf;&#x4ece;salt-key&#x4e2d;&#x53d6;" VSHIFT="-2"/>
+</node>
+<node CREATED="1473819330178" ID="ID_1430346963" MODIFIED="1473819499619" TEXT="&#x529f;&#x80fd;" VSHIFT="11">
+<node CREATED="1473819420885" HGAP="41" ID="ID_754478735" MODIFIED="1474179335370" TEXT="&#x5c06;salt&#x4ee3;&#x7406;&#x673a;&#x76ee;&#x5f55;/data/file/sywz/game&#x540c;&#x6b65;&#x81f3;&#x672c;&#x670d;&#x52a1;&#x5668;&#x76f8;&#x5e94;&#x76ee;&#x5f55;" VSHIFT="8"/>
+</node>
+<node CREATED="1473819512400" ID="ID_712369572" MODIFIED="1473820963148" TEXT="&#x88ab;&#x8c03;&#x7528;" VSHIFT="5">
+<node CREATED="1473819521897" HGAP="41" ID="ID_986612870" MODIFIED="1474513742182" TEXT="&#x8fd0;&#x7ef4;&#x5e73;&#x53f0;&#x66f4;&#x65b0;&#x64cd;&#x4f5c;&#x6b65;&#x9aa4; 2" VSHIFT="15"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node COLOR="#338800" CREATED="1473757991599" HGAP="25" ID="ID_198141674" MODIFIED="1474701836940">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      salt master&#19978;&#25152;&#29992;&#33050;&#26412;
+    </p>
+    <p>
+      121.46.17.198
+    </p>
+  </body>
+</html></richcontent>
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="full-2"/>
+<node CREATED="1473758064284" HGAP="23" ID="ID_1868770355" MODIFIED="1486522268024" STYLE="bubble" TEXT="btupload.sh" VSHIFT="42">
+<icon BUILTIN="penguin"/>
+<node CREATED="1473758470247" ID="ID_1213485086" MODIFIED="1474701806949" TEXT="&#x811a;&#x672c;&#x53c2;&#x6570;">
+<node CREATED="1473758442681" ID="ID_842551869" MODIFIED="1486522367709" TEXT="&#x6e38;&#x620f;&#x540d; &#x5e73;&#x53f0;1,&#x5e73;&#x53f0;2,&#x5e73;&#x53f0;N  &#x5305;&#x540d;1,&#x5305;&#x540d;2,&#x5305;&#x540d;3...."/>
+<node CREATED="1473758455103" ID="ID_557302962" MODIFIED="1486522454923" TEXT="&#x7c9f;&#x5b50;:  xyzl xiyou,xiyoupre,tencent share"/>
+</node>
+<node CREATED="1474163335092" HGAP="22" ID="ID_943125247" MODIFIED="1486523192291" TEXT="&#x5b50;&#x811a;&#x672c;&#x540d;&#x53ca;&#x53c2;&#x6570;&#x914d;&#x7f6e;" VSHIFT="18">
+<node CREATED="1474163342741" ID="ID_1940452392" MODIFIED="1486523116564" TEXT="&#x6e38;&#x620f;&#x540d;.txt">
+<node CREATED="1486523004698" ID="ID_1297005648" MODIFIED="1486523037112" TEXT="&#x9700;&#x4e0e;salt key&#x4fdd;&#x6301;&#x4e00;&#x81f4;"/>
+</node>
+<node CREATED="1474163349285" ID="ID_1206827169" MODIFIED="1486523058213" TEXT="&#x7c9f;&#x5b50;&#xff1a; xyzl.txt  "/>
+</node>
+<node CREATED="1492244041894" ID="ID_1593473799" MODIFIED="1492244051548" TEXT="&#x529f;&#x80fd;">
+<node CREATED="1492244052593" ID="ID_366557266" MODIFIED="1492244199047" TEXT="&#x8c03;&#x7528;$DownShell &#x4e0b;&#x8f7d;&#x6253;&#x5305;&#x5e76;&#x653e;&#x5165;$CloneDir/$Platform/&#x4e0b;"/>
+<node CREATED="1492244254895" ID="ID_607431201" MODIFIED="1492244511422" TEXT="&#x751f;&#x6210;&#x79cd;&#x5b50;&#x6587;&#x4ef6;&#x5e76;&#x653e;&#x5165;$TorrentDir/$GameName/$Plat_Form/ &#x4f9b;state.sls xyzl&#x65f6;&#x540c;&#x6b65;&#x5230;&#x5404;&#x670d;&#x52a1;&#x5668;&#x4e0a;"/>
+<node CREATED="1492244618483" ID="ID_1815129493" MODIFIED="1492244689955" TEXT="&#x751f;&#x6210;&#x5bf9;&#x5e94;&#x5e73;&#x53f0;bt&#x914d;&#x7f6e;&#x6587;&#x4ef6;murder-client-$GameName-${Plat_Form}.ini&#xff0c;master&#x4e0a;&#x505a;&#x79cd;&#x5b50;&#x670d;&#x52a1;&#x5668;"/>
+<node CREATED="1492244699547" ID="ID_797011210" MODIFIED="1492244817153" TEXT="&#x6839;&#x636e;xyzl.txt&#x5185;&#x5b9a;&#x4e49;&#x7684;&#x5305;&#x4e8e;&#x89d2;&#x8272;&#x5bf9;&#x5e94;&#x5173;&#x7cfb;&#x6765;&#x63a8;&#x9001;game.torrent #&#x5e73;&#x53f0;&#x6709;&#x505a;&#x53ef;&#x505c;&#x7528;"/>
+</node>
+</node>
+<node CREATED="1473760597444" ID="ID_274105365" MODIFIED="1474701806949" STYLE="bubble" TEXT="&#x811a;&#x672c;&#x8def;&#x5f84;">
+<icon BUILTIN="folder"/>
+<node CREATED="1473760606654" HGAP="22" ID="ID_953133542" MODIFIED="1486523130046" STYLE="bubble" TEXT="/data/btupload/" VSHIFT="29"/>
+<node CREATED="1473819512400" HGAP="16" ID="ID_1254223731" MODIFIED="1474701806949" TEXT="&#x88ab;&#x8c03;&#x7528;" VSHIFT="19">
+<node CREATED="1473819521897" HGAP="19" ID="ID_1286730641" MODIFIED="1486555444101" TEXT="&#x8fd0;&#x7ef4;&#x5e73;&#x53f0;&#x53d1;&#x5e03;&#x66f4;&#x65b0;(&#x64cd;&#x4f5c;&#x6b65;&#x9aa4; 1)" VSHIFT="11"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+</map>

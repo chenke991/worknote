@@ -143,6 +143,26 @@
 <font NAME="SansSerif" SIZE="14"/>
 </node>
 </node>
+<node CREATED="1508117989159" ID="ID_414747121" MODIFIED="1508117997412" TEXT="yaml">
+<node CREATED="1508117999214" ID="ID_1766696936" MODIFIED="1508118015880" TEXT="assign-pod-node">
+<node CREATED="1508118016963" ID="ID_1753300365" MODIFIED="1508118034412" TEXT="nodeSelector"/>
+<node CREATED="1508118038665" ID="ID_1213685582" MODIFIED="1508118046306" TEXT="affinity">
+<node CREATED="1508118047143" ID="ID_166193090" MODIFIED="1508118053448" TEXT="requiredDuringSchedulingIgnoredDuringExecution"/>
+<node CREATED="1508118053702" HGAP="60" ID="ID_1807980484" MODIFIED="1508119142920" TEXT="preferredDuringSchedulingIgnoredDuringExecution" VSHIFT="85"/>
+<node CREATED="1508119033635" HGAP="609" ID="ID_843350176" MODIFIED="1508119155575" VSHIFT="-138">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <img src="../../Pictures/k8s-affinity.png" />
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+</node>
 <node CREATED="1474598925387" HGAP="22" ID="ID_1443986688" MODIFIED="1486786474819" STYLE="bubble" TEXT="&#x5c5e;&#x6027;" VSHIFT="17">
 <node CREATED="1474598345052" ID="ID_1118617088" MODIFIED="1486786474819" STYLE="bubble" TEXT="&#x53ef;&#x4ee5;&#x6709;&#x591a;&#x4e2a;&#x6807;&#x7b7e;:name=mysql">
 <font NAME="SansSerif" SIZE="16"/>
@@ -226,7 +246,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1486786437256" HGAP="28" ID="ID_487650825" MODIFIED="1486786501536" STYLE="bubble" TEXT="&#x64cd;&#x4f5c;&#x7cfb;&#x7edf;&#xff1a;Ubuntu 14.04" VSHIFT="-29"/>
+<node CREATED="1486786437256" HGAP="28" ID="ID_487650825" MODIFIED="1507601259723" STYLE="bubble" TEXT="&#x64cd;&#x4f5c;&#x7cfb;&#x7edf;&#xff1a;Ubuntu 16.04" VSHIFT="-29"/>
 <node CREATED="1486786461873" HGAP="17" ID="ID_1752425194" MODIFIED="1486786497576" STYLE="bubble" TEXT="Ceph LTS&#x7248;&#x672c;&#xff1a; JEWEL10.2.3 " VSHIFT="26"/>
 <node CREATED="1486786534776" HGAP="32" ID="ID_520042721" MODIFIED="1486786721829" TEXT="&#x4f7f;&#x7528;&#x5757;&#x5b58;&#x50a8;,&#x4e0d;&#x9700;&#x5b89;&#x88c5;MDS" VSHIFT="40"/>
 <node CREATED="1486794064511" HGAP="23" ID="ID_1830741867" MODIFIED="1486794231411" TEXT="&#x521b;&#x5efa;persistent volume&#x5b9e;&#x73b0;&#x81ea;&#x52a8;&#x6302;&#x8f7d;" VSHIFT="29"/>
