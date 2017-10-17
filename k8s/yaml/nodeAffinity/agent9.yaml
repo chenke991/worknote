@@ -1,0 +1,67 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: yjzd-agent1
+  # these labels can be applied automatically 
+  # from the labels in the pod template if not set
+  # labels:
+  #      app: game
+  #      role: yjzd
+  #      tier: release
+spec:
+  # this replicas value is default
+  # modify it according to your case
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: agent
+        role: yjzd
+        tier: release
+    spec:
+      containers:
+      - name: agent
+        image: registry.cn-hangzhou.aliyuncs.com/game-image/agent:v0.3.4
+        imagePullPolicy: IfNotPresent #Always 
+        volumeMounts:
+        - mountPath: /data
+          name: hostdatadir
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        envFrom:
+        - configMapRef:
+            name: yujizhidi-release-env
+        args: ["--env=release","--id=agent1","--log-level=debug","--log-file=/data/gamelog/agent1.log"]
+        ports:
+        - containerPort: 8888
+          name: agent
+          protocol: UDP
+        - containerPort: 8888
+          name: agent-tcp
+          protocol: TCP
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: agent
+                operator: In
+                values:
+                - agent-for-yjzd
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: wlan
+                operator: In
+                values:
+                - wlan-true
+      #hostNetwork: true
+      volumes:
+      - name: hostdatadir
+        hostPath:
+          path: /data/yujinzhidi # logs
+      imagePullSecrets:
+        - name: pullimagefromaliyun
