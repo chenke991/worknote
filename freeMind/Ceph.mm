@@ -108,6 +108,64 @@
 <node CREATED="1508919990006" ID="ID_1263015523" MODIFIED="1508920043377" TEXT="osdmap:OSD map&#x7684;&#x7248;&#x672c;&#x4fe1;&#x606f;&#x53ca;&#x8fd0;&#x884c;&#x3001;&#x96c6;&#x7fa4;&#x4e2d;&#x7684;&#x72b6;&#x6001;"/>
 <node CREATED="1508920051845" ID="ID_991841129" MODIFIED="1508920180905" TEXT="pgmap:PG map&#x7684;&#x7248;&#x672c;&#x3001;&#x603b;&#x6570;&#x3001;&#x5b58;&#x50a8;&#x6c60;&#x7684;&#x6570;&#x91cf;&#x3001;&#x4e00;&#x4efd;&#x6570;&#x636e;&#x526f;&#x672c;&#x6240;&#x5360;&#x7528;&#x7684;&#x7a7a;&#x95f4;&#x5927;&#x5c0f;&#x4ee5;&#x53ca;&#x5bf9;&#x8c61;&#x7684;&#x603b;&#x6570;&#x91cf;&#xa;&#x96c6;&#x7fa4;&#x4f7f;&#x7528;&#x4fe1;&#x606f;&#xff1a;&#x5df2;&#x7528;&#x5bb9;&#x91cf;&#x3001;&#x53ef;&#x7528;&#x5bb9;&#x91cf;&#x3001;&#x603b;&#x5bb9;&#x91cf; &#x53ca;PG&#x72b6;&#x6001;&#x4fe1;&#x606f;"/>
 </node>
+<node CREATED="1508920603201" ID="ID_1489994484" MODIFIED="1508920781486" TEXT="ceph osd">
+<node CREATED="1508920771477" ID="ID_1031137315" MODIFIED="1508920774226" TEXT="tree">
+<node CREATED="1508920647586" ID="ID_477591615" MODIFIED="1508920673848" TEXT="&#x4e86;&#x89e3;OSD&#x7684;IN&#x3001;OUT&#x3001;&#x548c;UP&#x3001;DOWN&#x7b49;&#x72b6;&#x6001;"/>
+</node>
+<node CREATED="1508920724891" ID="ID_809094581" MODIFIED="1508920729957" TEXT="dump"/>
+<node CREATED="1508920730223" ID="ID_1393814084" MODIFIED="1508920736111" TEXT="blacklist ls">
+<node CREATED="1508920737711" ID="ID_1666374138" MODIFIED="1508920753868" TEXT="&#x663e;&#x793a;&#x9ed1;&#x540d;&#x5355;&#x4e2d;&#x7684;&#x5ba2;&#x6237;&#x7aef;&#x5217;&#x8868;"/>
+</node>
+<node CREATED="1508920789258" ID="ID_197550646" MODIFIED="1508920794319" TEXT="crush dump"/>
+<node CREATED="1508920798056" ID="ID_1241785567" MODIFIED="1508920804233" TEXT="crush rule list"/>
+<node CREATED="1508920811928" ID="ID_1203266108" MODIFIED="1508920835252" TEXT="crush rule dump &lt;crush_rule_name&gt;"/>
+<node CREATED="1508920856392" ID="ID_1070922522" MODIFIED="1508920878514" TEXT="find &lt;Numeric_OSD_ID&gt;">
+<node CREATED="1508920884502" ID="ID_1467198759" MODIFIED="1508920908298" TEXT="&#x641c;&#x7d22;OSD&#x53ca;&#x5176;&#x5728;CRUSH map&#x4e2d;&#x7684;&#x4f4d;&#x7f6e;"/>
+</node>
+</node>
+<node CREATED="1508921184621" ID="ID_748512917" MODIFIED="1508921452577" TEXT="ceph pg ">
+<node CREATED="1508921400564" ID="ID_302044914" MODIFIED="1508921402274" TEXT="stat">
+<node CREATED="1508921190428" ID="ID_964561519" MODIFIED="1508921378087">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      VNNNN:X pgs:Y active+clean;R MBdata,U MB used, F GB/T GB avail
+    </p>
+    <p>
+      VNNNN: PG map &#29256;&#26412;&#21495;
+    </p>
+    <p>
+      X: PG&#30340;&#24635;&#25968;&#37327;
+    </p>
+    <p>
+      Y: &#22788;&#20110;active+clean&#29366;&#24577;&#30340;PG&#25968;&#37327;
+    </p>
+    <p>
+      R: &#21407;&#22987;&#25968;&#25454;&#37327;
+    </p>
+    <p>
+      U: &#20570;&#20102;&#21103;&#26412;&#20043;&#21518;&#23454;&#38469;&#21344;&#29992;&#30340;&#31354;&#38388;&#22823;&#23567;
+    </p>
+    <p>
+      F&#65306;&#21097;&#20313;&#30340;&#21487;&#29992;&#23481;&#37327;
+    </p>
+    <p>
+      T: &#24635;&#23481;&#37327;
+    </p>
+  </body>
+</html></richcontent>
+</node>
+</node>
+<node CREATED="1508921407056" ID="ID_1040964406" MODIFIED="1508921419924" TEXT="&lt;PG_ID&gt; query">
+<node CREATED="1508921421007" ID="ID_326330134" MODIFIED="1508921432217" TEXT="&#x67e5;&#x8be2;&#x6307;&#x5b9a;PG&#x7684;&#x8be6;&#x7ec6;&#x4fe1;&#x606f;"/>
+</node>
+<node CREATED="1508921460939" ID="ID_146318793" MODIFIED="1508921478966" TEXT="dump_stuck &lt;unclean | inactive | stale&gt;">
+<node CREATED="1508921480241" ID="ID_1565612999" MODIFIED="1508921492267" TEXT="&#x67e5;&#x8be2;&#x6307;&#x5b9a;&#x72b6;&#x6001;&#x7684;PG"/>
+</node>
+</node>
 </node>
 <node CREATED="1508919486710" ID="ID_1937032098" MODIFIED="1508919491255" TEXT="&#x76d1;&#x63a7;&#x5de5;&#x5177;">
 <node CREATED="1508917261019" ID="ID_1997222078" MODIFIED="1508917266788" TEXT="calamari"/>
