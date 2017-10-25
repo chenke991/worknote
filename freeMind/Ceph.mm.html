@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>ceph</title>
+<style type="text/css">
+    li { list-style: none;  margin: 0; }
+    p { margin: 0; }
+    span.foldopened { color: white; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: visible;
+    cursor:pointer; }
+
+
+    span.foldclosed { color: #666666; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: hidden;
+    cursor:pointer; }
+
+    span.foldspecial { color: #666666; font-size: xx-small; border-style: none solid solid none;
+    border-color: #CCCCCC; border-width: 1; font-family: sans-serif; padding: 0em 0.1em 0em 0.1em; background: #e0e0e0;
+    cursor:pointer; }
+
+    span.l { color: red; font-weight: bold; }
+
+    a.mapnode:link {text-decoration: none; color: black; }
+    a.mapnode:visited {text-decoration: none; color: black; }
+    a.mapnode:active {text-decoration: none; color: black; }
+    a.mapnode:hover {text-decoration: none; color: black; background: #eeeee0; }
+
+</style>
+<!-- ^ Position is not set to relative / absolute here because of Mozilla -->
+</head>
+<body>
+
+<script type="text/javascript">
+   // Here we implement folding. It works fine with MSIE5.5, MSIE6.0 and
+   // Mozilla 0.9.6.
+
+   if (document.layers) {
+      //Netscape 4 specific code
+      pre = 'document.';
+      post = ''; }
+   if (document.getElementById) {
+      //Netscape 6 specific code
+      pre = 'document.getElementById("';
+      post = '").style'; }
+   if (document.all) {
+      //IE4+ specific code
+      pre = 'document.all.';
+      post = '.style'; }
+
+function layer_exists(layer) {
+   try {
+      eval(pre + layer + post);
+      return true; }
+   catch (error) {
+      return false; }}
+
+function show_layer(layer) {
+   eval(pre + layer + post).position = 'relative'; 
+   eval(pre + layer + post).visibility = 'visible'; }
+
+function hide_layer(layer) {
+   eval(pre + layer + post).visibility = 'hidden';
+   eval(pre + layer + post).position = 'absolute'; }
+
+function hide_folder(folder) {
+    hide_folding_layer(folder)
+    show_layer('show'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function show_folder(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_layer('show'+folder+'_'+i); }
+}
+function show_folder_completely(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+
+
+function hide_folding_layer(folder) {
+   var i;
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folding_layer(folder+'_'+i); }
+
+   hide_layer('hide'+folder);
+   hide_layer('show'+folder);
+   hide_layer('fold'+folder);
+
+   scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function fold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folder(folder+'_'+i); }
+}
+
+function unfold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+</script>
+<SPAN class="foldspecial" onclick="fold_document()">All +</SPAN>
+<SPAN class="foldspecial" onclick="unfold_document()">All -</SPAN>
+<p>ceph
+<ul><li><span id="show1_1" class="foldclosed" onClick="show_folder('1_1')" style="POSITION: absolute">+</span> <span id="hide1_1" class="foldopened" onClick="hide_folder('1_1')">-</span>
+&#40664;&#35748;&#20540;
+<ul id="fold1_1" style="POSITION: relative; VISIBILITY: visible;"><li>2&#20010;&#22791;&#20221;,&#21487;&#35843;
+
+</li>
+
+</ul>
+</li>
+<li>&#35282;&#33394;
+<ul><li>OSDs
+<ul><li>&#25968;&#37327;&#65306;&#20004;&#20010;&#21450;&#20197;&#19978;
+
+</li>
+<li>&#36890;&#24120;&#19968;&#20010;osd&#23432;&#25252;&#36827;&#31243;&#19982;&#19968;&#22359;&#29289;&#29702;&#30913;&#30424;&#25414;&#32465;
+
+</li>
+<li>&#23384;&#20648;&#25968;&#25454;&#65292;&#22788;&#29702;&#25968;&#25454;&#22797;&#21046;&#65292;&#24674;&#22797;&#65292;&#22238;&#22635;&#65292;&#37325;&#26032;&#35843;&#25972;&#65292;&#24182;&#36890;&#36807;&#26816;&#26597;&#20854;&#23427;Ceph OSD&#23432;&#25252;&#31243;&#24207;&#20316;&#20026;&#19968;&#20010;&#24515;&#36339; &#21521;Ceph&#30340;&#30417;&#35270;&#22120;&#25253;&#21578;&#19968;&#20123;&#26816;&#27979;&#20449;&#24687;
+
+</li>
+
+</ul>
+</li>
+<li>Monitor
+<ul><li>&#20445;&#23384;&#38598;&#32676;&#29366;&#24577;&#26144;&#23556;&#65292;&#20026;&#27599;&#20010;&#32452;&#20214;&#32500;&#25252;&#26144;&#23556;&#20449;&#24687;
+
+</li>
+<li>osd map
+
+</li>
+<li>MON map
+
+</li>
+<li>PG map
+
+</li>
+<li>CRUSH map
+
+</li>
+<li>&#19981;&#23384;&#20648;&#25968;&#25454;
+
+</li>
+
+</ul>
+</li>
+<li>MDS
+<ul><li>&#36828;&#25968;&#25454;&#26381;&#21153;&#65292;&#20351;&#29992;Cephfs&#26102;&#25165;&#23433;&#35013;
+
+</li>
+<li>&#21482;&#20026;CephFS&#31995;&#32479;&#36319;&#36394;&#25991;&#20214;&#30340;&#23618;&#27425;&#32467;&#26500;&#21644;&#23384;&#20648;&#20803;&#25968;&#25454;
+
+</li>
+
+</ul>
+</li>
+<li>RADOS
+<ul><li>&#26159;Ceph&#23384;&#20648;&#38598;&#32676;&#30340;&#22522;&#30784;
+
+</li>
+<li>&#25191;&#34892;&#25968;&#25454;&#20445;&#23384;&#12289;&#22797;&#21046;&#12289;&#25925;&#38556;&#26816;&#27979;&#21644;&#24674;&#22797;,&#20197;&#21450;&#25968;&#25454;&#36801;&#31227;&#21644;&#22312;&#25152;&#26377;&#38598;&#32676;&#33410;&#28857;&#23454;&#29616;&#20877;&#24179;&#34913;
+
+</li>
+
+</ul>
+</li>
+<li>librados
+<ul><li>&#20026;&#21508;&#31181;&#35821;&#35328;&#25552;&#20379;&#35775;&#38382;RADOS&#25509;&#21475;
+
+</li>
+
+</ul>
+</li>
+<li>RBD
+<ul><li>&#22359;&#35774;&#22791;&#65292;&#25552;&#20379;&#27704;&#20037;&#22359;&#23384;&#20648;
+
+</li>
+<li>&#23558;&#25968;&#25454;&#20998;&#25955;&#23384;&#20648;&#22312;&#22810;&#20010;OSD&#19978;
+
+</li>
+
+</ul>
+</li>
+<li>RGW
+<ul><li>&#25552;&#20379;&#23545;&#35937;&#23384;&#20648;&#26381;&#21153;
+
+</li>
+
+</ul>
+</li>
+<li>CephFS
+<ul><li>Ceph&#25991;&#20214;&#31995;&#32479;&#65292;&#22522;&#20110;librados&#23553;&#38381;&#20102;&#21407;&#29983;&#25509;&#21475;
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>&#37096;&#32626;
+<ul><li>deploy on node1
+<ul><li>&#33267;&#20854;&#23427;node &#21487;&#20197;ssh root&#26080;&#23494;&#30721;&#30331;&#38470;
+
+</li>
+<li>yum install ceph-deploy
+<ul><li>&#31532;&#19968;&#21488;&#37096;&#32626;
+<ul><li>mkdir /etc/ceph
+
+</li>
+<li>cd /etc/ceph ;ceph-deploy new ceph-node1
+
+</li>
+<li>ceph-deploy install node1 node2 node3
+
+</li>
+<li>ceph-deploy mon create-initial
+<ul><li>&#21019;&#24314;&#31532;&#19968;&#20010;monitor,&#33267;&#23569;&#35201;3&#20010;
+
+</li>
+
+</ul>
+</li>
+<li>ceph-deploy disk list node1
+
+</li>
+<li>ceph-deploy disk zap node1:sdb node1:sdc node1:sdd
+
+</li>
+<li>ceph-deploy osd create node1:sdb node1:sdc node1:sdd
+
+</li>
+<li>change ceph.conf public network
+
+</li>
+
+</ul>
+</li>
+<li>&#25193;&#23637;&#20854;&#23427;&#33410;&#28857;
+<ul><li>ceph-deploy mon create node2
+
+</li>
+<li>&nbsp;
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>other ceph-node
+<ul><li>ceph -s &#26597;&#30475;&#38598;&#32676;&#29366;&#24577;
+
+</li>
+
+</ul>
+</li>
+<li>&#25152;&#26377;node&#31105;selinux,ntp&#26381;&#21153;
+
+</li>
+
+</ul>
+</li>
+
+</ul><SCRIPT type="text/javascript">
+fold_document();
+</SCRIPT>
+</body>
+</html>
