@@ -1,7 +1,7 @@
 <map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1480212280036" ID="ID_930366294" MODIFIED="1480212428350" STYLE="bubble" TEXT="ceph">
-<node CREATED="1480212288660" HGAP="39" ID="ID_506717697" MODIFIED="1508901459404" POSITION="right" STYLE="bubble" TEXT="&#x89d2;&#x8272;" VSHIFT="-151">
+<node CREATED="1480212288660" HGAP="52" ID="ID_506717697" MODIFIED="1508914791134" POSITION="right" STYLE="bubble" TEXT="&#x89d2;&#x8272;" VSHIFT="-40">
 <node CREATED="1480212302624" ID="ID_299205990" MODIFIED="1480212428350" STYLE="bubble" TEXT="OSDs">
 <node CREATED="1480212324723" HGAP="23" ID="ID_603919199" MODIFIED="1480212437696" STYLE="bubble" TEXT="&#x6570;&#x91cf;&#xff1a;&#x4e24;&#x4e2a;&#x53ca;&#x4ee5;&#x4e0a;" VSHIFT="-23"/>
 <node CREATED="1508815595112" ID="ID_862458509" MODIFIED="1508815631649" TEXT="&#x901a;&#x5e38;&#x4e00;&#x4e2a;osd&#x5b88;&#x62a4;&#x8fdb;&#x7a0b;&#x4e0e;&#x4e00;&#x5757;&#x7269;&#x7406;&#x78c1;&#x76d8;&#x6346;&#x7ed1;"/>
@@ -37,9 +37,9 @@
 <node CREATED="1508834004956" ID="ID_516945450" MODIFIED="1508834038538" TEXT="Ceph&#x6587;&#x4ef6;&#x7cfb;&#x7edf;&#xff0c;&#x57fa;&#x4e8e;librados&#x5c01;&#x95ed;&#x4e86;&#x539f;&#x751f;&#x63a5;&#x53e3;"/>
 </node>
 </node>
-<node CREATED="1508901460474" ID="ID_1611678642" MODIFIED="1508901467446" POSITION="right" TEXT="&#x90e8;&#x7f72;">
+<node CREATED="1508901460474" HGAP="18" ID="ID_1611678642" MODIFIED="1508914786925" POSITION="right" TEXT="&#x90e8;&#x7f72;" VSHIFT="-40">
 <node CREATED="1508901470258" ID="ID_392766634" MODIFIED="1508901991066" TEXT="deploy on node1">
-<node CREATED="1508901503505" ID="ID_1720275798" MODIFIED="1508901534772" TEXT="&#x81f3;&#x5176;&#x5b83;node &#x53ef;&#x4ee5;ssh root&#x65e0;&#x5bc6;&#x7801;&#x767b;&#x9646;"/>
+<node CREATED="1508901503505" ID="ID_1720275798" MODIFIED="1508914757312" TEXT="&#x53ef;&#x4ee5;ssh root&#x65e0;&#x5bc6;&#x7801;&#x767b;&#x9646;&#x81f3;&#x5176;&#x5b83;node "/>
 <node CREATED="1508901713603" ID="ID_768080698" MODIFIED="1508901720782" TEXT="yum install ceph-deploy">
 <node CREATED="1508902669852" ID="ID_1188687999" MODIFIED="1508902674600" TEXT="&#x7b2c;&#x4e00;&#x53f0;&#x90e8;&#x7f72;">
 <node CREATED="1508901745329" ID="ID_878722990" MODIFIED="1508901758434" TEXT="mkdir /etc/ceph"/>
@@ -69,13 +69,136 @@
 </node>
 </node>
 </node>
-<node CREATED="1508901880416" ID="ID_1995756668" MODIFIED="1508901982562" TEXT="other ceph-node">
-<node CREATED="1508901903400" ID="ID_1111032733" MODIFIED="1508901915757" TEXT="ceph -s &#x67e5;&#x770b;&#x96c6;&#x7fa4;&#x72b6;&#x6001;"/>
+<node CREATED="1508914808272" ID="ID_1708330607" MODIFIED="1508914815434" TEXT="&#x5ba2;&#x6237;&#x7aef;&#x5b89;&#x88c5;">
+<node CREATED="1508914816745" ID="ID_941256865" MODIFIED="1508914830513" TEXT="deploy on node1">
+<node CREATED="1508914831410" ID="ID_1913949438" MODIFIED="1508914967758">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      cd /etc/ceph
+    </p>
+    <p>
+      ceph-deploy --user-name root install client-node1 &#23433;&#35013;client
+    </p>
+    <p>
+      ceph-deploy --username root config push client-node1 &#25512;&#36865;ceph.conf&#33267;client
+    </p>
+  </body>
+</html>
+</richcontent>
 </node>
-<node CREATED="1508901573906" ID="ID_859090956" MODIFIED="1508901640176" TEXT="&#x6240;&#x6709;node&#x7981;selinux,ntp&#x670d;&#x52a1;"/>
+</node>
+</node>
+<node CREATED="1508901573906" HGAP="19" ID="ID_859090956" MODIFIED="1508913545889" TEXT="&#x6240;&#x6709;node&#x7981;selinux,ntp&#x670d;&#x52a1;" VSHIFT="27"/>
 </node>
 <node CREATED="1480212462048" FOLDED="true" HGAP="62" ID="ID_1082047900" MODIFIED="1508815642058" POSITION="left" STYLE="bubble" TEXT="&#x9ed8;&#x8ba4;&#x503c;" VSHIFT="-142">
 <node CREATED="1480212474892" ID="ID_247211637" MODIFIED="1480212510143" STYLE="bubble" TEXT="2&#x4e2a;&#x5907;&#x4efd;,&#x53ef;&#x8c03;"/>
+</node>
+<node CREATED="1508914408189" HGAP="132" ID="ID_1211468765" MODIFIED="1508915957626" POSITION="left" TEXT="&#x7cfb;&#x7edf;" VSHIFT="-81">
+<node CREATED="1508914415617" ID="ID_22890712" MODIFIED="1508914462147" TEXT="Ubuntu 16.04"/>
+<node CREATED="1508914456673" ID="ID_487526981" MODIFIED="1508914457789" TEXT="Ceph LTS&#x7248;&#x672c;&#xff1a; JEWEL10.2.3 "/>
+</node>
+<node CREATED="1508901880416" ID="ID_1995756668" MODIFIED="1508913097847" POSITION="left" TEXT="&#x547d;&#x4ee4;">
+<node CREATED="1508913677375" ID="ID_1973580878" MODIFIED="1508913690835" TEXT="&#x57fa;&#x672c;&#x547d;&#x4ee4;">
+<node CREATED="1508913101254" HGAP="86" ID="ID_586098764" MODIFIED="1508913708896" VSHIFT="5">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ceph -s &#26597;&#30475;&#38598;&#32676;&#29366;&#24577;
+    </p>
+    <p>
+      ceph -w&#160;&#20581;&#24247;&#29366;&#24577;
+    </p>
+    <p>
+      ceph quorum_status --format json-pretty&#160;&#160;&#20210;&#35009;&#29366;&#24577;
+    </p>
+    <p>
+      ceph mon dump &#23548;&#20986;monitor&#20449;&#24687;
+    </p>
+    <p>
+      ceph df &#26816;&#26597;&#38598;&#32676;&#20351;&#29992;&#29366;&#24577;
+    </p>
+    <p>
+      ceph mon|osd|pg stat &#26816;&#26597;monitor,osd pg&#29366;&#24577;
+    </p>
+    <p>
+      ceph pg dump
+    </p>
+    <p>
+      ceph osd lspools &#21015;&#34920;ceph&#23384;&#20648;&#27744;
+    </p>
+    <p>
+      ceph osd tree &#26816;&#26597;OSD&#30340;CRUSH map
+    </p>
+    <p>
+      ceph auth list &#21015;&#34920;&#32676;&#38598;&#30340;&#35748;&#35777;&#23494;&#38053;
+    </p>
+  </body>
+</html></richcontent>
+</node>
+</node>
+<node CREATED="1508913699664" HGAP="9" ID="ID_822560370" MODIFIED="1508915009627" TEXT="&#x9ad8;&#x7ea7;&#x547d;&#x4ee4;" VSHIFT="98">
+<node CREATED="1508915010807" ID="ID_1608515535" MODIFIED="1508915152035">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ceph auth get-or-create client.rbd mon 'allow r' osd 'allow class-read object_prefix rbd_children,allow rwx pool=rbd' &#21019;&#24314;ceph&#29992;&#25143;client.rbd &#23427;&#25317;&#26377;&#35775;&#38382;rbd&#23384;&#20648;&#27744;&#30340;&#26435;&#38480;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1508915171082" ID="ID_902861208" MODIFIED="1508915232515">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ceph auth get-or-create client-rbd | ssh root@client1 sudo tee /etc/ceph/ceph.client.rbd.keyring &#20026;client1&#19978;&#30340;client.rbd&#29992;&#25143;&#28155;&#21152;&#23494;&#38053;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1508915980647" ID="ID_1614125733" MODIFIED="1508916157698">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      rbd create rbd1 --size 10240 --name client.rbd &#21019;&#24314;&#19968;&#20010;10240MB&#22823;&#23567;&#30340;&#22359;&#35774;&#22791;rbd1
+    </p>
+    <p>
+      rbd ls --name client.rbd
+    </p>
+    <p>
+      rbd ls -p rbd --name client.rbd
+    </p>
+    <p>
+      rbd list --name client.rbd
+    </p>
+    <p>
+      #&#20197;&#19978;&#21015;&#20986;RBD&#38236;&#20687;
+    </p>
+    <p>
+      rbd --image rbd1 info --name client.rbd &#26816;&#26597;rbd&#38236;&#20687;&#30340;&#32454;&#33410;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
 </node>
 </node>
 </map>
