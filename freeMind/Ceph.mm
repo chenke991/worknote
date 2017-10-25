@@ -94,6 +94,25 @@
 </node>
 <node CREATED="1508901573906" HGAP="19" ID="ID_859090956" MODIFIED="1508913545889" TEXT="&#x6240;&#x6709;node&#x7981;selinux,ntp&#x670d;&#x52a1;" VSHIFT="27"/>
 </node>
+<node CREATED="1508917255874" ID="ID_571184464" MODIFIED="1508917259943" POSITION="right" TEXT="&#x76d1;&#x63a7;">
+<node CREATED="1508919478332" ID="ID_795579578" MODIFIED="1508919486228" TEXT="&#x76d1;&#x63a7;&#x547d;&#x4ee4;">
+<node CREATED="1508919503556" ID="ID_876049803" MODIFIED="1508919509242" TEXT="ceph health"/>
+<node CREATED="1508919509989" ID="ID_1408918688" MODIFIED="1508919522130" TEXT="ceph health detail"/>
+<node CREATED="1508919565672" ID="ID_1961148877" MODIFIED="1508919567647" TEXT="ceph -w"/>
+<node CREATED="1508919638019" ID="ID_1394871835" MODIFIED="1508919651089" TEXT="ceph df &#x4f7f;&#x7528;&#x7edf;&#x8ba1; &#x4fe1;&#x606f;"/>
+<node CREATED="1508919684199" ID="ID_1711509996" MODIFIED="1508919849944" TEXT="ceph  status(-s)">
+<node CREATED="1508919852246" ID="ID_1582893505" MODIFIED="1508919875971" TEXT="cluster:&#x96c6;&#x7fa4;&#x552f;&#x4e00;ID"/>
+<node CREATED="1508919876887" ID="ID_1724874919" MODIFIED="1508919890689" TEXT="health:&#x96c6;&#x7fa4;&#x5065;&#x5eb7;&#x4fe1;&#x606f;"/>
+<node CREATED="1508919890937" ID="ID_1340272698" MODIFIED="1508919922281" TEXT="monmap:mon map&#x7248;&#x672c;&#x53ca;&#x4ef2;&#x88c1;&#x72b6;&#x6001;"/>
+<node CREATED="1508919948496" ID="ID_1903688086" MODIFIED="1508919989427" TEXT="mdsmap:MDS map&#x7684;&#x72b6;&#x6001;&#x53ca;&#x7248;&#x672c;&#x4fe1;&#x606f;"/>
+<node CREATED="1508919990006" ID="ID_1263015523" MODIFIED="1508920043377" TEXT="osdmap:OSD map&#x7684;&#x7248;&#x672c;&#x4fe1;&#x606f;&#x53ca;&#x8fd0;&#x884c;&#x3001;&#x96c6;&#x7fa4;&#x4e2d;&#x7684;&#x72b6;&#x6001;"/>
+<node CREATED="1508920051845" ID="ID_991841129" MODIFIED="1508920180905" TEXT="pgmap:PG map&#x7684;&#x7248;&#x672c;&#x3001;&#x603b;&#x6570;&#x3001;&#x5b58;&#x50a8;&#x6c60;&#x7684;&#x6570;&#x91cf;&#x3001;&#x4e00;&#x4efd;&#x6570;&#x636e;&#x526f;&#x672c;&#x6240;&#x5360;&#x7528;&#x7684;&#x7a7a;&#x95f4;&#x5927;&#x5c0f;&#x4ee5;&#x53ca;&#x5bf9;&#x8c61;&#x7684;&#x603b;&#x6570;&#x91cf;&#xa;&#x96c6;&#x7fa4;&#x4f7f;&#x7528;&#x4fe1;&#x606f;&#xff1a;&#x5df2;&#x7528;&#x5bb9;&#x91cf;&#x3001;&#x53ef;&#x7528;&#x5bb9;&#x91cf;&#x3001;&#x603b;&#x5bb9;&#x91cf; &#x53ca;PG&#x72b6;&#x6001;&#x4fe1;&#x606f;"/>
+</node>
+</node>
+<node CREATED="1508919486710" ID="ID_1937032098" MODIFIED="1508919491255" TEXT="&#x76d1;&#x63a7;&#x5de5;&#x5177;">
+<node CREATED="1508917261019" ID="ID_1997222078" MODIFIED="1508917266788" TEXT="calamari"/>
+</node>
+</node>
 <node CREATED="1480212462048" FOLDED="true" HGAP="62" ID="ID_1082047900" MODIFIED="1508815642058" POSITION="left" STYLE="bubble" TEXT="&#x9ed8;&#x8ba4;&#x503c;" VSHIFT="-142">
 <node CREATED="1480212474892" ID="ID_247211637" MODIFIED="1480212510143" STYLE="bubble" TEXT="2&#x4e2a;&#x5907;&#x4efd;,&#x53ef;&#x8c03;"/>
 </node>
@@ -197,6 +216,86 @@
   </body>
 </html>
 </richcontent>
+</node>
+<node CREATED="1508916547047" ID="ID_1672389712" MODIFIED="1508916553855" TEXT="&#x5757;&#x8bbe;&#x5907;&#x6620;&#x5c04;">
+<node CREATED="1508916555119" ID="ID_266812802" MODIFIED="1508916645327">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      rbd map --image rbd1 --name client.rbd
+    </p>
+    <p>
+      rbd showmappend --name client.rbd
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      fdisk -l /dev/rbd1
+    </p>
+    <p>
+      mkfs.xfs /dev/rbd1
+    </p>
+    <p>
+      mount /dev/rbd1 /mnt/ceph-disk1
+    </p>
+    <p>
+      df -h /mnt/ceph-disk1
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1508916661917" ID="ID_528794977" MODIFIED="1508916685339" TEXT="&#x5f00;&#x673a;&#x81ea;&#x52a0;&#x8f7d;">
+<node CREATED="1508916688396" ID="ID_528264765" MODIFIED="1508916832051">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      wget init-rbdmap --&gt; /etc/init.d/
+    </p>
+    <p>
+      echo &quot;rbd/rbd1 id=rbd,keyring=***==&quot; &gt;&gt; /etc/ceph/rbdmap
+    </p>
+    <p>
+      echo &quot;/dev/rbd1 /mnt/ceph-disk1 xfs defaults, _netdev0 0 &quot; &gt;&gt; /etc/fstab
+    </p>
+    <p>
+      mkdir /mnt/ceph-disk1
+    </p>
+    <p>
+      /etc/init.d/rbdmap start<br />
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1508916409119" ID="ID_1742207651" MODIFIED="1508916421033" TEXT="&#x6269;&#x7f29;&#x5bb9;rbd">
+<node CREATED="1508916422691" ID="ID_1595345730" MODIFIED="1508916526718">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      rbd resize --image rbd1 --size 20480 --name client.rbd
+    </p>
+    <p>
+      rbd info --image rbd1 --name client.rbd
+    </p>
+    <p>
+      xfs_growfs -d /mnt/ceph-disk1 #xfs&#25903;&#25345;&#22312;&#32447;&#35843;&#25972;&#22823;&#23567;
+    </p>
+  </body>
+</html></richcontent>
+</node>
 </node>
 </node>
 </node>
