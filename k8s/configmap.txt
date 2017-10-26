@@ -1,3 +1,4 @@
+1,存储变量
 kubectl create configmap yujizhidi-release-env --from-literal=KAFKA_BROKERS=192.168.1.139:9092 --from-literal=MONGODB_HOST=mongodb://192.168.1.139/jericho --from-literal=ETCD_HOSTS=http://192.168.1.139:2379 #创建configmap
 
 #容器中使用configmap中的全部值为自己的变量
@@ -15,3 +16,8 @@ containers:
    - name: ETCD_HOSTS
      value: http://192.168.1.139:2379
 =========================================只取指定值
+
+2,存储配置文件
+kubectl create configmap prometheus-kubernetes --from-file=prometheus-kubernetes.yml
+
+#使用
