@@ -21,3 +21,20 @@ containers:
 kubectl create configmap prometheus-kubernetes --from-file=prometheus-kubernetes.yml
 
 #使用
+  containers:
+    - name: prometheus
+        volumeMounts:
+        - name: config-volume             <-----
+          mountPath: /etc/prometheus
+        - name: storage-dir
+          mountPath: /prometheus
+      nodeSelector:
+        prometheus: "pt"
+      serviceAccountName: prometheus
+      volumes:
+      - name: config-volume              <-----
+        configMap:
+          name: prometheus
+      - name: storage-dir
+        hostPath:
+          path: /data/prometheus
