@@ -360,26 +360,29 @@
 <node CREATED="1509073266018" ID="ID_1290230344" MODIFIED="1509073268389" POSITION="left" TEXT="&#x7ba1;&#x7406;">
 <node CREATED="1509073276998" ID="ID_1164367047" MODIFIED="1509073301154" TEXT="PG(&#x5f52;&#x7f6e;&#x7ec4;/&#x76ee;&#x5f55;)">
 <node CREATED="1509073303251" ID="ID_881621642" MODIFIED="1509073352014" TEXT="&#x547d;&#x4ee4;">
-<node CREATED="1509073356020" HGAP="42" ID="ID_1474326524" MODIFIED="1509073908072" VSHIFT="9">
+<node CREATED="1509073356020" HGAP="42" ID="ID_1474326524" MODIFIED="1509074950977" VSHIFT="9">
 <richcontent TYPE="NODE"><html>
   <head>
     
   </head>
   <body>
     <p>
-      ceph osd tree
+      <font size="4">ceph osd tree </font>
     </p>
     <p>
-      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace">rados -p rbd put char char.txt </font>
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="4">rados -p rbd put char char.txt </font>
     </p>
     <p>
-      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace">ceph osd map rbd char</font>&#160;&#26597;&#30475;&#25991;&#20214;&#20445;&#23384;&#23454;&#38469;&#20301;&#32622;
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="4">ceph osd map rbd char</font><font size="4">&#160;&#26597;&#30475;&#25991;&#20214;&#20445;&#23384;&#23454;&#38469;&#20301;&#32622; </font>
     </p>
     <p>
-      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace">/var/lib/ceph/osd/ceph-0/current/</font>&#160;pg&#30446;&#24405;&#20869;&#23481;
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="4">/var/lib/ceph/osd/ceph-0/current/</font><font size="4">&#160;pg&#30446;&#24405;&#20869;&#23481; </font>
     </p>
     <p>
-      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="13px">ceph pg dump_stuck</font> &#65306;pg&#29366;&#24577;&#20449;&#24687;
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="4">ceph pg dump_stuck</font><font size="4">&#160;&#65306;pg&#29366;&#24577;&#20449;&#24687; </font>
+    </p>
+    <p>
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="4">ceph pg repair 0.44</font><font size="4">&#65306;&#25163;&#21160;&#24674;&#22797;&#20002;&#22833;&#30340;pg&#25991;&#20214;</font>
     </p>
   </body>
 </html>
@@ -387,20 +390,38 @@
 </node>
 </node>
 <node CREATED="1509073731439" ID="ID_1456176019" MODIFIED="1509073734168" TEXT="&#x72b6;&#x6001;">
-<node CREATED="1509073735179" HGAP="15" ID="ID_1248411712" MODIFIED="1509073903928" VSHIFT="13">
+<node CREATED="1509073735179" HGAP="15" ID="ID_1248411712" MODIFIED="1509074889633" VSHIFT="13">
 <richcontent TYPE="NODE"><html>
   <head>
     
   </head>
   <body>
     <p>
-      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="13px">size = 3, min_size = 2</font> :&#26377;3&#20010;&#21103;&#26412;&#65292;&#33267;&#23569;&#20004;&#20010;&#23384;&#27963;&#25165;&#33021;&#35835;&#21462;
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="3">size = 3, min_size = 2</font><font size="3">&#160;:&#26377;3&#20010;&#21103;&#26412;&#65292;&#33267;&#23569;&#20004;&#20010;&#23384;&#27963;&#25165;&#33021;&#35835;&#21462; </font>
     </p>
     <p>
-      active+clean &#65306; PG&#30340;&#20581;&#24247;&#29366;&#24577;
+      <font size="3">active+clean &#65306; PG&#30340;&#20581;&#24247;&#29366;&#24577; </font>
     </p>
     <p>
-      degraded:
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="3">undersized:&#23384;&#27963;&#21103;&#26412;&#25968;&#23569;&#20110;3&#65292;&#20294;&#22823;&#20110;&#25110;&#31561;&#20110;min_size </font>
+    </p>
+    <p>
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="3">degraded:</font><font size="3">&#38477;&#32423; &#24403;&#19968;&#20010;pg&#25152;&#22312;OSD&#25346;&#25481;&#21518;&#30340;&#29366;&#24577; </font>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <font size="3">perred:&#20005;&#37325;&#20107;&#20214;&#65292;&#21103;&#26412;&#25968;&#23567;&#20110;min_size&#20010;&#65292;&#19981;&#20877;&#21709;&#24212;&#22806;&#37096;IO&#35831;&#27714; </font>
+    </p>
+    <p>
+      <font size="3">remapped:&#23558;&#25346;&#25481;(&#40664;&#35748;&#25346;5&#20998;&#38047;&#21518;)&#30340;OSD&#20869;&#23481;&#36716;&#31227;&#21040;&#20854;&#23427;OSD&#20013;&#30340;&#33258;&#24840;&#29366;&#24577;&#65292;&#27492;&#26102;pg&#22788;&#20110;&#22238;&#22635;&#29366;&#24577;backfilling </font>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <font size="3">recover:&#36827;&#31243;&#25346;&#25481;&#30340;OSD&#36827;&#31243;&#25110;&#32593;&#32476;&#25238;&#21160;&#26410;&#26631;&#35760;&#20026;out &#21448;&#37325;&#26032;&#21152;&#20837;&#38598;&#32676;&#65292;&#20294;&#27492;&#26102;&#20854;&#23427;&#21103;&#26412;&#26377;&#26356;&#26032;&#65288;inconsistent&#29366;&#24577;&#65289;&#65292;&#21017;&#20250;&#37325;&#26032;&#21516;&#27493;&#26032;&#25968;&#25454;&#36807;&#26469;&#65292;&#27492;&#26102;pg&#34987;&#26631;&#35760;&#20026;recover </font>
     </p>
   </body>
 </html>
