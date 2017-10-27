@@ -180,44 +180,51 @@
 </node>
 <node CREATED="1508901880416" ID="ID_1995756668" MODIFIED="1508913097847" POSITION="left" TEXT="&#x547d;&#x4ee4;">
 <node CREATED="1508913677375" HGAP="150" ID="ID_1973580878" MODIFIED="1509073250752" TEXT="&#x57fa;&#x672c;&#x547d;&#x4ee4;" VSHIFT="-81">
-<node CREATED="1508913101254" HGAP="86" ID="ID_586098764" MODIFIED="1508913708896" VSHIFT="5">
+<node CREATED="1508913101254" HGAP="86" ID="ID_586098764" MODIFIED="1509086947976" VSHIFT="5">
 <richcontent TYPE="NODE"><html>
   <head>
     
   </head>
   <body>
     <p>
-      ceph -s &#26597;&#30475;&#38598;&#32676;&#29366;&#24577;
+      <font size="2">ceph -s &#26597;&#30475;&#38598;&#32676;&#29366;&#24577; (</font><font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="2">ceph -s --conf /etc/ceph/ceph.conf --name client.admin --keyring /etc/ceph/ceph.client.admin.keyring</font><font size="2">) </font>
     </p>
     <p>
-      ceph -w&#160;&#20581;&#24247;&#29366;&#24577;
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="2">ceph auth get client.admin --name mon. --keyring /var/lib/ceph/mon/ceph-blog/keyring</font><font size="2"> #</font><font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="2">exported keyring for client.admin</font>
     </p>
     <p>
-      ceph quorum_status --format json-pretty&#160;&#160;&#20210;&#35009;&#29366;&#24577;
+      
     </p>
     <p>
-      ceph mon dump &#23548;&#20986;monitor&#20449;&#24687;
+      <font size="3">ceph -w&#160;&#20581;&#24247;&#29366;&#24577; </font>
     </p>
     <p>
-      ceph df &#26816;&#26597;&#38598;&#32676;&#20351;&#29992;&#29366;&#24577;
+      <font size="3">ceph quorum_status --format json-pretty&#160;&#160;&#20210;&#35009;&#29366;&#24577; </font>
     </p>
     <p>
-      ceph mon|osd|pg stat &#26816;&#26597;monitor,osd pg&#29366;&#24577;
+      <font size="3">ceph mon dump &#23548;&#20986;monitor&#20449;&#24687; </font>
     </p>
     <p>
-      ceph pg dump
+      <font size="3">ceph df &#26816;&#26597;&#38598;&#32676;&#20351;&#29992;&#29366;&#24577; </font>
     </p>
     <p>
-      ceph osd lspools &#21015;&#34920;ceph&#23384;&#20648;&#27744;
+      <font size="3">ceph mon|osd|pg stat &#26816;&#26597;monitor,osd pg&#29366;&#24577; </font>
     </p>
     <p>
-      ceph osd tree &#26816;&#26597;OSD&#30340;CRUSH map
+      <font size="3">ceph pg dump </font>
     </p>
     <p>
-      ceph auth list &#21015;&#34920;&#32676;&#38598;&#30340;&#35748;&#35777;&#23494;&#38053;
+      <font size="3">ceph osd lspools &#21015;&#34920;ceph&#23384;&#20648;&#27744; </font>
+    </p>
+    <p>
+      <font size="3">ceph osd tree &#26816;&#26597;OSD&#30340;CRUSH map </font>
+    </p>
+    <p>
+      <font size="3">ceph auth list &#21015;&#34920;&#32676;&#38598;&#30340;&#35748;&#35777;&#23494;&#38053;</font>
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 <node CREATED="1508913699664" HGAP="303" ID="ID_822560370" MODIFIED="1509073246376" TEXT="&#x9ad8;&#x7ea7;&#x547d;&#x4ee4;" VSHIFT="-106">
