@@ -171,15 +171,15 @@
 <node CREATED="1508917261019" ID="ID_1997222078" MODIFIED="1508917266788" TEXT="calamari"/>
 </node>
 </node>
-<node CREATED="1480212462048" FOLDED="true" HGAP="62" ID="ID_1082047900" MODIFIED="1508815642058" POSITION="left" STYLE="bubble" TEXT="&#x9ed8;&#x8ba4;&#x503c;" VSHIFT="-142">
+<node CREATED="1480212462048" FOLDED="true" HGAP="258" ID="ID_1082047900" MODIFIED="1509073258984" POSITION="left" STYLE="bubble" TEXT="&#x9ed8;&#x8ba4;&#x503c;" VSHIFT="-118">
 <node CREATED="1480212474892" ID="ID_247211637" MODIFIED="1480212510143" STYLE="bubble" TEXT="2&#x4e2a;&#x5907;&#x4efd;,&#x53ef;&#x8c03;"/>
 </node>
-<node CREATED="1508914408189" HGAP="132" ID="ID_1211468765" MODIFIED="1508915957626" POSITION="left" TEXT="&#x7cfb;&#x7edf;" VSHIFT="-81">
+<node CREATED="1508914408189" HGAP="282" ID="ID_1211468765" MODIFIED="1509073255944" POSITION="left" TEXT="&#x7cfb;&#x7edf;" VSHIFT="-113">
 <node CREATED="1508914415617" ID="ID_22890712" MODIFIED="1508914462147" TEXT="Ubuntu 16.04"/>
 <node CREATED="1508914456673" ID="ID_487526981" MODIFIED="1508914457789" TEXT="Ceph LTS&#x7248;&#x672c;&#xff1a; JEWEL10.2.3 "/>
 </node>
 <node CREATED="1508901880416" ID="ID_1995756668" MODIFIED="1508913097847" POSITION="left" TEXT="&#x547d;&#x4ee4;">
-<node CREATED="1508913677375" ID="ID_1973580878" MODIFIED="1508913690835" TEXT="&#x57fa;&#x672c;&#x547d;&#x4ee4;">
+<node CREATED="1508913677375" HGAP="150" ID="ID_1973580878" MODIFIED="1509073250752" TEXT="&#x57fa;&#x672c;&#x547d;&#x4ee4;" VSHIFT="-81">
 <node CREATED="1508913101254" HGAP="86" ID="ID_586098764" MODIFIED="1508913708896" VSHIFT="5">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -220,7 +220,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1508913699664" HGAP="9" ID="ID_822560370" MODIFIED="1508915009627" TEXT="&#x9ad8;&#x7ea7;&#x547d;&#x4ee4;" VSHIFT="98">
+<node CREATED="1508913699664" HGAP="303" ID="ID_822560370" MODIFIED="1509073246376" TEXT="&#x9ad8;&#x7ea7;&#x547d;&#x4ee4;" VSHIFT="-106">
 <node CREATED="1508915010807" ID="ID_1608515535" MODIFIED="1508915152035">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -353,6 +353,58 @@
     </p>
   </body>
 </html></richcontent>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1509073266018" ID="ID_1290230344" MODIFIED="1509073268389" POSITION="left" TEXT="&#x7ba1;&#x7406;">
+<node CREATED="1509073276998" ID="ID_1164367047" MODIFIED="1509073301154" TEXT="PG(&#x5f52;&#x7f6e;&#x7ec4;/&#x76ee;&#x5f55;)">
+<node CREATED="1509073303251" ID="ID_881621642" MODIFIED="1509073352014" TEXT="&#x547d;&#x4ee4;">
+<node CREATED="1509073356020" HGAP="42" ID="ID_1474326524" MODIFIED="1509073908072" VSHIFT="9">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ceph osd tree
+    </p>
+    <p>
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace">rados -p rbd put char char.txt </font>
+    </p>
+    <p>
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace">ceph osd map rbd char</font>&#160;&#26597;&#30475;&#25991;&#20214;&#20445;&#23384;&#23454;&#38469;&#20301;&#32622;
+    </p>
+    <p>
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace">/var/lib/ceph/osd/ceph-0/current/</font>&#160;pg&#30446;&#24405;&#20869;&#23481;
+    </p>
+    <p>
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="13px">ceph pg dump_stuck</font> &#65306;pg&#29366;&#24577;&#20449;&#24687;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1509073731439" ID="ID_1456176019" MODIFIED="1509073734168" TEXT="&#x72b6;&#x6001;">
+<node CREATED="1509073735179" HGAP="15" ID="ID_1248411712" MODIFIED="1509073903928" VSHIFT="13">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="13px">size = 3, min_size = 2</font> :&#26377;3&#20010;&#21103;&#26412;&#65292;&#33267;&#23569;&#20004;&#20010;&#23384;&#27963;&#25165;&#33021;&#35835;&#21462;
+    </p>
+    <p>
+      active+clean &#65306; PG&#30340;&#20581;&#24247;&#29366;&#24577;
+    </p>
+    <p>
+      degraded:
+    </p>
+  </body>
+</html>
+</richcontent>
 </node>
 </node>
 </node>
