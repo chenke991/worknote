@@ -16,7 +16,7 @@
 <node CREATED="1508815531436" ID="ID_1028137604" MODIFIED="1508815539011" TEXT="&#x4e0d;&#x5b58;&#x50a8;&#x6570;&#x636e;"/>
 </node>
 <node CREATED="1486786661129" HGAP="24" ID="ID_443814522" MODIFIED="1508833890720" TEXT="MDS" VSHIFT="6">
-<node CREATED="1486786665128" ID="ID_1291745252" MODIFIED="1508815718074" TEXT="&#x8fdc;&#x6570;&#x636e;&#x670d;&#x52a1;&#xff0c;&#x4f7f;&#x7528;Cephfs&#x65f6;&#x624d;&#x5b89;&#x88c5;"/>
+<node CREATED="1486786665128" ID="ID_1291745252" MODIFIED="1509433104762" TEXT="&#x5143;&#x6570;&#x636e;&#x670d;&#x52a1;&#xff0c;&#x4f7f;&#x7528;Cephfs&#x65f6;&#x624d;&#x5b89;&#x88c5;"/>
 <node CREATED="1508815729550" ID="ID_1796768912" MODIFIED="1508815766330" TEXT="&#x53ea;&#x4e3a;CephFS&#x7cfb;&#x7edf;&#x8ddf;&#x8e2a;&#x6587;&#x4ef6;&#x7684;&#x5c42;&#x6b21;&#x7ed3;&#x6784;&#x548c;&#x5b58;&#x50a8;&#x5143;&#x6570;&#x636e;"/>
 </node>
 <node CREATED="1508815782711" ID="ID_548087264" MODIFIED="1508815790419" TEXT="RADOS">
@@ -36,6 +36,7 @@
 <node CREATED="1508833998181" ID="ID_38748104" MODIFIED="1508834004167" TEXT="CephFS">
 <node CREATED="1508834004956" ID="ID_516945450" MODIFIED="1508834038538" TEXT="Ceph&#x6587;&#x4ef6;&#x7cfb;&#x7edf;&#xff0c;&#x57fa;&#x4e8e;librados&#x5c01;&#x95ed;&#x4e86;&#x539f;&#x751f;&#x63a5;&#x53e3;"/>
 </node>
+<node CREATED="1509434159693" ID="ID_453814190" MODIFIED="1509434162103" TEXT="&#x5e94;&#x8be5;&#x5206;&#x522b;&#x5728;&#x5355;&#x72ec;&#x7684;&#x786c;&#x76d8;&#x8fd0;&#x884c;&#x64cd;&#x4f5c;&#x7cfb;&#x7edf;&#x3001; OSD &#x6570;&#x636e;&#x548c; OSD &#x65e5;&#x5fd7;"/>
 </node>
 <node CREATED="1508901460474" HGAP="18" ID="ID_1611678642" MODIFIED="1508914786925" POSITION="right" TEXT="&#x90e8;&#x7f72;" VSHIFT="-40">
 <node CREATED="1508901470258" ID="ID_392766634" MODIFIED="1508901991066" TEXT="deploy on node1">
@@ -87,8 +88,7 @@
       ceph-deploy --username root config push client-node1 &#25512;&#36865;ceph.conf&#33267;client
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -223,8 +223,7 @@
       <font size="3">ceph auth list &#21015;&#34920;&#32676;&#38598;&#30340;&#35748;&#35777;&#23494;&#38053;</font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1508913699664" HGAP="303" ID="ID_822560370" MODIFIED="1509073246376" TEXT="&#x9ad8;&#x7ea7;&#x547d;&#x4ee4;" VSHIFT="-106">
@@ -238,8 +237,7 @@
       ceph auth get-or-create client.rbd mon 'allow r' osd 'allow class-read object_prefix rbd_children,allow rwx pool=rbd' &#21019;&#24314;ceph&#29992;&#25143;client.rbd &#23427;&#25317;&#26377;&#35775;&#38382;rbd&#23384;&#20648;&#27744;&#30340;&#26435;&#38480;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1508915171082" ID="ID_902861208" MODIFIED="1508915232515">
 <richcontent TYPE="NODE"><html>
@@ -251,8 +249,7 @@
       ceph auth get-or-create client-rbd | ssh root@client1 sudo tee /etc/ceph/ceph.client.rbd.keyring &#20026;client1&#19978;&#30340;client.rbd&#29992;&#25143;&#28155;&#21152;&#23494;&#38053;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1508915980647" ID="ID_1614125733" MODIFIED="1508916157698">
 <richcontent TYPE="NODE"><html>
@@ -279,8 +276,7 @@
       rbd --image rbd1 info --name client.rbd &#26816;&#26597;rbd&#38236;&#20687;&#30340;&#32454;&#33410;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1508916547047" ID="ID_1672389712" MODIFIED="1508916553855" TEXT="&#x5757;&#x8bbe;&#x5907;&#x6620;&#x5c04;">
 <node CREATED="1508916555119" ID="ID_266812802" MODIFIED="1508916645327">
@@ -311,8 +307,7 @@
       df -h /mnt/ceph-disk1
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1508916661917" ID="ID_528794977" MODIFIED="1508916685339" TEXT="&#x5f00;&#x673a;&#x81ea;&#x52a0;&#x8f7d;">
@@ -338,8 +333,7 @@
       /etc/init.d/rbdmap start<br />
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1508916409119" ID="ID_1742207651" MODIFIED="1508916421033" TEXT="&#x6269;&#x7f29;&#x5bb9;rbd">
@@ -392,8 +386,7 @@
       <font color="rgb(77, 77, 76)" face="consolas, Menlo, PingFang SC, Microsoft YaHei, monospace" size="4">ceph pg repair 0.44</font><font size="4">&#65306;&#25163;&#21160;&#24674;&#22797;&#20002;&#22833;&#30340;pg&#25991;&#20214;</font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1509073731439" ID="ID_1456176019" MODIFIED="1509073734168" TEXT="&#x72b6;&#x6001;">
@@ -431,8 +424,7 @@
       <font size="3">recover:&#36827;&#31243;&#25346;&#25481;&#30340;OSD&#36827;&#31243;&#25110;&#32593;&#32476;&#25238;&#21160;&#26410;&#26631;&#35760;&#20026;out &#21448;&#37325;&#26032;&#21152;&#20837;&#38598;&#32676;&#65292;&#20294;&#27492;&#26102;&#20854;&#23427;&#21103;&#26412;&#26377;&#26356;&#26032;&#65288;inconsistent&#29366;&#24577;&#65289;&#65292;&#21017;&#20250;&#37325;&#26032;&#21516;&#27493;&#26032;&#25968;&#25454;&#36807;&#26469;&#65292;&#27492;&#26102;pg&#34987;&#26631;&#35760;&#20026;recover </font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
