@@ -1,0 +1,59 @@
+k8s etcd集群
+/opt/etcd/bin/etcdctl --endpoints="https://192.168.16.130:2379,https://192.168.16.129:2379,https://192.168.16.128:2379" --cert-file=/etc/kubernetes/ssl/kubernetes.pem --key-file=/etc/kubernetes/ssl/kubernetes-key.pem  --ca-file=/etc/kubernetes/ssl/ca.pem cluster-health
+
+/opt/etcd/bin/etcdctl --endpoints="https://192.168.16.130:2379,https://192.168.16.129:2379,https://192.168.16.128:2379" --cert-file=/etc/kubernetes/ssl/kubernetes.pem --key-file=/etc/kubernetes/ssl/kubernetes-key.pem  --ca-file=/etc/kubernetes/ssl/ca.pem member list
+
+calico etcd集群：
+/opt/etcd/bin/etcdctl --endpoints="http://192.168.16.127:3379,https://192.168.16.128:3379,https://192.168.16.129:3379" member list
+
+单实例扩集群：
+129为最初单实例有数据,集群新加127 128
+
+129重启集群模式：
+ExecStart=/opt/etcd/bin/etcd \
+  --name=calico-192.168.16.129 \
+  --initial-advertise-peer-urls http://192.168.16.129:3380 \
+  --listen-peer-urls http://192.168.16.129:3380 \
+  --listen-client-urls http://192.168.16.129:3379,http://127.0.0.1:3379 \
+  --advertise-client-urls http://192.168.16.129:3379 \
+  --initial-cluster-token etcd-cluster-calico \
+  --initial-cluster calico-192.168.16.129=http://192.168.16.129:3380 \
+  --force-new-cluster \ #这个是重点
+  --data-dir=/data/etcdcalico
+
+
+
+2,第一次添加127
+/opt/etcd/bin/etcdctl --endpoints="http://192.168.16.129:3379" member list
+/opt/etcd/bin/etcdctl --endpoints="http://192.168.16.129:3379" member update 8e9e05c52164694d http://192.168.16.129:3380
+/opt/etcd/bin/etcdctl --endpoints="http://192.168.16.129:3379" member add calico-192.168.16.127 http://192.168.16.127:3380
+
+3,
+127启etcd
+ExecStart=/opt/etcd/bin/etcd \
+  --name=calico-192.168.16.127 \
+  --initial-advertise-peer-urls http://192.168.16.127:3380 \
+  --listen-peer-urls http://192.168.16.127:3380 \
+  --listen-client-urls http://192.168.16.127:3379,http://127.0.0.1:3379 \
+  --advertise-client-urls http://192.168.16.127:3379 \
+  --initial-cluster-token etcd-cluster-calico \
+  --initial-cluster calico-192.168.16.129=http://192.168.16.129:3380,calico-192.168.16.127=http://192.168.16.127:3380 \
+  --initial-cluster-state existing \
+  --data-dir=/data/etcdcalico
+
+4,第二次添加128
+/opt/etcd/bin/etcdctl --endpoints="http://192.168.16.129:3379" member add calico-192.168.16.128 http://192.168.16.128:3380
+
+5,128启动etcd
+ExecStart=/opt/etcd/bin/etcd \
+  --name=calico-192.168.16.128 \
+  --initial-advertise-peer-urls http://192.168.16.128:3380 \
+  --listen-peer-urls http://192.168.16.128:3380 \
+  --listen-client-urls http://192.168.16.128:3379,http://127.0.0.1:3379 \
+  --advertise-client-urls http://192.168.16.128:3379 \
+  --initial-cluster-token etcd-cluster-calico \
+  --initial-cluster calico-192.168.16.128=http://192.168.16.128:3380,calico-192.168.16.129=http://192.168.16.129:3380,calico-192.168.16.127=http://192.168.16.127:3380 \
+  --initial-cluster-state existing \
+  --data-dir=/data/etcdcalico
+
+
