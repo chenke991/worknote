@@ -26,7 +26,7 @@ helm init --client-only #仅安装client
 #config service account and namespace in RABC
 https://github.com/kubernetes/helm/blob/master/docs/service_accounts.md#example-service-account-restricted-to-a-namespace
 https://docs.helm.sh/using_helm/#tiller-namespaces-and-rbac
-1,tiller用户绑定到cluster-admin 具有全部namespace权限
+1,tiller用户绑定到cluster-admin 具有全部namespace权限,本次测试用
 2,每个namespace使用一套tiller,权限只限定在单一namespace内
 
 
