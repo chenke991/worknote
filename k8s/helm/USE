@@ -1,2 +1,7 @@
 helm version #显示版本
 helm init #重装
+helm search mysql
+helm inspect stable/mariadb
+helm install -f config.yaml (--set a=b) stable/mariadb
+helm list
+helm status hipster-buffoon
