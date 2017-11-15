@@ -20,6 +20,7 @@ helm init --override "spec.template.spec.affinity.nodeAffinity.preferredDuringSc
 
 #设置client文件目录
 export HELM_HOME=/some/path
-helm init --client-only
+helm init --client-only #仅安装client
+
 
 
