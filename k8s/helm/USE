@@ -1,1 +1,2 @@
 helm version #显示版本
+helm init #重装
