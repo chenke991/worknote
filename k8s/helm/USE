@@ -1,3 +1,4 @@
+stable	https://kubernetes-charts.storage.googleapis.com
 helm version #显示版本
 helm init #重装
 helm search mysql
