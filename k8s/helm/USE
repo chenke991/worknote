@@ -5,3 +5,7 @@ helm inspect stable/mariadb
 helm install -f config.yaml (--set a=b) stable/mariadb
 helm list
 helm status hipster-buffoon
+
+helm lint 验证chart是否遵循了一些好的实践
+helm install --dry-run --debug: chart发送给Tiller server并用value.yaml中的值来渲染相关模板。但实际上chart并没有安装， 只是输出了渲染后的模板。
+helm get manifest: 查看Tiller server端已安装的模板。
