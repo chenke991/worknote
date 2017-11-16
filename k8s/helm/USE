@@ -10,3 +10,11 @@ helm status hipster-buffoon
 helm lint 验证chart是否遵循了一些好的实践
 helm install --dry-run --debug: chart发送给Tiller server并用value.yaml中的值来渲染相关模板。但实际上chart并没有安装， 只是输出了渲染后的模板。
 helm get manifest: 查看Tiller server端已安装的模板。
+
+显示已删除：
+helm ls --deleted -d
+
+helm rollback guilded-ragdoll 1 #回滚至第一个启动版本
+
+修改文件后直接更新：
+helm upgrade trendsetting-marmot ./testapi-chart
