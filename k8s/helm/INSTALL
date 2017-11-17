@@ -14,7 +14,7 @@ helm init --upgrade -i dockerhub.ck/public/tiller:v2.7.0 --stable-repo-url https
 #重新安装
 kubectl delete deployment tiller-deploy --namespace kube-system
 helm reset
-helm init -i dockerhub.ck/public/tiller:v2.7.0
+helm init  --service-account tiller -i dockerhub.ck/public/tiller:v2.7.0
 #修改默认值
 helm init --override "spec.template.spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[0].weight"="1" --override "spec.template.spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[0].preference.matchExpressions[0].key"="e2e-az-name"
 
