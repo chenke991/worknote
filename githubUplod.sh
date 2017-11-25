@@ -8,3 +8,4 @@ cd $Dir
 /usr/bin/git add * 
 /usr/bin/git commit -m "commit at $Time"
 /usr/bin/git push
+echo "git push to github at $Time " > /tmp/gitpush.log
