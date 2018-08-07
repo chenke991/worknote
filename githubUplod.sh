@@ -1,7 +1,7 @@
 #!/bin/sh
 #上传github
 set -o
-Dir=$HOME/worknote
+Dir=$HOME/Documents/worknote
 Time=$(date)
 cd $Dir
 /usr/bin/git pull
