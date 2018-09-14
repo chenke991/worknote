@@ -1,0 +1,824 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>systemd</title>
+<style type="text/css">
+    li { list-style: none;  margin: 0; }
+    p { margin: 0; }
+    span.foldopened { color: white; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: visible;
+    cursor:pointer; }
+
+
+    span.foldclosed { color: #666666; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: hidden;
+    cursor:pointer; }
+
+    span.foldspecial { color: #666666; font-size: xx-small; border-style: none solid solid none;
+    border-color: #CCCCCC; border-width: 1; font-family: sans-serif; padding: 0em 0.1em 0em 0.1em; background: #e0e0e0;
+    cursor:pointer; }
+
+    span.l { color: red; font-weight: bold; }
+
+    a.mapnode:link {text-decoration: none; color: black; }
+    a.mapnode:visited {text-decoration: none; color: black; }
+    a.mapnode:active {text-decoration: none; color: black; }
+    a.mapnode:hover {text-decoration: none; color: black; background: #eeeee0; }
+
+</style>
+<!-- ^ Position is not set to relative / absolute here because of Mozilla -->
+</head>
+<body>
+
+<script type="text/javascript">
+   // Here we implement folding. It works fine with MSIE5.5, MSIE6.0 and
+   // Mozilla 0.9.6.
+
+   if (document.layers) {
+      //Netscape 4 specific code
+      pre = 'document.';
+      post = ''; }
+   if (document.getElementById) {
+      //Netscape 6 specific code
+      pre = 'document.getElementById("';
+      post = '").style'; }
+   if (document.all) {
+      //IE4+ specific code
+      pre = 'document.all.';
+      post = '.style'; }
+
+function layer_exists(layer) {
+   try {
+      eval(pre + layer + post);
+      return true; }
+   catch (error) {
+      return false; }}
+
+function show_layer(layer) {
+   eval(pre + layer + post).position = 'relative'; 
+   eval(pre + layer + post).visibility = 'visible'; }
+
+function hide_layer(layer) {
+   eval(pre + layer + post).visibility = 'hidden';
+   eval(pre + layer + post).position = 'absolute'; }
+
+function hide_folder(folder) {
+    hide_folding_layer(folder)
+    show_layer('show'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function show_folder(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_layer('show'+folder+'_'+i); }
+}
+function show_folder_completely(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+
+
+function hide_folding_layer(folder) {
+   var i;
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folding_layer(folder+'_'+i); }
+
+   hide_layer('hide'+folder);
+   hide_layer('show'+folder);
+   hide_layer('fold'+folder);
+
+   scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function fold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folder(folder+'_'+i); }
+}
+
+function unfold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+</script>
+<SPAN class="foldspecial" onclick="fold_document()">All +</SPAN>
+<SPAN class="foldspecial" onclick="unfold_document()">All -</SPAN>
+<p><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">systemd</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#26085;&#24535;&#26597;&#30475;</span>
+<ul><li><p>journalctl
+<ul><li>&#26597;&#30475;&#25152;&#26377;&#26085;&#24535;&#65288;&#31995;&#32479;&#21644;&#36827;&#31243;&#65289;
+
+</li>
+
+</ul><p>journalctl -k
+<ul><li>&#26597;&#30475;&#20869;&#26680;&#26085;&#24535;&#65288;&#19981;&#26174;&#31034;&#24212;&#29992;&#26085;&#24535;&#65289;
+
+</li>
+
+</ul><p>journalctl -b [-0]
+<ul><li>&#26597;&#30475;&#31995;&#32479;&#26412;&#27425;&#21551;&#21160;&#30340;&#26085;&#24535;
+
+</li>
+
+</ul><p>journalctl -b -1 
+<ul><li>&#26597;&#30475;&#19978;&#19968;&#27425;&#21551;&#21160;&#30340;&#26085;&#24535;
+
+</li>
+
+</ul><p><span id="show1_1" class="foldclosed" onClick="show_folder('1_1')" style="POSITION: absolute">+</span> <span id="hide1_1" class="foldopened" onClick="hide_folder('1_1')">-</span>
+<span style="font-size: 125%;font-family: SansSerif, sans-serif; ">journalctl --since ["2018-09-07 21:10:00",yesterday,"20 min ago",09:00] --until ["2018-09-07 21:12:00",'1 hour ago"] </span>
+<ul id="fold1_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#26597;&#30475;&#25351;&#23450;&#26102;&#38388;&#30340;&#26085;&#24535;
+
+</li>
+
+</ul><p>journalctl -n 20 
+<ul><li>&#26174;&#31034;&#23614;&#37096;&#25351;&#23450;&#34892;&#25968;&#30340;&#26085;&#24535;
+
+</li>
+
+</ul><p><span style="font-size: 150%;font-family: SansSerif, sans-serif; ">journalctl -f</span>
+<ul><li>&#23454;&#26102;&#28378;&#21160;&#26174;&#31034;&#26368;&#26032;&#26085;&#24535;
+
+</li>
+
+</ul><p><span style="font-size: 125%;font-family: SansSerif, sans-serif; ">journalctl /usr/lib/systemd/systemd</span>
+<ul><li>&#26597;&#30475;&#25351;&#23450;&#26381;&#21153;&#30340;&#26085;&#24535;
+
+</li>
+
+</ul><p><span style="font-size: 125%;font-family: SansSerif, sans-serif; ">journalctl _PID=1</span>
+<ul><li>&#26597;&#30475;&#25351;&#23450;&#36827;&#31243;&#30340;&#26085;&#24535;
+
+</li>
+
+</ul><p><span style="font-size: 125%;font-family: SansSerif, sans-serif; ">journalctl /usr/bin/bash</span>
+<ul><li>&#26597;&#30475;&#26576;&#20010;&#36335;&#24452;&#30340;&#33050;&#26412;&#30340;&#26085;&#24535;
+
+</li>
+
+</ul><p><span style="font-size: 141%;font-family: SansSerif, sans-serif; ">journalctl _UID=33 --since today</span>
+<ul><li>&#26597;&#30475;&#25351;&#23450;&#29992;&#25143;&#30340;&#26085;&#24535;
+
+</li>
+
+</ul><p><span style="font-size: 141%;font-family: SansSerif, sans-serif; ">journalctl -u php-fpm.service -u nginx.service [-f , --since today]</span>
+<ul><li>&#26597;&#30475;&#25351;&#23450;&#19968;&#20010;&#25110;&#22810;&#20010; Unit &#30340;&#26085;&#24535;
+
+</li>
+
+</ul><p>journalctl -p err -b -o json 
+<ul><li><p>&#26597;&#30475;&#25351;&#23450;&#20248;&#20808;&#32423;&#65288;&#21450;&#20854;&#20197;&#19978;&#32423;&#21035;&#65289;&#30340;&#26085;&#24535;&#65292;&#20849;&#26377;8&#32423; # 0: emerg # 1: alert # 2: crit # 3: err # 4: warning # 5: notice # 6: info # 7: debug
+</li>
+</ul><p><span style="font-size: 150%;font-family: SansSerif, sans-serif; ">journalctl --disk-usage</span>
+<ul><li>&#26174;&#31034;&#26085;&#24535;&#21344;&#25454;&#30340;&#30828;&#30424;&#31354;&#38388;
+
+</li>
+
+</ul><p><span style="font-size: 125%;font-family: SansSerif, sans-serif; ">journalctl --vacuum-size=1G</span>
+<ul><li>&#25351;&#23450;&#26085;&#24535;&#25991;&#20214;&#21344;&#25454;&#30340;&#26368;&#22823;&#31354;&#38388;
+
+</li>
+
+</ul><p><span style="font-size: 125%;font-family: SansSerif, sans-serif; ">journalctl --vacuum-time=1years</span>
+<ul><li>&#25351;&#23450;&#26085;&#24535;&#25991;&#20214;&#20445;&#23384;&#22810;&#20037;
+
+</li>
+
+</ul></li>
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#27010;&#24565;</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#31995;&#32479;&#31649;&#29702;&#23432;&#25252;&#36827;&#31243;</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#21462;&#20195; initd</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#24182;&#21457;&#21551;&#21160;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#25509;&#31649;&#31995;&#32479;&#21644;&#24212;&#29992;&#26085;&#24535;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#31649;&#29702;&#36164;&#28304;&#20998;&#31867;12&#31181;</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Service unit&#65306;&#31995;&#32479;&#26381;&#21153;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Target unit&#65306;&#22810;&#20010; Unit &#26500;&#25104;&#30340;&#19968;&#20010;&#32452;&nbsp;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Slice Unit&#65306;&#36827;&#31243;&#32452;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Device Unit&#65306;&#30828;&#20214;&#35774;&#22791;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Timer Unit&#65306;&#23450;&#26102;&#22120; </span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Scope Unit&#65306;&#38750;Systemd &#21551;&#21160;&#30340;&#22806;&#37096;&#36827;&#31243;&nbsp;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Mount Unit&#65306;&#25991;&#20214;&#31995;&#32479;&#30340;&#25346;&#36733;&#28857;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Socket Unit&#65306;&#36827;&#31243;&#38388;&#36890;&#20449;&#30340; socket </span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Swap Unit&#65306;swap &#25991;&#20214;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Path Unit&#65306;&#25991;&#20214;&#25110;&#36335;&#24452;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Snapshot Unit&#65306;Systemd &#24555;&#29031;&#65292;&#21487;&#20197;&#20999;&#22238;&#26576;&#20010;&#24555;&#29031;</span>
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#37197;&#32622;</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#35268;&#21017;</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#35835;&#21462;&#30446;&#24405;/etc/systemd/system/ &#20250;&#35206;&#30422;/usr/lib/systemd/system/&#19979;&#30456;&#21516;&#30340;service&#37197;&#32622;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#22823;&#23567;&#20889;&#25935;&#24863;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#38190;&#20540;&#23545;&#30340;&#31561;&#21495;&#20004;&#20391;&#19981;&#33021;&#26377;&#31354;&#26684;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">[Unit]</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#27599;&#19968;&#20010;&#21306;&#22359;&#65292;&#23450;&#20041;&#20803;&#25968;&#25454;&#21450;&#19982;&#20854;&#23427;Unit&#30340;&#20851;&#31995;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Requires</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#24378;&#20381;&#36182;&#65292;&#24403;&#21069; Unit &#20381;&#36182;&#30340;&#20854;&#20182;&nbsp;Unit,&#20250;&#21435;&#21551;&#21160;&#20381;&#36182;&#39033;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Wants</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#24369;&#20381;&#36182;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">BindsTo</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#23427;&#25351;&#23450;&#30340; Unit &#22914;&#26524;&#36864;&#20986;&#65292;&#20250;&#23548;&#33268;&#24403;&#21069;&nbsp;Unit &#20572;&#27490;&#36816;&#34892;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Before</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#25351;&#23450;Unit&#22312;&#24403;&#21069; Unit &#20043;&#21518;&#21551;&#21160;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">After</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#25351;&#23450;Unit&#22312;&#24403;&#21069; Unit &#20043;&#21069;&#21551;&#21160;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Conflicts</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#25351;&#23450;&#30340; Unit &#19981;&#33021;&#19982;&#24403;&#21069;&nbsp;Unit &#21516;&#26102;&#36816;&#34892;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Condition</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#24403;&#21069; Unit &#36816;&#34892;&#24517;&#39035;&#28385;&#36275;&#30340;&#26465;&#20214;&#65292;&#21542;&#21017;&#19981;&#20250;&#36816;&#34892;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Assert</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#24403;&#21069; Unit &#36816;&#34892;&#24517;&#39035;&#28385;&#36275;&#30340;&#26465;&#20214;&#65292;&#21542;&#21017;&#20250;&#25253;&#21551;&#21160;&#22833;&#36133;</span>
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">[Install]</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#26368;&#21518;&#19968;&#20010;&#21306;&#22359;&#65292;&#29992;&#26469;&#23450;&#20041;&#22914;&#20309;&#21551;&#21160;&#65292;&#20197;&#21450;&#26159;&#21542;&#24320;&#26426;&#21551;&#21160;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">WantedBy</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#34920;&#31034;&#35813;&#26381;&#21153;&#25152;&#22312;&#30340;Target</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">systemctl enable &#26102;&#31526;&#21495;&#38142;&#25509;&#20250;&#25918;&#20837;/etc/systemd/system&#30446;&#24405;&#19979;&#38754;&#20197; Target &#21517;&nbsp;+ .wants&#21518;&#32512;&#26500;&#25104;&#30340;&#23376;&#30446;&#24405;&#20013;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">RequiredBy</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#35813;&#26381;&#21153;&#20381;&#36182;&#30340;Target</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">systemctl enable &#31526;&#21495;&#38142;&#25509;&#20250;&#25918;&#20837;/etc/systemd/system&#30446;&#24405;&#19979;&#38754;&#20197; Target &#21517;&nbsp;+ .required&#21518;&#32512;&#26500;&#25104;&#30340;&#23376;&#30446;&#24405;&#20013;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Alias</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#24403;&#21069; Unit &#21487;&#29992;&#20110;&#21551;&#21160;&#30340;&#21035;&#21517;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Also</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#24403;&#21069; Unit &#28608;&#27963;&#65288;enable&#65289;&#26102;&#65292;&#20250;&#34987;&#21516;&#26102;&#28608;&#27963;&#30340;&#20854;&#20182; Unit</span>
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">[Service]</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#21482;&#26377; Service &#31867;&#22411;&#30340;&nbsp;Unit &#25165;&#26377;&#36825;&#20010;&#21306;&#22359;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Type</span>
+<ul><li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">Type=simple</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#40664;&#35748;&#20540;&#65292;&#25191;&#34892;ExecStart&#25351;&#23450;&#30340;&#21629;&#20196;&#65292;&#21551;&#21160;&#20027;&#36827;&#31243;&#65292;&#21333;&#36827;&#31243;&#21069;&#21488;&#36816;&#34892;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">Type=forking</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#20197; fork &#26041;&#24335;&#20174;&#29238;&#36827;&#31243;&#21019;&#24314;&#23376;&#36827;&#31243;&#65292;&#21019;&#24314;&#21518;&#29238;&#36827;&#31243;&#20250;&#31435;&#21363;&#36864;&#20986;&#65292;&#22810;&#36827;&#31243;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Type=oneshot</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#19968;&#27425;&#24615;&#36827;&#31243;&#65292;Systemd &#20250;&#31561;&#24403;&#21069;&#26381;&#21153;&#36864;&#20986;&#65292;&#20877;&#32487;&#32493;&#24448;&#19979;&#25191;&#34892;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Type=dbus</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#24403;&#21069;&#26381;&#21153;&#36890;&#36807;D-Bus&#21551;&#21160;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Type=notify</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#24403;&#21069;&#26381;&#21153;&#21551;&#21160;&#23436;&#27605;&#65292;&#20250;&#36890;&#30693;Systemd&#65292;&#20877;&#32487;&#32493;&#24448;&#19979;&#25191;&#34892;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Type=idle</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#33509;&#26377;&#20854;&#20182;&#20219;&#21153;&#25191;&#34892;&#23436;&#27605;&#65292;&#24403;&#21069;&#26381;&#21153;&#25165;&#20250;&#36816;&#34892;</span>
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">ExecStart</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#21551;&#21160;&#24403;&#21069;&#26381;&#21153;&#30340;&#21629;&#20196;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">ExecStartPre</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#21551;&#21160;&#24403;&#21069;&#26381;&#21153;&#20043;&#21069;&#25191;&#34892;&#30340;&#21629;&#20196;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">ExecStartPost</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#21551;&#21160;&#24403;&#21069;&#26381;&#21153;&#20043;&#21518;&#25191;&#34892;&#30340;&#21629;&#20196;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">ExecReload</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#37325;&#21551;&#24403;&#21069;&#26381;&#21153;&#26102;&#25191;&#34892;&#30340;&#21629;&#20196;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">ExecStop</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#20572;&#27490;&#24403;&#21069;&#26381;&#21153;&#26102;&#25191;&#34892;&#30340;&#21629;&#20196;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">ExecStopPost</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#20572;&#27490;&#24403;&#20854;&#26381;&#21153;&#20043;&#21518;&#25191;&#34892;&#30340;&#21629;&#20196;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">KillMode</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#23450;&#20041; Systemd &#22914;&#20309;&#20572;&#27490;&nbsp;&nbsp;&#26381;&#21153;</span>
+
+</li>
+<li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">KillMode=control-group</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#40664;&#35748;&#20540;&#65289;&#65306;&#24403;&#21069;&#25511;&#21046;&#32452;&#37324;&#38754;&#30340;&#25152;&#26377;&#23376;&#36827;&#31243;&#65292;&#37117;&#20250;&#34987;&#26432;&#25481;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">KillMode=process</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#21482;&#26432;&#20027;&#36827;&#31243;,&#23376;&#36827;&#31243;&#25171;&#24320;&#30340;session &#20173;&#28982;&#20445;&#25345;&#36830;&#25509;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">KillMode=mixed</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#20027;&#36827;&#31243;&#23558;&#25910;&#21040; SIGTERM &#20449;&#21495;(&#35201;&#27714;&#31243;&#24207;&#33258;&#24049;&#36864;&#20986;)&#65292;&#23376;&#36827;&#31243;&#25910;&#21040; SIGKILL &#20449;&#21495;(&#36827;&#31243;&#32456;&#27490;&#19981;&#20102;&#65292;&#20877;&#35797;&#36825;&#20010; kill -9 ????)</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">KillMode=none</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#27809;&#26377;&#36827;&#31243;&#20250;&#34987;&#26432;&#25481;&#65292;&#21482;&#26159;&#25191;&#34892;&#26381;&#21153;&#30340; stop &#21629;&#20196;</span>
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">RestartSec</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#34920;&#31034; Systemd &#37325;&#21551;&#26381;&#21153;&#20043;&#21069;&#65292;&#38656;&#35201;&#31561;&#24453;&#30340;&#31186;&#25968;.</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Restart</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#23450;&#20041;&#20309;&#31181;&#24773;&#20917; Systemd &#20250;&#33258;&#21160;&#37325;&#21551;&#24403;&#21069;&#26381;&#21153;</span>
+
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">no</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#65288;&#40664;&#35748;&#20540;&#65289;&#65306;&#36864;&#20986;&#21518;&#19981;&#20250;&#37325;&#21551;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">always</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#19981;&#31649;&#26159;&#20160;&#20040;&#36864;&#20986;&#21407;&#22240;&#65292;&#24635;&#26159;&#37325;&#21551;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">on-success</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#21482;&#26377;&#27491;&#24120;&#36864;&#20986;&#26102;&#65288;&#36864;&#20986;&#29366;&#24577;&#30721;&#20026;0&#65289;&#65292;&#25165;&#20250;&#37325;&#21551;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">on-failure</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#38750;&#27491;&#24120;&#36864;&#20986;&#26102;&#65288;&#36864;&#20986;&#29366;&#24577;&#30721;&#38750;0&#65289;&#65292;&#21253;&#25324;&#34987;&#20449;&#21495;&#32456;&#27490;&#21644;&#36229;&#26102;&#65292;&#25165;&#20250;&#37325;&#21551; -----on-abnormal&#21482;&#26377;&#34987;&#20449;&#21495;&#32456;&#27490;&#21644;&#36229;&#26102;&#65292;&#25165;&#20250;&#37325;&#21551;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">on-abnormal</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#21482;&#26377;&#34987;&#20449;&#21495;&#32456;&#27490;&#21644;&#36229;&#26102;&#65292;&#25165;&#20250;&#37325;&#21551;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">on-abort</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#21482;&#26377;&#22312;&#25910;&#21040;&#27809;&#26377;&#25429;&#25417;&#21040;&#30340;&#20449;&#21495;&#32456;&#27490;&#26102;&#65292;&#25165;&#20250;&#37325;&#21551;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">on-watchdog</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#36229;&#26102;&#36864;&#20986;&#65292;&#25165;&#20250;&#37325;&#21551;</span>
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">TimeoutSec</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#23450;&#20041; Systemd &#20572;&#27490;&#24403;&#21069;&#26381;&#21153;&#20043;&#21069;&#31561;&#24453;&#30340;&#31186;&#25968;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">Environment</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#25351;&#23450;&#29615;&#22659;&#21464;&#37327;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">WorkingDirectory</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#24037;&#20316;&#30446;&#24405;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 175%;font-family: SansSerif, sans-serif; ">PrivateTmp</span>
+<ul><li><span style="font-size: 150%;font-family: SansSerif, sans-serif; ">&#31243;&#24207;&#22312;tmp&#30446;&#24405;&#19979;&#31169;&#26377;&#65292;&#23433;&#20840;</span>
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#21629;&#20196;</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Service unit&#65306;&#31995;&#32479;&#26381;&#21153; </span>
+<ul><li>&#21015;&#20986;&#30456;&#24212;Unit
+<ul><li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">systemctl list-units --state=failed</span>
+<ul><li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">&#26597;&#30475;&#22833;&#36133;&#29366;&#24577;</span>
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 150%;font-family: SansSerif, sans-serif; ">systemctl list-units</span>
+<ul><li>&#21015;&#20986;&#27491;&#22312;&#36816;&#34892;&#30340; Unit
+
+</li>
+
+</ul>
+</li>
+<li>systemctl list-units --all
+<ul><li>&#21015;&#20986;&#25152;&#26377;Unit&#65292;&#21253;&#25324;&#27809;&#26377;&#25214;&#21040;&#37197;&#32622;&#25991;&#20214;&#30340;&#25110;&#32773;&#21551;&#21160;&#22833;&#36133;&#30340;
+
+</li>
+
+</ul>
+</li>
+<li>systemctl list-units --all --state=inactive
+<ul><li>&#21015;&#20986;&#25152;&#26377;&#27809;&#26377;&#36816;&#34892;&#30340; Unit
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 166%;font-family: SansSerif, sans-serif; ">systemctl list-units --type=service &#21015;&#20986;&#25152;&#26377;&#27491;&#22312;&#36816;&#34892;&#30340;&#12289;&#31867;&#22411;&#20026;&nbsp;service &#30340;&nbsp;Unit</span>
+
+</li>
+
+</ul>
+</li>
+<li>&#26597;&#30475;Unit&#29366;&#24577;
+<ul><li><span style="font-size: 150%;font-family: SansSerif, sans-serif; ">systemctl status </span>
+<ul><li>&#26174;&#31034;&#31995;&#32479;&#29366;&#24577;
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 150%;font-family: SansSerif, sans-serif; ">sysystemctl status|is-active|is-failed|is-enabled &nbsp;syslog-ng </span>
+<ul><li>&#26174;&#31034;&#21333;&#20010; Unit &#30340;&#29366;&#24577;
+
+</li>
+
+</ul>
+</li>
+<li>systemctl -H root@rhel7.example.com status httpd.service
+<ul><li>&#26174;&#31034;&#36828;&#31243;&#20027;&#26426;&#30340;&#26576;&#20010; Unit &#30340;&#29366;&#24577;
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 150%;font-family: SansSerif, sans-serif; ">systemctl list-dependencies nginx.service </span>
+<ul><li>&#21015;&#20986;&#19968;&#20010; Unit &#30340;&#25152;&#26377;&#20381;&#36182;
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_2" class="foldclosed" onClick="show_folder('1_2')" style="POSITION: absolute">+</span> <span id="hide1_2" class="foldopened" onClick="hide_folder('1_2')">-</span>
+<span style="font-size: 150%;font-family: SansSerif, sans-serif; ">systemctl cat nginx</span>
+<ul id="fold1_2" style="POSITION: relative; VISIBILITY: visible;"><li>&#26597;&#30475;&#26576;&#20010;service&#37197;&#32622;&#25991;&#20214;
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>&#31649;&#29702;Unit
+<ul><li><span style="font-size: 150%;font-family: SansSerif, sans-serif; ">systemctl stop|start|restart|status|enable|disable|show &nbsp;nginx</span>
+
+</li>
+<li><span id="show1_3" class="foldclosed" onClick="show_folder('1_3')" style="POSITION: absolute">+</span> <span id="hide1_3" class="foldopened" onClick="hide_folder('1_3')">-</span>
+<span style="font-size: 150%;font-family: SansSerif, sans-serif; ">systemctl daemon-reload</span>
+<ul id="fold1_3" style="POSITION: relative; VISIBILITY: visible;"><li>&#37325;&#36733;&#20462;&#25913;&#36807;&#30340;&#37197;&#32622; systemctl show -p CPUShares httpd.service&#26174;&#31034;&#26576;&#20010; Unit &#30340;&#25351;&#23450;&#23646;&#24615;&#30340;&#20540;
+
+</li>
+
+</ul>
+</li>
+<li>systemctl show -p CPUShares httpd.service
+<ul><li>&#26174;&#31034;&#26576;&#20010; Unit &#30340;&#25351;&#23450;&#23646;&#24615;&#30340;&#20540;
+
+</li>
+
+</ul>
+</li>
+<li>systemctl set-property httpd.service CPUShares=500
+<ul><li>&#35774;&#32622;&#26576;&#20010; Unit &#30340;&#25351;&#23450;&#23646;&#24615;
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 116%;font-family: SansSerif, sans-serif; ">Target unit&#65306;&#22810;&#20010; Unit &#26500;&#25104;&#30340;&#19968;&#20010;&#32452;&nbsp;&nbsp;</span>
+<ul><li><span style="font-size: 125%;font-family: SansSerif, sans-serif; ">systemctl get-default</span>
+<ul><li>Systemd &#40664;&#35748;&#30340;&#21551;&#21160;&nbsp;Target &#65292;runlevel
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 125%;font-family: SansSerif, sans-serif; ">systemctl list-units --all &nbsp;--type=target </span>
+<ul><li>&#26597;&#30475;&#31995;&#32479;&#26377;&#21738;&#20123;target
+
+</li>
+
+</ul>
+</li>
+<li><span style="font-size: 125%;font-family: SansSerif, sans-serif; ">systemctl list-dependencies multi-user.target</span>
+<ul><li>&#26597;&#30475;target&#26377;&#21738;&#20123;&#20869;&#23481;
+
+</li>
+
+</ul>
+</li>
+<li>systemctl isolate shutdown.target
+<ul><li>&#20999;&#25442;&#21040;&#21478;&#19968;&#20010; target
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>&#31995;&#32479;&#31649;&#29702;
+<ul><li>systemctl
+<ul><li>systemctl reboot|poweroff|rescue&#21333;&#29992;&#25143;|halt
+
+</li>
+<li>systemctl show-environment|set-environment NAME=VALUE|unset-environment
+<ul><li>&#35774;&#32622;&#31995;&#32479;&#21464;&#37327;
+
+</li>
+
+</ul>
+</li>
+<li>systemctl list-unit-files
+
+</li>
+
+</ul>
+</li>
+<li>systemd-analyze
+<ul><li>&#26597;&#30475;&#21551;&#21160;&#32791;&#26102;
+
+</li>
+<li>systemd-analyze critical-chain
+<ul><li>&#26174;&#31034;&#28689;&#24067;&#29366;&#30340;&#21551;&#21160;&#36807;&#31243;&#27969;
+
+</li>
+
+</ul>
+</li>
+<li>systemd-analyze blame
+<ul><li>&#26597;&#30475;&#27599;&#20010;&#26381;&#21153;&#30340;&#21551;&#21160;&#32791;&#26102;
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>loginctl
+<ul><li>loginctl list-sessions |list-users|show-user ruanyf
+
+</li>
+
+</ul>
+</li>
+<li>timedatectl
+<ul><li> timedatectl list-timezones|set-timezone America/New_York|set-time YYYY-MM-DD| set-time HH:MM:SS
+
+</li>
+
+</ul>
+</li>
+<li>localectl
+<ul><li>set-locale LANG=en_GB.utf8|set-keymap en_GB
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul><SCRIPT type="text/javascript">
+fold_document();
+</SCRIPT>
+</body>
+</html>
