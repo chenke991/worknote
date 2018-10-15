@@ -24,6 +24,9 @@
 <node CREATED="1539240735356" ID="ID_1640228289" MODIFIED="1539240742295" TEXT="&#x5185;&#x8054;&#x538b;&#x7f29;"/>
 <node COLOR="#cc0000" CREATED="1539240743950" ID="ID_1814338322" MODIFIED="1539240894593" TEXT="&#x591a;&#x8bbe;&#x5907;&#x5143;&#x6570;&#x636e;&#x5206;&#x5c42;">
 <node CREATED="1539240749953" ID="ID_1093808259" MODIFIED="1539240863595" TEXT="&#x5c06;&#x5176;&#x5185;&#x90e8;&#x65e5;&#x5fd7;&#xff08;&#x9884;&#x5199;&#x65e5;&#x5fd7;&#xff09;&#x5199;&#x5165;&#x5355;&#x72ec;&#x7684;&#x9ad8;&#x901f;&#x8bbe;&#x5907;&#xff08;&#x5982;SSD&#xff0c;NVMe&#x6216;NVDIMM&#xff09;&#x4ee5;&#x63d0;&#x9ad8;&#x6027;&#x80fd;&#x3002;&#x65e5;&#x5fd7;&#x5927;&#x5c0f;/&#x786c;&#x76d8;&#x5927;&#x5c0f; &gt; 4%"/>
+<node COLOR="#ff0000" CREATED="1539567239788" ID="ID_322374730" MODIFIED="1539567389092" TEXT="&#x65e5;&#x5fd7;&#x78c1;&#x76d8;&#x672a;&#x72ec;&#x7acb;&#xff0c;&#x5219;&#x4f1a;&#x6709;&#x53cc;&#x5199;&#x95ee;&#x9898;&#xff0c;&#x5f88;&#x4e25;&#x91cd;">
+<icon BUILTIN="yes"/>
+</node>
 </node>
 <node COLOR="#cc0000" CREATED="1539240783212" ID="ID_682304678" MODIFIED="1539240950429" TEXT="&#x9ad8;&#x6548;&#x7684;&#x5199;&#x65f6;&#x590d;&#x5236;"/>
 </node>
