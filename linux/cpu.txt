@@ -1,0 +1,33 @@
+ubuntu 
+
+sudo apt install linux-tools-common linux-tools-4.4.0-138-generic linux-cloud-tools-4.4.0-138-generic
+
+sudo perf record -F 99 -p 3887 -g -- sleep 30
+-F 指定采样频率为 99Hz(每秒99次), 如果 99次 都返回同一个函数名, 那就说明 CPU 这一秒钟都在执行同一个函数, 可能存在性能问题.
+git clone https://github.com/brendangregg/FlameGraph.git
+
+perf script -i perf.data| FlameGraph/stackcollapse-perf.pl | FlameGraph/flamegraph.pl > process.svg
+
+
+
+生成红/蓝差分火焰图
+程序修改前：
+perf record -F 99 -a -g -- sleep 30
+perf script > out.stacks1
+#   折叠堆栈
+./stackcollapse-perf.pl ../out.stacks1 > out.folded1
+
+
+程序修改后：
+#   抓取数据
+perf record -F 99 -a -g -- sleep 30
+#   解析数据生成堆栈信息
+perf script > out.stacks2
+#   折叠堆栈
+./stackcollapse-perf.pl ../out.stacks2 > out.folded2
+--------------------- 
+
+生成红蓝差分火焰图：
+./difffolded.pl out.folded1 out.folded2 | ./flamegraph.pl > diff2.svg
+
+https://blog.csdn.net/gatieme/article/details/78885908 博客
