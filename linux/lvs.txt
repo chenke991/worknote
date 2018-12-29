@@ -3,4 +3,22 @@ ipvsadm -a -t 192.168.254.254:6443 -r 192.168.16.130:6443 #添加realserver 130
 
 ipvsadm -L -n -c #查看连接状态
 
+echo “1” >/proc/sys/net/ipv4/conf/lo/arp_ignore
+echo “2” >/proc/sys/net/ipv4/conf/lo/arp_announce
+echo “1” >/proc/sys/net/ipv4/conf/all/arp_ignore
+echo “2” >/proc/sys/net/ipv4/conf/all/arp_announce
+
+后扔然显示SYN_RECV，说明访问到了rs,rs给丢弃了
+
+sysctl net.ipv4.conf.em1.rp_filter=0
+sysctl net.ipv4.conf.lo,rp_filter=0
+sysctl net.ipv4.conf.lo.rp_filter=0
+sysctl net.ipv4.conf.default.rp_filter=0
+sysctl net.ipv4.conf.em2.rp_filter=0
+
+如果从eth1 接收到包，就不会从eth0 返回，内核把这个包丢弃
+0 就是对进来的包完全不作检查，这样有被dos 攻击的风险。
+1 就是严格检查，只要不是这个interface 的包，就不返回。
+2 就是不太严格，只要本机配置了这个ip ，还是可以返回的。
+
 
