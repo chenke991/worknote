@@ -1,0 +1,90 @@
+之前讨论过如果归档或者流复制出现问题的时候，pg_xlog下面会不断地产生WAL日志，严重会塞满磁盘空间。但是pg_xlog下面的日志又不能随意删除，否则有可能导致数据库起不来。PostgreSQL自带了清理wal日志的工具叫pg_resetxlog，其实是通过重置xlog的值来清理xlog文件。但是这个工具通常在到万不得已，不要使用。下面示例如下： 
+
+环境： PostgreSQL 9.1.3 
+VMWARE 6.0 
+IP：192.168.1.103 
+
+一、重置前环境
+[postgres@localhost pg_xlog]$ ll
+total 1310732
+-rw-------. 1 postgres postgres 67108864 Aug 19 19:46 00000004000000010000003A
+-rw-------. 1 postgres postgres 67108864 Nov 10 22:13 00000004000000010000003B
+-rw-------. 1 postgres postgres 67108864 Nov 10 22:24 00000004000000010000003C
+-rw-------. 1 postgres postgres      290 Nov 10 22:24 00000004000000010000003C.00000020.backup
+-rw-------. 1 postgres postgres 67108864 Nov 10 22:54 00000004000000010000003D
+-rw-------. 1 postgres postgres 67108864 Nov 10 23:15 00000004000000010000003E
+-rw-------. 1 postgres postgres 67108864 Nov 10 23:30 000000040000000200000000
+-rw-------. 1 postgres postgres 67108864 Nov 10 23:39 000000040000000200000001
+-rw-------. 1 postgres postgres 67108864 Nov 11 08:31 000000040000000200000002
+-rw-------. 1 postgres postgres 67108864 Nov 11 08:38 000000040000000200000003
+-rw-------. 1 postgres postgres 67108864 Nov 17 08:09 000000040000000200000004
+-rw-------. 1 postgres postgres 67108864 Dec 31 12:20 000000040000000200000005
+-rw-------. 1 postgres postgres 67108864 Jan  3 09:35 000000040000000200000006
+-rw-------. 1 postgres postgres 67108864 Jan 10 07:46 000000040000000200000007
+-rw-------. 1 postgres postgres 67108864 Jan 10 07:48 000000040000000200000008
+-rw-------. 1 postgres postgres 67108864 Jan 10 07:52 000000040000000200000009
+-rw-------. 1 postgres postgres 67108864 Jan 10 07:52 00000004000000020000000A
+-rw-------. 1 postgres postgres 67108864 Jan 10 07:52 00000004000000020000000B
+-rw-------. 1 postgres postgres 67108864 Jan 10 07:52 00000004000000020000000C
+-rw-------. 1 postgres postgres      113 Jun 17  2012 00000004.history
+drwxrwxr-x. 2 postgres postgres     4096 Jan 10 07:52 archive_status
+-rw-------. 1 postgres postgres 67108864 Nov 17 08:09 xlogtemp.1461
+-rw-------. 1 postgres postgres 67108864 Jan  3 09:35 xlogtemp.1518
+[postgres@localhost pg_xlog]$ cd ..
+[postgres@localhost pgdata]$ du -sh pg_xlog/
+1.3G    pg_xlog/
+二、关闭数据库
+[postgres@localhost pg_xlog]$ pg_stop
+waiting for server to shut down...... done
+server stopped
+三、查看版本控制信息
+[postgres@localhost ~]$ pg_controldata
+pg_control version number:            903
+Catalog version number:               201105231
+Database system identifier:           5741432812849707775
+Database cluster state:               shut down
+pg_control last modified:             Thu 10 Jan 2013 07:56:36 AM CST
+Latest checkpoint location:           2/38000020
+Prior checkpoint location:            2/34009190
+Latest checkpoint's REDO location:    2/38000020
+Latest checkpoint's TimeLineID:       4
+Latest checkpoint's NextXID:          0/1888
+Latest checkpoint's NextOID:          65595
+Latest checkpoint's NextMultiXactId:  1
+Latest checkpoint's NextMultiOffset:  0
+Latest checkpoint's oldestXID:        1792
+Latest checkpoint's oldestXID's DB:   1
+Latest checkpoint's oldestActiveXID:  0
+Time of latest checkpoint:            Thu 10 Jan 2013 07:56:35 AM CST
+.....
+注意这两个参数： 
+Latest checkpoint's NextXID: 0/ 1888 
+Latest checkpoint's NextOID: 65595 
+
+四、重置，删除pg_xlog
+[postgres@localhost ~]$ pg_resetxlog -o 65595 -x1888 -f /database/pgdata/
+Transaction log reset
+五、再次查看，并重启
+[postgres@localhost pgdata]$ du -sh pg_xlog/
+193M    pg_xlog/
+
+[postgres@localhost pg_xlog]$ ll
+total 196620
+-rw-------. 1 postgres postgres      290 Nov 10 22:24 00000004000000010000003C.00000020.backup
+-rw-------. 1 postgres postgres 67108864 Jan 10 08:02 00000004000000020000000F
+-rw-------. 1 postgres postgres      113 Jun 17  2012 00000004.history
+drwxrwxr-x. 2 postgres postgres     4096 Jan 10 08:02 archive_status
+-rw-------. 1 postgres postgres 67108864 Nov 17 08:09 xlogtemp.1461
+-rw-------. 1 postgres postgres 67108864 Jan  3 09:35 xlogtemp.1518
+
+[postgres@localhost 12780]$ pg_start
+server starting
+[postgres@localhost 12780]$ psql
+Password: 
+psql (9.1.3)
+Type "help" for help.
+
+postgres=# \q
+已经被清理并正常启动了。以上测试是单机版环境，主备情况需要做好WAL日志的备份。
+
+另外使用这个操作可能会引起事务或数据的丢失,操作时应当慎重
