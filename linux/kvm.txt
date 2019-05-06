@@ -1,0 +1,111 @@
+bridge 宿主机设置
+/etc/sysconfig/network-scripts/ifcfg-br0
+
+DEVICE="br0"
+ONBOOT="yes"
+TYPE="Bridge"
+BOOTPROTO=static
+IPADDR=192.168.28.44
+NETMASK=255.255.0.0
+GATEWAY=192.168.17.184
+
+{192.168.17.184上设置：
+sysctl net.ipv4.ip_forward=1
+iptables -A FORWARD -i em2 -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables  -t nat -A POSTROUTING -s 192.168.0.0/16 -o em1 -j SNAT --to-source 121.x.x.x
+}设置完毕
+
+/etc/sysconfig/network-scripts/ifcfg-em2 #IP注释后给br0用
+TYPE=Ethernet
+BOOTPROTO=none
+BRIDGE="br0"
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=yes
+NAME=em2
+UUID=dfd977cd-313e-4786-9c39-6f86833e59e5
+DEVICE=em2
+ONBOOT=yes
+#IPADDR=192.168.28.44
+#NETMASK=255.255.0.0
+#NM_CONTROLLED="no"
+
+systemctl restart network
+
+
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum -y install qemu-kvm libvirt virt-install bridge-utils
+
+osinfo-query os ==> rhel7.6
+
+qemu-img create -f qcow2 /data/vm/centos7.qcow2 40G ==>创建磁盘
+
+virt-install \
+--name centos7 \
+--ram 8192 \
+--disk path=/data/vm/centos7.qcow2,size=40 \
+--vcpus 4 \
+--os-type linux \
+--os-variant rhel7 \
+--network bridge=br0 \
+--graphics none \
+--console pty,target_type=serial \
+--location '/data/tmp/CentOS-7-x86_64-Minimal-1810.iso' \
+--extra-args 'console=ttyS0,115200n8 serial'
+
+
+virsh list
+
+
+virsh console centos7 进入虚拟机
+
+virsh --help|grep undefine ==> virsh undefine centos7 删除虚拟机
+virsh destroy 3|centos7 关机
+
+虚拟机其它管理
+virsh start centos72     # 虚拟机开启（启动）：
+virsh reboot centos72    # 虚拟机重新启动
+virsh shutdown centos72  # 虚拟机关机
+virsh destroy centos72   # 强制关机（强制断电）
+virsh suspend centos72   # 暂停（挂起）KVM 虚拟机
+virsh resume centos72    # 恢复被挂起的 KVM 虚拟机
+virsh undefine centos72  # 该方法只删除配置文件，磁盘文件未删除
+virsh autostart centos72 # 随物理机启动而启动（开机启动）
+virsh autostart --disable centos72 # 取消标记为自动开始（取消开机启动）
+virt-clone -o centos7 -n centos7base -f /data/vm/centos7base.qcow2
+ 
+通过镜像创建虚拟机
+# 使用基础镜像文件，创建新的虚拟机镜像
+cp /home/vms/centos7.base.qcow2 /home/vms/centos7.113.qcow2
+创建虚拟机配置文件
+# 复制第一次安装的干净系统镜像，作为基础配置文件。
+virsh dumpxml centos.88 > /home/vms/centos7.base.xml
+
+# 使用基础虚拟机镜像配置文件，创建新的虚拟机配置文件
+cp /home/vms/centos7.base.xml /home/vms/centos7.113.xml
+
+# 编辑新虚拟机配置文件
+vi /home/vms/centos7.113.xml
+
+主要是修改虚拟机文件名，UUID，镜像地址和网卡地址，其中 UUID 在 Linux 下可以使用 uuidgen 命令生成
+
+virsh define /home/vms/centos7.113.xml
+
+
+动态更改cpu数量和内存大小
+动态调整，如果超过给虚拟机分配的最大内存，需要重启虚拟机。
+
+virsh list --all
+#  Id    名称                         状态
+# ----------------------------------------------------
+#  2     working112                     running
+
+# 更改CPU
+virsh setvcpus working112 --maximum 4 --config
+# 更改内存
+virsh setmaxmem working112 1048576 --config
+# 查看信息
+virsh dominfo working112
+
+
+其它
+https://github.com/jaywcjlove/handbook/blob/master/CentOS/CentOS7%E5%AE%89%E8%A3%85KVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%A6%E8%A7%A3.md
