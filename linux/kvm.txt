@@ -76,6 +76,7 @@ virt-install --import --name ubuntu1604 \
 3,clone backup kvm
 
 virsh shutdown ubuntu1604
+virt-sparsify --in-place /data/vm//data/vm/ubuntu1604.qcow2
 virt-clone -o ubuntu1604 -n ubuntu1604base -f /data/vm/ubuntu1604base.20190507.qcow2 --nonsparse 
 
 virsh list
