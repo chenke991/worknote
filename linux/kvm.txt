@@ -1,4 +1,4 @@
-bridge 宿主机设置
+1,bridge 宿主机设置
 /etc/sysconfig/network-scripts/ifcfg-br0
 
 DEVICE="br0"
@@ -37,6 +37,11 @@ yum -y install qemu-kvm libvirt virt-install bridge-utils
 
 osinfo-query os ==> rhel7.6
 
+
+
+2,Install guest os
+
+2.1#安装centos guest os
 qemu-img create -f qcow2 /data/vm/centos7.qcow2 40G ==>创建磁盘
 
 virt-install \
@@ -52,6 +57,26 @@ virt-install \
 --location '/data/tmp/CentOS-7-x86_64-Minimal-1810.iso' \
 --extra-args 'console=ttyS0,115200n8 serial'
 
+##########################
+
+2,2#安装ubuntu 16.04 
+
+virt-builder ubuntu-16.04 --size=40G --format qcow2 -o /data/vm/ubuntu1604base.qcow2 --hostname ubuntu1604 --network --timezone Asia/Kolkata --firstboot-command "dpkg-reconfigure openssh-server" --edit '/etc/default/grub: s/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"/' --run-command update-grub
+
+virt-install --import --name ubuntu1604 \
+--ram 8192 \
+--vcpu 4 \
+--disk path=/data/vm/ubuntu1604base.qcow2 \
+--os-variant ubuntu16.04 \
+--network=bridge=br0,model=virtio \
+--noautoconsole
+####################################
+
+
+3,clone backup kvm
+
+virsh shutdown ubuntu1604
+virt-clone -o ubuntu1604 -n ubuntu1604base -f /data/vm/ubuntu1604base.20190507.qcow2 --nonsparse 
 
 virsh list
 
