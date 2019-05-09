@@ -1,0 +1,17 @@
+
+https://www.kubernetes.org.cn/5213.html 指南
+
+
+192.168.1.2 master
+
+mkdir -p $HOME/.kube
+	sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+	sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+
+
+kubeadm join 192.168.1.1:6443 --token x6hw4g.jba3u41fdyj0vecx  --discovery-token-ca-cert-hash sha256:edfbfa989338ba1dd93943f008f95fae5dc06d7a36d83ce47f7fed576bbe5447 --ignore-preflight-errors=all
+
+kubeadm token create --print-join-command 重新生成
+

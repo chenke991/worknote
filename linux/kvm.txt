@@ -12,8 +12,21 @@ GATEWAY=192.168.17.184
 {192.168.17.184上设置：
 sysctl net.ipv4.ip_forward=1
 iptables -A FORWARD -i em2 -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables  -t nat -A POSTROUTING -s 192.168.0.0/16 -o em1 -j SNAT --to-source 121.x.x.x
+iptables  -t nat -A POSTROUTING -s 192.168.0.0/16 -o em1 -j SNAT --to-source 12.x.x.x
 }设置完毕
+
+{192.168.28.44 kvm 192.168.1.2端口对外
+sysctl net.ipv4.ip_forward=1
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.1.2:80
+iptables -t nat -A POSTROUTING -d 192.168.1.2 -p tcp --dport 80 -j SNAT --to 192.168.28.44
+iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination 192.168.1.2:443
+iptables -t nat -A POSTROUTING -d 192.168.1.2 -p tcp --dport 443 -j SNAT --to 192.168.28.44
+iptables -t nat -A PREROUTING -p tcp --dport 9443 -j DNAT --to-destination 192.168.1.2:6443
+iptables -t nat -A POSTROUTING -d 192.168.1.2 -p tcp --dport 6443 -j SNAT --to 192.168.28.44
+--------------------- 
+
+}设置完毕
+
 
 /etc/sysconfig/network-scripts/ifcfg-em2 #IP注释后给br0用
 TYPE=Ethernet
@@ -76,8 +89,8 @@ virt-install --import --name ubuntu1604 \
 3,clone backup kvm
 
 virsh shutdown ubuntu1604
-virt-sparsify --in-place /data/vm//data/vm/ubuntu1604.qcow2
-virt-clone -o ubuntu1604 -n ubuntu1604base -f /data/vm/ubuntu1604base.20190507.qcow2 --nonsparse 
+virt-sparsify --in-place /data/vm/ubuntu1604base.qcow2
+virt-clone -o ubuntuk1604 -n ubuntu1604k8smaster -f /data/vm/ubuntu1604k8smaster.20190508.qcow2 --nonsparse 
 
 virsh list
 
