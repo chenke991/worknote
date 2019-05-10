@@ -15,7 +15,7 @@ iptables -A FORWARD -i em2 -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables  -t nat -A POSTROUTING -s 192.168.0.0/16 -o em1 -j SNAT --to-source 12.x.x.x
 }设置完毕
 
-{192.168.28.44 kvm 192.168.1.2端口对外
+{192.168.28.44 kvm 192.168.1.2 k8s master 端口对外
 sysctl net.ipv4.ip_forward=1
 iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.1.2:80
 iptables -t nat -A POSTROUTING -d 192.168.1.2 -p tcp --dport 80 -j SNAT --to 192.168.28.44
@@ -24,9 +24,10 @@ iptables -t nat -A POSTROUTING -d 192.168.1.2 -p tcp --dport 443 -j SNAT --to 19
 iptables -t nat -A PREROUTING -p tcp --dport 9443 -j DNAT --to-destination 192.168.1.2:6443
 iptables -t nat -A POSTROUTING -d 192.168.1.2 -p tcp --dport 6443 -j SNAT --to 192.168.28.44
 --------------------- 
-
+api 9443==> 192.168.1.2:8443
+https 443==>192.168.1.2:443
+http 80 ==> 192.168.1.2:80
 }设置完毕
-
 
 /etc/sysconfig/network-scripts/ifcfg-em2 #IP注释后给br0用
 TYPE=Ethernet

@@ -10,8 +10,15 @@ mkdir -p $HOME/.kube
 
 
 
+kubeadm reset #node上执行
+kubeadm token create --print-join-command master上重新生成
 
-kubeadm join 192.168.1.1:6443 --token x6hw4g.jba3u41fdyj0vecx  --discovery-token-ca-cert-hash sha256:edfbfa989338ba1dd93943f008f95fae5dc06d7a36d83ce47f7fed576bbe5447 --ignore-preflight-errors=all
+kubeadm join 192.168.1.1:6443 --token x6hw4g.jba3u41fdyj0vecx  --discovery-token-ca-cert-hash sha256:edfbfa989338ba1dd93943f008f95fae5dc06d7a36d83ce47f7fed576bbe5447 --ignore-preflight-errors=all #node上执行
 
-kubeadm token create --print-join-command 重新生成
 
+kubectl label node k8s-node1 node-role.kubernetes.io/worker=worker #给node打标签
+
+
+获取tocken
+kubectl -n kube-system get secret|grep admin
+kubectl -n kube-system describe secret kubernetes-dashboard-admin-token-btcvz
