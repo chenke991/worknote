@@ -22,3 +22,5 @@ kubectl label node k8s-node1 node-role.kubernetes.io/worker=worker #给node打�
 获取tocken
 kubectl -n kube-system get secret|grep admin
 kubectl -n kube-system describe secret kubernetes-dashboard-admin-token-btcvz
+
+#for test
