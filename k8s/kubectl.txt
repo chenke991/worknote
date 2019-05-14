@@ -35,3 +35,8 @@ kubectl get nodes cn-shenzhen.i-wz9ctckj6hl5fiqci5ez --template={{.status.addres
 get pod 时显示 READY=2/2  #此pod中有2个容器，2个容器都正常
 
 kubectl expose deployment yjzd-agent1 --port=8888 --target-port=8888 --type=LoadBalancer #阿里云k8x上建LSB
+
+
+
+
+kubectl create secret tls ingress-secret --key certs/ttlinux.com.cn-key.pem --cert certs/ttlinux.com.cn.pem #创建证书

@@ -1,1 +1,19 @@
 traefik + ingress
+
+
+kubectl get  ingress  traefik-web-ui -n kube-system  -o yaml
+
+
+#####################################
+#开启tls的配置：
+2.1 创建证书
+kubectl create secret tls ingress-secret --key certs/ttlinux.com.cn-key.pem --cert certs/ttlinux.com.cn.pem 
+
+2.2 ingress中引用 
+spec:
+  tls:
+  - hosts:
+    - fox-dashboard.dianrong.com
+    secretName: ingress-secret
+
+#####################################
