@@ -13,7 +13,7 @@ GATEWAY=192.168.17.184
 sysctl net.ipv4.ip_forward=1
 iptables -A FORWARD -i em2 -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables  -t nat -A POSTROUTING -s 192.168.0.0/16 -o em1 -j SNAT --to-source 12.x.x.x
-}设置完毕
+}kvm访问外网的网关 设置完毕
 
 {192.168.28.44 kvm 192.168.1.2 k8s master 端口对外
 sysctl net.ipv4.ip_forward=1
@@ -28,6 +28,17 @@ api 9443==> 192.168.1.2:8443
 https 443==>192.168.1.2:443
 http 80 ==> 192.168.1.2:80
 }设置完毕
+
+
+{192.168.28.40 翻墙
+sysctl net.ipv4.ip_forward=1
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 9878
+iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 9878
+./v2ray -config ./config.json
+
+}
+
+
 
 /etc/sysconfig/network-scripts/ifcfg-em2 #IP注释后给br0用
 TYPE=Ethernet
@@ -75,7 +86,7 @@ virt-install \
 
 2,2#安装ubuntu 16.04 
 
-virt-builder ubuntu-16.04 --size=40G --format qcow2 -o /data/vm/ubuntu1604base.qcow2 --hostname ubuntu1604 --network --timezone Asia/Kolkata --firstboot-command "dpkg-reconfigure openssh-server" --edit '/etc/default/grub: s/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"/' --run-command update-grub
+virt-builder ubuntu-16.04 --size=40G --format qcow2 -o /data/vm/ubuntu1604base.qcow2 --hostname ubuntu1604 --network --timezone Asia/Shanghai --firstboot-command "dpkg-reconfigure openssh-server" --edit '/etc/default/grub: s/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"/' --run-command update-grub
 
 virt-install --import --name ubuntu1604 \
 --ram 8192 \
