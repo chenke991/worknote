@@ -100,37 +100,7 @@ $ tcpdump -nvv -c 20 'src 10.0.2.4 and (dst port 3389 or 22)'
 •[S]： SYN（开始连接）•[.]: 没有 Flag•[P]: PSH（推送数据）•[F]: FIN （结束连接）•[R]: RST（重置连接）
 
 而第二条数据的 [S.] 表示 SYN-ACK，就是 SYN 报文的应答报文。
-参考文档
-本文主要参考了下面两篇文章，算是翻译和二次创作。
-•A tcpdump Tutorial and Primer•A Quick and Practical Reference for tcpdump
-来源：Cizixs Write Here
-原文：http://t.cn/EJQv6go
-题图：来自谷歌图片搜索 
-版权：本文版权归原作者所有
-
-
-今日思想
-
-不管前方的路有多苦，只要走的方向正确，不管多么崎岖不平，都比站在原地更接近幸福。
-
-—— 宫崎骏「千与千寻」
 
 
 
-
-推荐阅读
-
-图解 Docker 架构
-图解 Kubernetes 架构
-浅谈 MySQL 优化实施方案
-谈谈监控那些事
-腾讯正式发布 TCP 单边拥塞控制算法 TCPA，比 Google BBR 速度提升 40% (附安装教程)
-
-
-
-
-
-
-
-微信扫一扫
-关注该公众号
+tcpdump -ni ens160 -s 1500  'udp and port 67 and port 68' #抓包dhcp
