@@ -11,6 +11,7 @@ wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.0.12/linux-headers-5.0.12
 wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.0.12/linux-image-unsigned-5.0.12-050012-generic_5.0.12-050012.201905040834_amd64.deb
 wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.0.12/linux-headers-5.0.12-050012_5.0.12-050012.201905040834_all.deb
 
+apt-get install libelf1
 dpkg -i *.deb
 
 # 检查默认内核版本是否大于4.14，否则请调整默认启动参数
@@ -21,7 +22,7 @@ reboot
  
 # 确认内核版本后，开启IPVS
 uname -a
-cat > /etc/sysconfig/modules/ipvs.modules <<EOF
+cat > /root/ipvs.modules <<EOF
 #!/bin/bash
 ipvs_modules="ip_vs ip_vs_lc ip_vs_wlc ip_vs_rr ip_vs_wrr ip_vs_lblc ip_vs_lblcr ip_vs_dh ip_vs_sh ip_vs_fo ip_vs_nq ip_vs_sed ip_vs_ftp nf_conntrack bridge"
 for kernel_module in \${ipvs_modules}; do
@@ -53,4 +54,38 @@ apt install ipset
 https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
 
+# Install Docker CE
+## Set up the repository:
+### Install packages to allow apt to use a repository over HTTPS
+apt-get update && apt-get install apt-transport-https ca-certificates curl software-properties-common
+
+### Add Docker’s official GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+### Add Docker apt repository.
+add-apt-repository \
+  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) \
+  stable"
+
+## Install Docker CE.
+apt-get update && apt-get install docker-ce=18.06.2~ce~3-0~ubuntu
+
+# Setup daemon.
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+mkdir -p /etc/systemd/system/docker.service.d
+
+# Restart docker.
+systemctl daemon-reload
+systemctl restart docker
 
