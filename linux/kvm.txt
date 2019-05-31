@@ -104,6 +104,11 @@ virsh shutdown ubuntu1604
 virt-sparsify --in-place /data/vm/ubuntu1604base.qcow2
 virt-clone -o ubuntuk1604 -n ubuntu1604k8smaster -f /data/vm/ubuntu1604k8smaster.20190508.qcow2 --nonsparse 
 
+virt-install --import --name ubuntu1604k8snode2 --ram 16384 --vcpu 8 --disk path=/data/vm/ubuntuk8snodeready.20190530.qcow2 --os-variant ubuntu16.04 --network=bridge=br0,model=virtio --noautoconsole 导入虚拟机
+
+
+
+
 virsh list
 
 
@@ -157,6 +162,11 @@ virsh setmaxmem working112 1048576 --config
 # 查看信息
 virsh dominfo working112
 
+快照相关
+virsh snapshot-create ubuntu1604k8smaster1
+virsh snapshot-current ubuntu1604k8smaster1
+
+virsh snapshot-info ubuntu1604k8smaster1 --current
 
 其它
 https://github.com/jaywcjlove/handbook/blob/master/CentOS/CentOS7%E5%AE%89%E8%A3%85KVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%A6%E8%A7%A3.md
