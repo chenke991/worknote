@@ -1,0 +1,71 @@
+
+wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+yum -y install cobbler cobbler-web dhcp tftp-server pykickstart httpd
+
+/etc/cobbler/dhcp.template
+/etc/cobbler                  # 配置文件目录
+/etc/cobbler/settings         # cobbler主配置文件，这个文件是YAML格式，Cobbler是python写的程序。
+/etc/cobbler/dhcp.template    # DHCP服务的配置模板
+/etc/cobbler/tftpd.template   # tftp服务的配置模板
+/etc/cobbler/rsync.template   # rsync服务的配置模板
+/etc/cobbler/iso              # iso模板配置文件目录
+/etc/cobbler/pxe              # pxe模板文件目录
+/etc/cobbler/power            # 电源的配置文件目录
+/etc/cobbler/users.conf       # Web服务授权配置文件
+/etc/cobbler/users.digest     # 用于web访问的用户名密码配置文件
+/etc/cobbler/dnsmasq.template # DNS服务的配置模板
+/etc/cobbler/modules.conf     # Cobbler模块配置文件
+
+/var/lib/cobbler              # Cobbler数据目录
+/var/lib/cobbler/config       # 配置文件
+/var/lib/cobbler/kickstarts   # 默认存放kickstart文件
+/var/lib/cobbler/loaders      # 存放的各种引导程序
+
+/var/www/cobbler              # 系统安装镜像目录
+/var/www/cobbler/ks_mirror    # 导入的系统镜像列表
+/var/www/cobbler/images       # 导入的系统镜像启动文件
+/var/www/cobbler/repo_mirror  # yum源存储目录
+
+/var/log/cobbler              # 日志目录
+/var/log/cobbler/install.log  # 客户端系统安装日志
+/var/log/cobbler/cobbler.log  # cobbler日志
+
+
+cobbler check    核对当前设置是否有问题
+cobbler list     列出所有的cobbler元素
+cobbler report   列出元素的详细信息
+cobbler sync     同步配置到数据目录,更改配置最好都要执行下
+cobbler reposync 同步yum仓库
+cobbler distro   查看导入的发行版系统信息
+cobbler system   查看添加的系统信息
+cobbler profile  查看配置信息
+
+
+
+systemctl restart cobblerd
+cobbler sync
+cobbler check
+
+mount -t iso9660 -o loop ubuntu-16.04.3-server-amd64.iso /mnt/
+
+cobbler import --path=/mnt/ --name=ubuntu-16.04.3-server-x86_64 --arch=x86_64#cobbler会将镜像中的所有安装文件拷贝到本地一份，放在/var/www/cobbler/ks_mirror下
+
+cobbler distro list  # 查看镜像列表
+
+cobbler distro report --name=ubuntu-16.04.3-server-x86_64
+
+cobbler profile report ## 查看所有的profile设置
+
+cobbler profile edit --name=CentOS-7.1-x86_64 --kickstart=/var/lib/cobbler/kickstarts/sample.seed #编辑profile，修改关联的ks文件
+
+##定制化安装
+cobbler system add --name=oldboy --mac=00：0C：29：7F：2F：A1 --profile=Ubuntu1604-x86_64 --ip-address=10.0.0.111 --subnet=255.255.255.0 --gateway=10.0.0.2 --interface=eth0 --static=1 --hostname=oldboy.example.com --name-servers="114.114.114.114 8.8.8.8"
+# --name 自定义，但不能重复
+
+cobbler system list
+cobbler sync
+
+
+/var/lib/cobbler/kickstarts/sample.seed
+
+
