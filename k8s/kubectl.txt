@@ -40,3 +40,15 @@ kubectl expose deployment yjzd-agent1 --port=8888 --target-port=8888 --type=Load
 
 
 kubectl create secret tls ingress-secret --key certs/ttlinux.com.cn-key.pem --cert certs/ttlinux.com.cn.pem #创建证书
+
+
+官方推荐使用Deployment而不再使用Replication	Controller
+升级：kubectl	apply	-f	rolling-update-test.yaml
+kubectl	rollout	status	deployment/rolling-update-test #查看升级进度 
+
+kubectl port-forward nginx 8080:80 #本地8080代理到nginx pod 的80端口
+
+
+
+
+
