@@ -50,5 +50,9 @@ kubectl port-forward nginx 8080:80 #本地8080代理到nginx pod 的80端口
 
 
 
-
+kubectl rollout undo deployment/nginx #回滚操作
+kubectl rollout status deployment/nginx #查看回滚状态
+kubectl rollout history deployment/nginx #查看更新历史，需要执行变更时用kubectl apply -f nginx-deployment.yml --record=true
+kubectl rollout history deployment/nginx  --revision=4 #查看对应版本信息
+kubectl rollout undo deployment/nginx --to-revision=4 #回滚到版本4
 
