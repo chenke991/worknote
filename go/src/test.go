@@ -10,7 +10,6 @@ import (
 func main() {
 	folder := "/Users/chenke/Documents/tmp/wqyry/tmp"
 	//定义一个切片存放找到的文件列表
-
 	dayNow := getToday()
 	fmt.Println(dayNow)
 	fmt.Println(listFile(folder, dayNow))
