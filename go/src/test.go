@@ -20,6 +20,7 @@ func main() {
 	fmt.Println(re)
 }
 
+// 遍历指定目录下所有文件
 func listFile(folder string, dayNow string) []string {
 	fileLists := make([]string, 0, 100)
 	//开始遍历指定目录
