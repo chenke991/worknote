@@ -40,3 +40,5 @@ func getToday() string {
 	//返回20200415,给程序查找当天备份文件
 	return time.Now().Format("20060102")
 }
+
+//mysql中查出所有game id 按平台分类并输出 wqyry_xiyou_1
