@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	//"regexp"
+	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
 	"time"
 )
 
@@ -42,3 +44,14 @@ func getToday() string {
 }
 
 //mysql中查出所有game id 按平台分类并输出 wqyry_xiyou_1
+func selectFromMysql() []string {
+	gameIdList := make([]string, 30)
+	fmt.Println("从mysql中取数据")
+	db, err := sql.Open("mysql", "root:www.52xiyou@192.168.56.101")
+	if err != nil {
+		fmt.Println("连接mysql失败")
+	}
+
+	return gameIdList
+
+}
