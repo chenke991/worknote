@@ -15,6 +15,9 @@ func main() {
 	dayNow := getToday()
 	fmt.Println(dayNow)
 	fmt.Println(listFile(folder, dayNow))
+	re := selectFromMysql()
+	fmt.Println("in main")
+	fmt.Println(re)
 }
 
 func listFile(folder string, dayNow string) []string {
@@ -45,13 +48,28 @@ func getToday() string {
 
 //mysql中查出所有game id 按平台分类并输出 wqyry_xiyou_1
 func selectFromMysql() []string {
-	gameIdList := make([]string, 30)
+	// gameIdList := make([]string, 0)
+	var gameIdList []string
 	fmt.Println("从mysql中取数据")
-	db, err := sql.Open("mysql", "root:www.52xiyou@192.168.56.101")
+	db, err := sql.Open("mysql", "root:www.52xiyou@tcp(192.168.56.101:3306)/yunwei")
 	if err != nil {
 		fmt.Println("连接mysql失败")
 	}
-
+	rows, err := db.Query("select CONCAT(lower(game.en_name),'_',platform.en_name,'_',number)  from service_base sb left join game on sb.game_id =game.id  left JOIN platform on sb.platform_id =platform.id  where service_id=1")
+	if err != nil {
+		fmt.Println("查询错误")
+	}
+	// fmt.Println(rows)
+	for rows.Next() {
+		var s string
+		err = rows.Scan(&s)
+		if err != nil {
+			fmt.Println("error")
+		}
+		// fmt.Println(rows)
+		gameIdList = append(gameIdList, s)
+	}
+	fmt.Println(gameIdList)
 	return gameIdList
 
 }
