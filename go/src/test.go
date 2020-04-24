@@ -21,7 +21,7 @@ func main() {
 	fmt.Println("in main")
 	// fmt.Println(allGames)
 	notMatch, isMatch := matchGameList(dayNow, allGames, allFiles)
-	fmt.Println("not Match is :", notMatch, "is match is :", isMatch)
+	fmt.Println("not Match is :\n", notMatch, "\nis match is :", isMatch)
 
 	todayBakFiles := todayBackupFiles(dayNow, allFiles)
 	fmt.Println(todayBakFiles)
@@ -48,7 +48,7 @@ func todayBackupFiles(dayNow string, fileLists []string) []string {
 func matchGameList(dayNow string, gameIdList, fileLists []string) ([]string, []string) {
 	var notMatch, isMatch []string
 	allFiles := strings.Join(fileLists, "-")
-	fmt.Println(gameIdList, fileLists)
+	fmt.Println(gameIdList, allFiles)
 	// r := regexp.MustCompile(dayNow)
 	for _, v := range gameIdList {
 		// fmt.Println(v)
