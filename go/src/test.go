@@ -6,6 +6,7 @@ import (
 	//"regexp"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
+	"regexp"
 	"time"
 )
 
@@ -14,10 +15,23 @@ func main() {
 	//定义一个切片存放找到的文件列表
 	dayNow := getToday()
 	fmt.Println(dayNow)
-	fmt.Println(listFile(folder, dayNow))
+	allFiles := listFile(folder, dayNow)
+	fmt.Println(allFiles)
 	re := selectFromMysql()
 	fmt.Println("in main")
 	fmt.Println(re)
+	rel := matchGameList(re, allFiles)
+	fmt.Println(rel)
+
+}
+
+//从gameIdList 中取出值后循环匹配fileLists,未匹配到说明没有找到备份文件
+func matchGameList(gameIdList, fileLists []string) []string {
+	var re []string
+	fmt.Println(gameIdList, fileLists)
+	r, err := regexp.Compile("H(.*)d!")
+	fmt.Println(r.MatchString("Hello World!"), err)
+	return re
 }
 
 // 遍历指定目录下所有文件
@@ -53,6 +67,7 @@ func selectFromMysql() []string {
 	var gameIdList []string
 	fmt.Println("从mysql中取数据")
 	db, err := sql.Open("mysql", "root:www.52xiyou@tcp(192.168.56.101:3306)/yunwei")
+	defer db.Close()
 	if err != nil {
 		fmt.Println("连接mysql失败")
 	}
