@@ -17,21 +17,55 @@ func main() {
 	fmt.Println(dayNow)
 	allFiles := listFile(folder, dayNow)
 	fmt.Println(allFiles)
-	re := selectFromMysql()
+	allGames := selectFromMysql()
 	fmt.Println("in main")
-	fmt.Println(re)
-	rel := matchGameList(re, allFiles)
-	fmt.Println(rel)
+	// fmt.Println(allGames)
+	notMatch, isMatch := matchGameList(dayNow, allGames, allFiles)
+	fmt.Println("not Match is :", notMatch, "is match is :", isMatch)
+
+	todayBakFiles := todayBackupFiles(dayNow, allFiles)
+	fmt.Println(todayBakFiles)
 
 }
 
-//从gameIdList 中取出值后循环匹配fileLists,未匹配到说明没有找到备份文件
-func matchGameList(gameIdList, fileLists []string) []string {
-	var re []string
+//返回当天备份文件列表
+func todayBackupFiles(dayNow string, fileLists []string) []string {
+	var todayBakFiles []string
+	r := regexp.MustCompile(dayNow)
+	for _, v := range fileLists {
+		fmt.Println(v)
+		if r.MatchString(v) {
+			fmt.Println("当天备份文件列表是：", v)
+			todayBakFiles = append(todayBakFiles, v)
+		}
+
+	}
+	return todayBakFiles
+
+}
+
+//从gameIdList 中取出值后循环匹配fileLists,未匹配到说明没有找到备份文件并加入切片中返回
+func matchGameList(dayNow string, gameIdList, fileLists []string) ([]string, []string) {
+	var notMatch, isMatch []string
 	fmt.Println(gameIdList, fileLists)
-	r, err := regexp.Compile("H(.*)d!")
-	fmt.Println(r.MatchString("Hello World!"), err)
-	return re
+	// r := regexp.MustCompile(dayNow)
+	for _, v := range gameIdList {
+		// fmt.Println(v)
+		bfile := v + "_" + dayNow
+		r := regexp.MustCompile(bfile)
+		for _, j := range fileLists {
+			if r.MatchString(j) {
+				isMatch = append(isMatch, v)
+			} else {
+				notMatch = append(notMatch, v)
+				fmt.Println("未匹配到备份文件", v)
+			}
+
+		}
+
+	}
+
+	return notMatch, isMatch
 }
 
 // 遍历指定目录下所有文件
@@ -45,7 +79,8 @@ func listFile(folder string, dayNow string) []string {
 			v := listFile(folder+"/"+file.Name(), dayNow)
 			fileLists = append(fileLists, v...)
 		} else {
-			fileName := folder + "/" + file.Name()
+			// fileName := folder + "/" + file.Name()
+			fileName := file.Name()
 			// fmt.Println("文件路径是", fileName)
 			fileLists = append(fileLists, fileName)
 
