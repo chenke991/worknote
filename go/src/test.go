@@ -1,12 +1,12 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	//"regexp"
 	"database/sql"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"io/ioutil"
 	"regexp"
+	"strings"
 	"time"
 )
 
@@ -47,20 +47,17 @@ func todayBackupFiles(dayNow string, fileLists []string) []string {
 //从gameIdList 中取出值后循环匹配fileLists,未匹配到说明没有找到备份文件并加入切片中返回
 func matchGameList(dayNow string, gameIdList, fileLists []string) ([]string, []string) {
 	var notMatch, isMatch []string
+	allFiles := strings.Join(fileLists, "-")
 	fmt.Println(gameIdList, fileLists)
 	// r := regexp.MustCompile(dayNow)
 	for _, v := range gameIdList {
 		// fmt.Println(v)
 		bfile := v + "_" + dayNow
-		r := regexp.MustCompile(bfile)
-		for _, j := range fileLists {
-			if r.MatchString(j) {
-				isMatch = append(isMatch, v)
-			} else {
-				notMatch = append(notMatch, v)
-				fmt.Println("未匹配到备份文件", v)
-			}
-
+		if strings.Contains(allFiles, bfile) {
+			isMatch = append(isMatch, v)
+		} else {
+			notMatch = append(notMatch, v)
+			fmt.Println("未匹配到备份文件", v)
 		}
 
 	}
@@ -87,6 +84,7 @@ func listFile(folder string, dayNow string) []string {
 		}
 	}
 	// fmt.Println(fileLists)
+	// return strings.Join(fileLists, "-")
 	return fileLists
 
 }
