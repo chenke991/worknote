@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"io/ioutil"
+	"net/smtp"
 	"regexp"
 	"strings"
 	"time"
@@ -24,9 +25,26 @@ func main() {
 	fmt.Println("not Match is :\n", notMatch, "\nis match is :", isMatch)
 
 	todayBakFiles := todayBackupFiles(dayNow, allFiles)
-	fmt.Println(todayBakFiles)
+	fmt.Println("todayBakFiles is :\n", todayBakFiles)
 
 }
+
+func sendMail(user, password, host, to, subject, body, mailtype string) error {
+	hp := strings.Split(host, ":")
+	auth := smtp.PlainAuth("", username, password, hp[0])
+	var content_type string
+	if mailtype == "html"{
+		content_type="Content-Type: text/" + mailtype+";charset=UTF-8"
+
+	}else{
+		content_type="Content-Type: text/plain"+";charset=UTF-8"
+	}
+	msg :=[]byte("To: " + to + "\r\nFrom: " + user + "<" + user + ">\r\nSubject: " + subject + "\r\n" + content_type + "\r\n\r\n" + body)
+	send_to:=strings.Split(to, s";")
+	err:=smtp.SendMail(host,auth,user,send_to,msg)
+	return err
+}
+
 
 //返回当天备份文件列表
 func todayBackupFiles(dayNow string, fileLists []string) []string {
@@ -59,6 +77,7 @@ func matchGameList(dayNow string, gameIdList, fileLists []string) ([]string, []s
 			notMatch = append(notMatch, v)
 			fmt.Println("未匹配到备份文件", v)
 		}
+		fmt.Println(bfile)
 
 	}
 
