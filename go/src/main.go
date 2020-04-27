@@ -4,9 +4,11 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"gopkg.in/gomail.v2"
 	"io/ioutil"
-	"net/smtp"
+	"module"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -26,25 +28,38 @@ func main() {
 
 	todayBakFiles := todayBackupFiles(dayNow, allFiles)
 	fmt.Println("todayBakFiles is :\n", todayBakFiles)
+	sendMail(notMatch, isMatch, allFiles, allGames)
 
 }
 
-func sendMail(user, password, host, to, subject, body, mailtype string) error {
-	hp := strings.Split(host, ":")
-	auth := smtp.PlainAuth("", username, password, hp[0])
-	var content_type string
-	if mailtype == "html"{
-		content_type="Content-Type: text/" + mailtype+";charset=UTF-8"
+func sendMail(notMatch, isMatch, allFiles, allGames []string) {
+	info := module.BaseInfo{}
+	conf := info.GetConf()
+	a := conf.Spring
+	host, port, user, pwd := a.Mail.Host, a.Mail.Port, a.Mail.User, a.Mail.Pwd
+	tomail := a.Mail.Tomail
+	fmt.Printf("%t", tomail)
+	m := gomail.NewMessage()
+	// m.SetHeader("From", user)
+	// m.SetHeader("To", tomail)
+	// m.SetHeader("Subject", "备份检查通知")
+	m.SetHeaders(map[string][]string{
+		"From":    {m.FormatAddress(user, "猜猜我是谁")},
+		"To":      tomail,
+		"Subject": {"备份通知"},
+	})
 
-	}else{
-		content_type="Content-Type: text/plain"+";charset=UTF-8"
+	// msg := "以下区服未查到备份 :" + "<br>" + noMatch + "<br>" + " 有备份的是：" + isMatch + "<br>" + "文件列表:" + "<br>" + allFiles + "<br>" + "游戏服列表:" + "<br>" + allGames
+	// m.SetBody("text/html", "以下区服未查到备份:",notMatch+"<br> <br>有备份的是:<br>:", isMatch)
+	m.SetBody("text/html", "以下区服未查到备份:+notMatch", notMatch)
+	P, _ := strconv.Atoi(port)
+	d := gomail.NewDialer(host, P, user, pwd)
+	if err := d.DialAndSend(m); err != nil {
+		panic(err)
+
 	}
-	msg :=[]byte("To: " + to + "\r\nFrom: " + user + "<" + user + ">\r\nSubject: " + subject + "\r\n" + content_type + "\r\n\r\n" + body)
-	send_to:=strings.Split(to, s";")
-	err:=smtp.SendMail(host,auth,user,send_to,msg)
-	return err
-}
 
+}
 
 //返回当天备份文件列表
 func todayBackupFiles(dayNow string, fileLists []string) []string {
@@ -53,7 +68,7 @@ func todayBackupFiles(dayNow string, fileLists []string) []string {
 	for _, v := range fileLists {
 		fmt.Println(v)
 		if r.MatchString(v) {
-			fmt.Println("当天备份文件列表是：", v)
+			// fmt.Println("当天备份文件列表是：", v)
 			todayBakFiles = append(todayBakFiles, v)
 		}
 
@@ -117,8 +132,14 @@ func getToday() string {
 func selectFromMysql() []string {
 	// gameIdList := make([]string, 0)
 	var gameIdList []string
-	fmt.Println("从mysql中取数据")
-	db, err := sql.Open("mysql", "root:www.52xiyou@tcp(192.168.56.101:3306)/yunwei")
+	a := module.BaseInfo{}
+	conf := a.GetConf()
+	Info := conf.Spring
+	user, host, port, dbs, pwd := Info.Mysql.User, Info.Mysql.Host, Info.Mysql.Port, Info.Mysql.Db, Info.Mysql.Pwd
+
+	fmt.Println("从mysql中取数据", user, host, port, dbs, pwd)
+	// db, err := sql.Open("mysql", "root:www.52xiyou@tcp(192.168.56.101:3306)/yunwei")
+	db, err := sql.Open("mysql", user+":"+pwd+"@tcp("+host+":"+port+")/"+dbs)
 	defer db.Close()
 	if err != nil {
 		fmt.Println("连接mysql失败")
