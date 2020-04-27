@@ -21,6 +21,9 @@ spring:
     password: www.52xiyou
   tomail:
     - chenke991@126.com
+    - chenke991@gmail.com
+  files:
+    - "/Users/chenke/Documents/tmp/wqyry/tmp"
 */
 
 type BaseInfo struct {
@@ -30,6 +33,7 @@ type BaseInfo struct {
 type MailEntity struct {
 	Mail  MailData `yaml: "mail"`
 	Mysql DbData   `yaml:"mysql"`
+	Files []string `yaml:files`
 }
 
 type MailData struct {
@@ -39,10 +43,6 @@ type MailData struct {
 	Pwd    string   `yaml:"password"`
 	Tomail []string `yaml:"tomail"`
 }
-
-// type DbEntity struct {
-// 	Db DbData `yaml: "mysql"`
-// }
 
 type DbData struct {
 	Host string `yaml:"host"`

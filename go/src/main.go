@@ -14,7 +14,12 @@ import (
 )
 
 func main() {
-	folder := "/Users/chenke/Documents/tmp/wqyry/tmp"
+	// 从配置文件中获取备份目录
+	info := module.BaseInfo{}
+	conf := info.GetConf()
+	a := conf.Spring
+	folder := strings.Join(a.Files, " ")
+	fmt.Println(folder)
 	//定义一个切片存放找到的文件列表
 	dayNow := getToday()
 	fmt.Println(dayNow)
@@ -28,30 +33,35 @@ func main() {
 
 	todayBakFiles := todayBackupFiles(dayNow, allFiles)
 	fmt.Println("todayBakFiles is :\n", todayBakFiles)
-	sendMail(notMatch, isMatch, allFiles, allGames)
+	sendMail(dayNow, notMatch, isMatch, allFiles, allGames)
 
 }
 
-func sendMail(notMatch, isMatch, allFiles, allGames []string) {
+func sendMail(dayNow string, notMatch, isMatch, allFiles, allGames []string) {
+	//配置文件中读取邮件信息
 	info := module.BaseInfo{}
 	conf := info.GetConf()
 	a := conf.Spring
 	host, port, user, pwd := a.Mail.Host, a.Mail.Port, a.Mail.User, a.Mail.Pwd
 	tomail := a.Mail.Tomail
-	fmt.Printf("%t", tomail)
+	var SubJ string
+	//未匹配列表为空则标题是 检查通过
+	if len(notMatch) == 0 {
+		SubJ = dayNow + "备份检查通过"
+	} else {
+		SubJ = dayNow + "要死球了，备份不完全！"
+	}
+
 	m := gomail.NewMessage()
-	// m.SetHeader("From", user)
-	// m.SetHeader("To", tomail)
-	// m.SetHeader("Subject", "备份检查通知")
 	m.SetHeaders(map[string][]string{
-		"From":    {m.FormatAddress(user, "猜猜我是谁")},
+		"From":    {m.FormatAddress(user, "🦅炸天")},
 		"To":      tomail,
-		"Subject": {"备份通知"},
+		"Subject": {SubJ},
 	})
 
-	// msg := "以下区服未查到备份 :" + "<br>" + noMatch + "<br>" + " 有备份的是：" + isMatch + "<br>" + "文件列表:" + "<br>" + allFiles + "<br>" + "游戏服列表:" + "<br>" + allGames
-	// m.SetBody("text/html", "以下区服未查到备份:",notMatch+"<br> <br>有备份的是:<br>:", isMatch)
-	m.SetBody("text/html", "以下区服未查到备份:+notMatch", notMatch)
+	msg := "以下区服未查到备份 :" + "<br>" + strings.Join(notMatch, "") + "<br>" + " 有备份的是：" + "<br>" + strings.Join(isMatch, " ") + "<br>" + "游戏服列表:" + "<br>" + strings.Join(allGames, " ")
+
+	m.SetBody("text/html", msg)
 	P, _ := strconv.Atoi(port)
 	d := gomail.NewDialer(host, P, user, pwd)
 	if err := d.DialAndSend(m); err != nil {
@@ -90,7 +100,7 @@ func matchGameList(dayNow string, gameIdList, fileLists []string) ([]string, []s
 			isMatch = append(isMatch, v)
 		} else {
 			notMatch = append(notMatch, v)
-			fmt.Println("未匹配到备份文件", v)
+			// fmt.Println("未匹配到备份文件", v)
 		}
 		fmt.Println(bfile)
 
@@ -144,7 +154,7 @@ func selectFromMysql() []string {
 	if err != nil {
 		fmt.Println("连接mysql失败")
 	}
-	rows, err := db.Query("select CONCAT(lower(game.en_name),'_',platform.en_name,'_',number)  from service_base sb left join game on sb.game_id =game.id  left JOIN platform on sb.platform_id =platform.id  where service_id=1")
+	rows, err := db.Query("select CONCAT(lower(game.en_name),'_',platform.en_name,'_',number)  from service_base sb left join game on sb.game_id =game.id  left JOIN platform on sb.platform_id =platform.id  where service_id=1 and number < 9921")
 	if err != nil {
 		fmt.Println("查询错误")
 	}
