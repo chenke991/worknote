@@ -19,13 +19,14 @@ func main() {
 	conf := info.GetConf()
 	a := conf.Spring
 	folder := strings.Join(a.Files, " ")
-	fmt.Println(folder)
+	myuser, myhost, myport, mydbs, mypwd := a.Mysql.User, a.Mysql.Host, a.Mysql.Port, a.Mysql.Db, a.Mysql.Pwd
+	mailhost, mailport, mailuser, mailpwd, tomail := a.Mail.Host, a.Mail.Port, a.Mail.User, a.Mail.Pwd, a.Mail.Tomail
+
 	//定义一个切片存放找到的文件列表
 	dayNow := getToday()
-	fmt.Println(dayNow)
 	allFiles := listFile(folder, dayNow)
 	fmt.Println(allFiles)
-	allGames := selectFromMysql()
+	allGames := selectFromMysql(myuser, myhost, myport, mydbs, mypwd)
 	fmt.Println("in main")
 	// fmt.Println(allGames)
 	notMatch, isMatch := matchGameList(dayNow, allGames, allFiles)
@@ -33,23 +34,22 @@ func main() {
 
 	todayBakFiles := todayBackupFiles(dayNow, allFiles)
 	fmt.Println("todayBakFiles is :\n", todayBakFiles)
-	sendMail(dayNow, notMatch, isMatch, allFiles, allGames)
+	sendMail(mailhost, mailport, mailuser, mailpwd, dayNow, tomail, notMatch, isMatch, allFiles, allGames)
 
 }
 
-func sendMail(dayNow string, notMatch, isMatch, allFiles, allGames []string) {
-	//配置文件中读取邮件信息
-	info := module.BaseInfo{}
-	conf := info.GetConf()
-	a := conf.Spring
-	host, port, user, pwd := a.Mail.Host, a.Mail.Port, a.Mail.User, a.Mail.Pwd
-	tomail := a.Mail.Tomail
-	var SubJ string
+func sendMail(mailhost, mailport, mailuser, mailpwd, dayNow string, tomail, notMatch, isMatch, allFiles, allGames []string) {
+
+	host, port, user, pwd, tomail := mailhost, mailport, mailuser, mailpwd, tomail
+	var SubJ, BakMsg string
 	//未匹配列表为空则标题是 检查通过
 	if len(notMatch) == 0 {
 		SubJ = dayNow + "备份检查通过"
+		BakMsg = "每个服都备份OK"
+
 	} else {
 		SubJ = dayNow + "要死球了，备份不完全！"
+		BakMsg = "以下区服未查到备份 :"
 	}
 
 	m := gomail.NewMessage()
@@ -59,7 +59,7 @@ func sendMail(dayNow string, notMatch, isMatch, allFiles, allGames []string) {
 		"Subject": {SubJ},
 	})
 
-	msg := "以下区服未查到备份 :" + "<br>" + strings.Join(notMatch, "") + "<br>" + " 有备份的是：" + "<br>" + strings.Join(isMatch, " ") + "<br>" + "游戏服列表:" + "<br>" + strings.Join(allGames, " ")
+	msg := BakMsg + "<br>" + strings.Join(notMatch, "") + "<br>" + " 有备份的是：" + "<br>" + strings.Join(isMatch, " ") + "<br>" + "游戏服列表:" + "<br>" + strings.Join(allGames, " ")
 
 	m.SetBody("text/html", msg)
 	P, _ := strconv.Atoi(port)
@@ -139,14 +139,10 @@ func getToday() string {
 }
 
 //mysql中查出所有game id 按平台分类并输出 wqyry_xiyou_1
-func selectFromMysql() []string {
-	// gameIdList := make([]string, 0)
+func selectFromMysql(myuser, myhost, myport, mydbs, mypwd string) []string {
 	var gameIdList []string
-	a := module.BaseInfo{}
-	conf := a.GetConf()
-	Info := conf.Spring
-	user, host, port, dbs, pwd := Info.Mysql.User, Info.Mysql.Host, Info.Mysql.Port, Info.Mysql.Db, Info.Mysql.Pwd
 
+	user, host, port, dbs, pwd := myuser, myhost, myport, mydbs, mypwd
 	fmt.Println("从mysql中取数据", user, host, port, dbs, pwd)
 	// db, err := sql.Open("mysql", "root:www.52xiyou@tcp(192.168.56.101:3306)/yunwei")
 	db, err := sql.Open("mysql", user+":"+pwd+"@tcp("+host+":"+port+")/"+dbs)

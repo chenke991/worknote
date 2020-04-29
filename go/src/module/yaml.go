@@ -53,7 +53,7 @@ type DbData struct {
 }
 
 func (c *BaseInfo) GetConf() *BaseInfo {
-	yamlFile, err := ioutil.ReadFile("/data/mail.yaml")
+	yamlFile, err := ioutil.ReadFile("/data/.mail.yaml")
 	if err != nil {
 		fmt.Println(err.Error())
 	}
