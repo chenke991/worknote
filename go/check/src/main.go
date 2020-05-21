@@ -1,6 +1,7 @@
 package main
 
 import (
+	// "curlcmd"
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -25,7 +26,7 @@ func main() {
 	//定义一个切片存放找到的文件列表
 	dayNow := getToday()
 	allFiles := listFile(folder, dayNow)
-	fmt.Println(allFiles)
+	// fmt.Println(allFiles)
 	allGames := selectFromMysql(myuser, myhost, myport, mydbs, mypwd)
 	fmt.Println("in main")
 	// fmt.Println(allGames)
