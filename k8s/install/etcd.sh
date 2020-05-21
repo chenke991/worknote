@@ -294,18 +294,32 @@ done
 
 
 function installK8s(){
-echo "enbale ipvs"
-cat >>/root/kubeadm.yaml <<EOF
-apiVersion: kubeproxy.config.k8s.io/v1alpha1
-kind: KubeProxyConfiguration
-mode: ipvs
-EOF
+#echo "enbale ipvs"
+#cat >>/root/kubeadm.yaml <<EOF
+#apiVersion: kubeproxy.config.k8s.io/v1alpha1
+#kind: KubeProxyConfiguration
+#mode: ipvs
+#EOF
+wget -O /root/kubeadm.yaml $DownKubeUri/${Version}/kubeadm.yaml
+sed -i "s/HOST0/${HOST0}/g" /root/kubeadm.yaml
+sed -i "s/HOST1/${HOST1}/g" /root/kubeadm.yaml
+echo "sed -i s/HOST2/${HOST2}/g /root/kubeadm.yaml"
+sed -i "s/HOST2/${HOST2}/g" /root/kubeadm.yaml
+sed -i "s/VIP/$VIP/g" /root/kubeadm.yaml
+kubeadm init    --config=/root/kubeadm.yaml --upload-certs  --v=6
+echo " run as to add master  kubeadm join $VIP:56443 --token 9o17md.zncnim7w0kspe4l0     --discovery-token-ca-cert-hash sha256:e64fff43f427fd167df43e7e4f2ab9f9790d7ba635589b95271a02b6e2afd307     --control-plane --certificate-key d4273f19837d7b219ffccdcf5105c776a11cfd81edfe7a0fe49dff556e6e9521 --ignore-preflight-errors=all --v=6
 
 }
 
 function installDeployment(){
-kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+mkdir /root/k8s/
+cd /root/k8s/
+for i in ingressds.yaml ingressrbac.yaml ingressroutes.yaml ingresssvcs.yaml recommended.yaml
+do 
+   echo $i
+   
+   kubectl apply -f http://121.46.17.198/k8s/1.18.2/system/$i
+done
 }
 
 case $1 in
@@ -324,9 +338,12 @@ etcd)
 clearKubeletSvc)
   clearKubeletSvc
 ;;
+installK8s)
+   installK8s
+	;;
 clear)
   clearEtcd
   ;;
 *)
-	echo "ERROR!!! sh $0 clear|clearKubeletSvc|etcd"
+	echo "ERROR!!! sh $0 clear|etcd|clearKubeletSvc|etcd|installK8s"
 esac
