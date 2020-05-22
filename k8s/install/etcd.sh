@@ -307,7 +307,7 @@ echo "sed -i s/HOST2/${HOST2}/g /root/kubeadm.yaml"
 sed -i "s/HOST2/${HOST2}/g" /root/kubeadm.yaml
 sed -i "s/VIP/$VIP/g" /root/kubeadm.yaml
 kubeadm init    --config=/root/kubeadm.yaml --upload-certs  --v=6
-echo " run as to add master  kubeadm join $VIP:56443 --token 9o17md.zncnim7w0kspe4l0     --discovery-token-ca-cert-hash sha256:e64fff43f427fd167df43e7e4f2ab9f9790d7ba635589b95271a02b6e2afd307     --control-plane --certificate-key d4273f19837d7b219ffccdcf5105c776a11cfd81edfe7a0fe49dff556e6e9521 --ignore-preflight-errors=all --v=6
+echo " run as to add master  kubeadm join $VIP:56443 --token 9o17md.zncnim7w0kspe4l0     --discovery-token-ca-cert-hash sha256:e64fff43f427fd167df43e7e4f2ab9f9790d7ba635589b95271a02b6e2afd307     --control-plane --certificate-key d4273f19837d7b219ffccdcf5105c776a11cfd81edfe7a0fe49dff556e6e9521 --ignore-preflight-errors=all --v=6"
 
 }
 
@@ -341,9 +341,12 @@ clearKubeletSvc)
 installK8s)
    installK8s
 	;;
+installDeployment)
+   installDeployment
+   ;;
 clear)
   clearEtcd
   ;;
 *)
-	echo "ERROR!!! sh $0 clear|etcd|clearKubeletSvc|etcd|installK8s"
+	echo "ERROR!!! sh $0 clear|etcd|clearKubeletSvc|installK8s|installDeployment"
 esac

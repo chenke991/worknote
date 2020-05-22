@@ -2,7 +2,7 @@ apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
 kubernetesVersion: v1.18.2
 #kubernetesVersion: stable
-controlPlaneEndpoint: "192.168.0.254:56443"
+controlPlaneEndpoint: "VIP:56443"
 imageRepository: registry.cn-hangzhou.aliyuncs.com/google_containers
 networking:
   dnsDomain: cluster.local
@@ -12,10 +12,10 @@ apiServer:
   certSANs:
   - 127.0.0.1
   - apiserver.cluster.local
-  - 192.168.238.229
-  - 192.168.238.176
-  - 192.168.238.253
-  - 192.168.0.254
+  - HOST0
+  - HOST1
+  - HOST2
+  - VIP
   - 10.96.0.1
   - 10.96.0.10
   extraArgs:
