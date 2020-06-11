@@ -37,7 +37,7 @@ func main() {
 	// fmt.Println("not Match is :\n", notMatch, "\nis match is :", isMatch)
     hostName := getHost()
 	todayBakFiles := todayBackupFiles(dayNow, allFiles)
-	fmt.Println("todayBakFiles is :\n", todayBakFiles)
+	// fmt.Println("todayBakFiles is :\n", todayBakFiles)
 	sendMail(mailhost, mailport, mailuser, mailpwd, hostName, dayNow, tomail, notMatch, isMatch, allFiles, allGames)
 
 }
@@ -110,7 +110,7 @@ func todayBackupFiles(dayNow string, fileLists []string) []string {
 func matchGameList(dayNow string, gameIdList, fileLists []string) ([]string, []string) {
 	var notMatch, isMatch []string
 	allFiles := strings.Join(fileLists, "-")
-	fmt.Println(gameIdList, allFiles)
+	// fmt.Println(gameIdList, allFiles)
 	// r := regexp.MustCompile(dayNow)
 	for _, v := range gameIdList {
 		// fmt.Println(v)
