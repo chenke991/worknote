@@ -14,6 +14,8 @@ import (
 	"time"
 )
 
+
+
 func main() {
 	// 从配置文件中获取备份目录
 	info := module.BaseInfo{}
@@ -31,15 +33,29 @@ func main() {
 	fmt.Println("in main")
 	// fmt.Println(allGames)
 	notMatch, isMatch := matchGameList(dayNow, allGames, allFiles)
-	fmt.Println("not Match is :\n", notMatch, "\nis match is :", isMatch)
-
+	// fmt.Println("not Match is :\n", notMatch, "\nis match is :", isMatch)
+    hostName := getHost()
 	todayBakFiles := todayBackupFiles(dayNow, allFiles)
 	fmt.Println("todayBakFiles is :\n", todayBakFiles)
-	sendMail(mailhost, mailport, mailuser, mailpwd, dayNow, tomail, notMatch, isMatch, allFiles, allGames)
+	sendMail(mailhost, mailport, mailuser, mailpwd, hostName, dayNow, tomail, notMatch, isMatch, allFiles, allGames)
 
 }
 
-func sendMail(mailhost, mailport, mailuser, mailpwd, dayNow string, tomail, notMatch, isMatch, allFiles, allGames []string) {
+
+func getHost() string{
+	var saltNa string 
+	saltNa = "/etc/salt/minion_id"
+	b,err:= ioutil.ReadFile(saltNa)
+	if err != nil {
+		fmt.Println("%s not exist" , saltNa)
+		return saltNa
+	} else {
+		fmt.Println(b)
+		return string(b)
+	}
+}
+
+func sendMail(mailhost, mailport, mailuser, mailpwd, hostName, dayNow string, tomail, notMatch, isMatch, allFiles, allGames []string) {
 
 	host, port, user, pwd, tomail := mailhost, mailport, mailuser, mailpwd, tomail
 	var SubJ, BakMsg string
@@ -60,7 +76,7 @@ func sendMail(mailhost, mailport, mailuser, mailpwd, dayNow string, tomail, notM
 		"Subject": {SubJ},
 	})
 
-	msg := BakMsg + "<br>" + strings.Join(notMatch, " ") + "<br>" + " 有备份的是：" + "<br>" + strings.Join(isMatch, " ") + "<br>" + "游戏服列表:" + "<br>" + strings.Join(allGames, " ")
+	msg := hostName + BakMsg + "<br>" + strings.Join(notMatch, " ") + "<br>" + " 有备份的是：" + "<br>" + strings.Join(isMatch, " ") + "<br>" + "游戏服列表:" + "<br>" + strings.Join(allGames, " ")
 
 	m.SetBody("text/html", msg)
 	P, _ := strconv.Atoi(port)
@@ -77,7 +93,7 @@ func todayBackupFiles(dayNow string, fileLists []string) []string {
 	var todayBakFiles []string
 	r := regexp.MustCompile(dayNow)
 	for _, v := range fileLists {
-		fmt.Println(v)
+		// fmt.Println(v)
 		if r.MatchString(v) {
 			// fmt.Println("当天备份文件列表是：", v)
 			todayBakFiles = append(todayBakFiles, v)
