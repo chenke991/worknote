@@ -76,7 +76,7 @@ func sendMail(mailhost, mailport, mailuser, mailpwd, hostName, dayNow string, to
 		"Subject": {SubJ},
 	})
 
-	msg := hostName + BakMsg + "<br>" + strings.Join(notMatch, " ") + "<br>" + " 有备份的是：" + "<br>" + strings.Join(isMatch, " ") + "<br>" + "游戏服列表:" + "<br>" + strings.Join(allGames, " ")
+	msg := hostName + "<br>" + BakMsg + "<br>" + strings.Join(notMatch, " ") + "<br>" + " 有备份的是：" + "<br>" + strings.Join(isMatch, " ") + "<br>" + "游戏服列表:" + "<br>" + strings.Join(allGames, " ")
 
 	m.SetBody("text/html", msg)
 	P, _ := strconv.Atoi(port)
