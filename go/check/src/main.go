@@ -47,11 +47,12 @@ func getHost() string{
 	saltNa = "/etc/salt/minion_id"
 	b,err:= ioutil.ReadFile(saltNa)
 	if err != nil {
-		fmt.Println("%s not exist" , saltNa)
+		fmt.Printf("%v not exist" , saltNa)
 		return saltNa
 	} else {
 		fmt.Println(b)
-		return string(b)
+		c := os.Hostname()
+		return string(c)
 	}
 }
 
