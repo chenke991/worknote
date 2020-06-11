@@ -52,7 +52,7 @@ func getHost() string{
 		return saltNa
 	} else {
 		fmt.Println(b)
-		c := os.Hostname()
+		c _ := os.Hostname()
 		return string(c)
 	}
 }
