@@ -37,7 +37,7 @@ func main() {
 	// fmt.Println("not Match is :\n", notMatch, "\nis match is :", isMatch)
     hostName := getHost()
 	todayBakFiles := todayBackupFiles(dayNow, allFiles)
-	// fmt.Println("todayBakFiles is :\n", todayBakFiles)
+	fmt.Println("todayBakFiles is :\n", todayBakFiles)
 	sendMail(mailhost, mailport, mailuser, mailpwd, hostName, dayNow, tomail, notMatch, isMatch, allFiles, allGames)
 
 }
@@ -121,7 +121,7 @@ func matchGameList(dayNow string, gameIdList, fileLists []string) ([]string, []s
 			notMatch = append(notMatch, v)
 			// fmt.Println("未匹配到备份文件", v)
 		}
-		fmt.Println(bfile)
+		// fmt.Println(bfile)
 
 	}
 
@@ -174,6 +174,7 @@ func selectFromMysql(myuser, myhost, myport, mydbs, mypwd string) []string {
 		fmt.Println("查询错误")
 	}
 	// fmt.Println(rows)
+
 	for rows.Next() {
 		var s string
 		err = rows.Scan(&s)
@@ -181,6 +182,7 @@ func selectFromMysql(myuser, myhost, myport, mydbs, mypwd string) []string {
 			fmt.Println("error")
 		}
 		// fmt.Println(rows)
+        s=strings.Replace(s,"fltx","game",-1)
 		gameIdList = append(gameIdList, s)
 	}
 	fmt.Println(gameIdList)
