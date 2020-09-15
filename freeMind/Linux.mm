@@ -2,7 +2,7 @@
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1599547656210" ID="ID_392256453" MODIFIED="1600130881421" TEXT="Linux">
 <font NAME="SansSerif" SIZE="16"/>
-<node CREATED="1600130888377" FOLDED="true" ID="ID_1429847293" MODIFIED="1600133542624" POSITION="right" TEXT="&#x5185;&#x5b58;">
+<node CREATED="1600130888377" FOLDED="true" ID="ID_1429847293" MODIFIED="1600136333032" POSITION="right" TEXT="&#x5185;&#x5b58;">
 <node CREATED="1599547740364" HGAP="57" ID="ID_743474636" MODIFIED="1599551824455" STYLE="bubble" TEXT="&#x5185;&#x6838;&#x4f7f;&#x7528;&#x5185;&#x5b58;&#xff0c;&#x5185;&#x6838;&#x6001;" VSHIFT="-19">
 <font NAME="SansSerif" SIZE="16"/>
 <node CREATED="1599547985881" HGAP="11" ID="ID_1876816235" MODIFIED="1599551824455" TEXT="&#x5185;&#x5b58;&#x7533;&#x8bf7;" VSHIFT="-60">
@@ -128,27 +128,48 @@
 </node>
 <node CREATED="1600130963350" HGAP="18" ID="ID_1418304089" MODIFIED="1600130975761" POSITION="right" TEXT="TCP/IP" VSHIFT="136">
 <node CREATED="1600131239823" ID="ID_782830088" MODIFIED="1600133544432" STYLE="bubble" TEXT="&#x4e09;&#x6b21;&#x63e1;&#x624b;">
-<node CREATED="1600131302223" ID="ID_294108732" MODIFIED="1600133521994" TEXT="tcp_syn_retries">
-<node CREATED="1600131738676" ID="ID_1992186072" MODIFIED="1600131768268" TEXT="client--&gt;server&#x7684;&#x7b2c;&#x4e00;&#x4e2a;&#x63e1;&#x624b;&#x5305;"/>
-<node CREATED="1600131360057" ID="ID_1637831030" MODIFIED="1600131577716" TEXT="1+2+4+8+16+32+64=127&#x79d2;S&#x8d85;&#x65f6;&#xff0c;&#x4ea7;&#x751f;ETIMEOUT"/>
-<node CREATED="1600131609449" ID="ID_1072301756" MODIFIED="1600131659876" TEXT="? &#x8fd9;&#x4e2a;&#x521d;&#x59cb;&#x8d85;&#x65f6;1S&#x53ef;&#x4ee5;&#x8c03;&#xff0c;&#x5982;&#x4f55;&#x64cd;&#x4f5c;&#x5462;&#xff1f;">
-<font NAME="SansSerif" SIZE="19"/>
-</node>
-<node CREATED="1600131348508" HGAP="24" ID="ID_1677410033" MODIFIED="1600131789285" TEXT="&#x9ed8;&#x8ba4;6" VSHIFT="6"/>
-<node CREATED="1600131447048" ID="ID_1769140310" MODIFIED="1600131468345" TEXT="&#x5185;&#x90e8;&#x670d;&#x52a1;&#x5668;&#x63a8;&#x8350;&#x503c;2"/>
-</node>
-<node CREATED="1600133613151" ID="ID_1057560057" MODIFIED="1600133635216" TEXT="&#x56fe;&#x89e3;">
-<node CREATED="1600133407801" HGAP="240" ID="ID_1470395391" MODIFIED="1600134356780" VSHIFT="-169">
+<node CREATED="1600133613151" ID="ID_1057560057" MODIFIED="1600135841944" TEXT="&#x56fe;&#x89e3;">
+<node CREATED="1600133407801" HGAP="240" ID="ID_1470395391" MODIFIED="1600135496450" VSHIFT="-169">
 <richcontent TYPE="NODE"><html>
   <head>
     
   </head>
   <body>
     <p>
-      <img src="http://yum.2xi.com/chenke/tcpsynack.png" height="400" width="400" />
+      <img height="500" src="http://yum.2xi.com/chenke/tcpsynack_small.png" width="600" />
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1600131302223" HGAP="105" ID="ID_294108732" MODIFIED="1600136253877" TEXT="tcp_syn_retries" VSHIFT="-43">
+<node CREATED="1600131738676" ID="ID_1992186072" MODIFIED="1600131768268" TEXT="client--&gt;server&#x7684;&#x7b2c;&#x4e00;&#x4e2a;&#x63e1;&#x624b;&#x5305;"/>
+<node CREATED="1600131360057" ID="ID_1637831030" MODIFIED="1600131577716" TEXT="1+2+4+8+16+32+64=127&#x79d2;S&#x8d85;&#x65f6;&#xff0c;&#x4ea7;&#x751f;ETIMEOUT"/>
+<node CREATED="1600131609449" ID="ID_1072301756" MODIFIED="1600131659876" TEXT="? &#x8fd9;&#x4e2a;&#x521d;&#x59cb;&#x8d85;&#x65f6;1S&#x53ef;&#x4ee5;&#x8c03;&#xff0c;&#x5982;&#x4f55;&#x64cd;&#x4f5c;&#x5462;&#xff1f;">
+<font NAME="SansSerif" SIZE="19"/>
+</node>
+<node CREATED="1600131348508" HGAP="24" ID="ID_1677410033" MODIFIED="1600131789285" TEXT="&#x9ed8;&#x8ba4;6" VSHIFT="6"/>
+<node CREATED="1600131447048" ID="ID_1769140310" MODIFIED="1600136312555" TEXT="&#x5185;&#x90e8;&#x670d;&#x52a1;&#x5668;&#x63a8;&#x8350;&#x503c;2">
+<font NAME="SansSerif" SIZE="15"/>
+</node>
+</node>
+<node CREATED="1600135811570" ID="ID_1570196524" MODIFIED="1600135814992" TEXT="tcp_max_syn_backlog">
+<node CREATED="1600135866624" ID="ID_1231706314" MODIFIED="1600135885013" TEXT="&#x5f53;&#x7cfb;&#x7edf;&#x4e2d;&#x79ef;&#x538b;&#x7684;&#x534a;&#x8fde;&#x63a5;&#x4e2a;&#x6570;&#x8d85;&#x8fc7;&#x4e86;&#x8be5;&#x503c;&#x540e;&#xff0c;&#x65b0;&#x7684; SYN &#x5305;&#x5c31;&#x4f1a;&#x88ab;&#x4e22;&#x5f03;"/>
+<node CREATED="1600135893663" ID="ID_181022639" MODIFIED="1600135984993" TEXT="&#x76ee;&#x524d;&#x7ebf;&#x4e0a;&#x503c;262144"/>
+</node>
+<node CREATED="1600136024069" ID="ID_613884537" MODIFIED="1600136205628" TEXT="tcp_syncookies">
+<node CREATED="1600136027063" ID="ID_1557156537" MODIFIED="1600136059971" TEXT="&#x5728; Server &#x6536;&#x5230; SYN &#x5305;&#x65f6;&#xff0c;&#x4e0d;&#x53bb;&#x5206;&#x914d;&#x8d44;&#x6e90;&#x6765;&#x4fdd;&#x5b58; Client &#x7684;&#x4fe1;&#x606f;&#xff0c;&#x800c;&#x662f;&#x6839;&#x636e;&#x8fd9;&#x4e2a; SYN &#x5305;&#x8ba1;&#x7b97;&#x51fa;&#x4e00;&#x4e2a; Cookie &#x503c;&#xff0c;&#x7136;&#x540e;&#x5c06; Cookie &#x8bb0;&#x5f55;&#x5230; SYNACK &#x5305;&#x4e2d;&#x53d1;&#x9001;&#x51fa;&#x53bb;&#x3002;&#x5bf9;&#x4e8e;&#x6b63;&#x5e38;&#x7684;&#x8fde;&#x63a5;&#xff0c;&#x8be5; Cookies &#x503c;&#x4f1a;&#x968f;&#x7740; Client &#x7684; ACK &#x62a5;&#x6587;&#x88ab;&#x5e26;&#x56de;&#x6765;&#x3002;&#x7136;&#x540e; Server &#x518d;&#x6839;&#x636e;&#x8fd9;&#x4e2a; Cookie &#x68c0;&#x67e5;&#x8fd9;&#x4e2a; ACK &#x5305;&#x7684;&#x5408;&#x6cd5;&#x6027;&#xff0c;&#x5982;&#x679c;&#x5408;&#x6cd5;&#xff0c;&#x624d;&#x53bb;&#x521b;&#x5efa;&#x65b0;&#x7684; TCP &#x8fde;&#x63a5;&#x3002;"/>
+<node CREATED="1600136064574" ID="ID_41470774" MODIFIED="1600136073608" TEXT="&#x53ef;&#x4ee5;&#x9632;&#x6b62;&#x90e8;&#x5206; SYN Flood &#x653b;&#x51fb;"/>
+<node CREATED="1600136074862" ID="ID_1453184245" MODIFIED="1600136307396" TEXT="&#x63a8;&#x8350;&#x5f00;&#x542f;&#xff1a;net.ipv4.tcp_syncookies = 1">
+<font NAME="SansSerif" SIZE="15"/>
+</node>
+</node>
+<node CREATED="1600136207216" ID="ID_1749169401" MODIFIED="1600136222737" TEXT="tcp_synack_retries">
+<node CREATED="1600136223970" ID="ID_31122680" MODIFIED="1600136259512" TEXT="&#x91cd;&#x4f20;&#x7b56;&#x7565;&#x540c;tcp_syn_retries"/>
+<node CREATED="1600136262161" ID="ID_506119236" MODIFIED="1600136269629" TEXT="&#x9ed8;&#x8ba4;&#x503c;5"/>
+<node CREATED="1600136269973" ID="ID_1200591245" MODIFIED="1600136303838" TEXT="&#x5185;&#x90e8;&#x670d;&#x52a1;&#x5668;&#x63a8;&#x8350;&#x503c;:net.ipv4.tcp_synack_retries = 2">
+<font NAME="SansSerif" SIZE="15"/>
 </node>
 </node>
 </node>
