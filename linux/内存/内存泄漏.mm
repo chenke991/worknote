@@ -1,0 +1,131 @@
+<map version="1.0.1">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1599547656210" ID="ID_392256453" MODIFIED="1600130881421" TEXT="Linux">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1600130888377" ID="ID_1429847293" MODIFIED="1600130976824" POSITION="right" TEXT="&#x5185;&#x5b58;">
+<node CREATED="1599547740364" HGAP="57" ID="ID_743474636" MODIFIED="1599551824455" STYLE="bubble" TEXT="&#x5185;&#x6838;&#x4f7f;&#x7528;&#x5185;&#x5b58;&#xff0c;&#x5185;&#x6838;&#x6001;" VSHIFT="-19">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599547985881" HGAP="11" ID="ID_1876816235" MODIFIED="1599551824455" TEXT="&#x5185;&#x5b58;&#x7533;&#x8bf7;" VSHIFT="-60">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599547955600" HGAP="15" ID="ID_1292281580" MODIFIED="1599551922316" TEXT="kmalloc() " VSHIFT="-35">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599550850824" ID="ID_557074558" MODIFIED="1599551824455" TEXT="&#x5206;&#x914d;&#x7684;&#x5185;&#x5b58;&#x662f;&#x8fde;&#x7eed;&#x7684;">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node CREATED="1599551129048" ID="ID_882602781" MODIFIED="1599615983721" TEXT="meminfo&#x4e2d;&#x5bf9;&#x5e94;&#x6307;&#x6807;Slab">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599551132257" ID="ID_191872040" MODIFIED="1599551824455" TEXT="SReclaimable">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599551152491" ID="ID_1339552117" MODIFIED="1599551824455" TEXT="&#x5728;&#x5185;&#x5b58;&#x7d27;&#x5f20;&#x7684;&#x65f6;&#x5019;&#x53ef;&#x4ee5;&#x88ab;&#x56de;&#x6536;&#x7684;&#x5185;&#x5b58;">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+</node>
+<node CREATED="1599551139873" ID="ID_135514597" MODIFIED="1599551824455" TEXT="SUnreclaim">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599551160594" ID="ID_1841494799" MODIFIED="1599551824455" TEXT="&#x4e0d;&#x53ef;&#x4ee5;&#x88ab;&#x56de;&#x6536;&#x53ea;&#x80fd;&#x4e3b;&#x52a8;&#x91ca;&#x653e;&#x7684;&#x5185;&#x5b58;">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1599547831992" HGAP="32" ID="ID_1712997467" MODIFIED="1599551925173" TEXT="vmalloc" VSHIFT="-2">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599550863182" HGAP="22" ID="ID_1982738480" MODIFIED="1599555168834" TEXT="&#x5206;&#x914d;&#x7684;&#x5185;&#x5b58;&#x4e0d;&#x4fdd;&#x8bc1;&#x8fde;&#x7eed;" VSHIFT="-24">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node CREATED="1599551089642" HGAP="21" ID="ID_178572992" MODIFIED="1599615990890" TEXT="meminfo&#x4e2d;&#x5bf9;&#x5e94;&#x6307;&#x6807;VmallocUsed" VSHIFT="20">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+</node>
+</node>
+<node CREATED="1599548030005" HGAP="35" ID="ID_66362942" MODIFIED="1599551824454" TEXT="&#x5185;&#x5b58;&#x91ca;&#x653e;" VSHIFT="-66">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599548047171" HGAP="15" ID="ID_1555998050" MODIFIED="1599555172749" TEXT="kfree()" VSHIFT="-23">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node CREATED="1599548059548" ID="ID_605303677" MODIFIED="1599555175494" TEXT="vfree()" VSHIFT="17">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+</node>
+<node CREATED="1599551032246" ID="ID_1432810472" MODIFIED="1599551824454" TEXT="&#x89c2;&#x5bdf;&#x70b9;">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node CREATED="1599550494982" HGAP="17" ID="ID_314583870" MODIFIED="1599553942956" TEXT="&#x6cc4;&#x9732;" VSHIFT="62">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599551985713" ID="ID_1262458889" MODIFIED="1599552087098" TEXT="&#x6392;&#x67e5;">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599553865051" HGAP="16" ID="ID_994883261" MODIFIED="1599618689290" TEXT="&#x4e00;&#x822c;&#x65b9;&#x6cd5;" VSHIFT="-22">
+<node COLOR="#cc0000" CREATED="1599553620826" ID="ID_549396323" MODIFIED="1599553697853" TEXT="VmallocUsed &#x548c; SUnreclaim &#x592a;&#x5927;&#x6216;&#x6301;&#x7eed;&#x589e;&#x957f;&#x800c;&#x4e0d;&#x4e0b;&#x964d;">
+<font BOLD="true" NAME="SansSerif" SIZE="16"/>
+</node>
+<node CREATED="1599551997594" ID="ID_1019624436" MODIFIED="1599552087097" TEXT="cat /proc/vmallocinfo">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node CREATED="1599551994848" ID="ID_115310739" MODIFIED="1599552087098" TEXT="grep -Eo &quot;VmallocUsed|SUnreclaim&quot; /proc/meminfo">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node CREATED="1599554094511" ID="ID_1540007064" MODIFIED="1599554100990" TEXT="cat /proc/slabinfo"/>
+</node>
+<node CREATED="1599553900314" ID="ID_707975175" MODIFIED="1599553905137" TEXT="&#x5de5;&#x5177;">
+<node CREATED="1599553906186" HGAP="21" ID="ID_1315099050" MODIFIED="1599555123650" TEXT="kmemleak" VSHIFT="27">
+<node CREATED="1599553915865" HGAP="13" ID="ID_758670405" MODIFIED="1599616220308" TEXT="https://www.kernel.org/doc/html/v4.10/dev-tools/kmemleak.html" VSHIFT="-9"/>
+<node CREATED="1599554000727" HGAP="27" ID="ID_1968439869" MODIFIED="1599616215662" TEXT="/sys/kernel/debug/kmemleak &#x5206;&#x6790;&#x8fd9;&#x4e2a;&#x6587;&#x4ef6;&#x5185;&#x5bb9;" VSHIFT="19"/>
+<node CREATED="1599555125777" ID="ID_1528980438" MODIFIED="1599616211983" TEXT="&#x591a;&#x7528;&#x4e8e;&#x6d4b;&#x8bd5;&#x73af;&#x5883;&#xff0c;&#x56e0;&#x4e3a;&#x5f00;&#x542f;&#x6b64;&#x529f;&#x80fd;&#x4f1a;&#x5f71;&#x54cd;&#x6027;&#x80fd;" VSHIFT="20"/>
+</node>
+</node>
+</node>
+<node CREATED="1599616391509" ID="ID_603120493" MODIFIED="1599616398161" TEXT="&#x5371;&#x5bb3;">
+<node CREATED="1599616399675" HGAP="16" ID="ID_320260540" MODIFIED="1599618684205" TEXT="&#x751f;&#x547d;&#x5468;&#x671f;&#x662f;&#x4e0e;&#x5185;&#x6838;&#x4e00;&#x81f4;" VSHIFT="-18"/>
+<node CREATED="1599551807865" ID="ID_1896077962" MODIFIED="1599551824454" TEXT="&#x53ea;&#x6709;&#x5728;&#x5185;&#x6838;&#x91cd;&#x542f;&#xff08;&#x5373;&#x670d;&#x52a1;&#x5668;&#x91cd;&#x542f;&#xff09;&#x65f6;&#x624d;&#x4f1a;&#x91ca;&#x653e;&#x6389;&#x8fd9;&#x90e8;&#x5206;&#x5185;&#x5b58;">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node CREATED="1599551887688" HGAP="19" ID="ID_692070265" MODIFIED="1599618681589" TEXT="&#x5bb9;&#x6613;&#x51fa;&#x73b0;&#x7684;&#x7a0b;&#x5e8f; &#x7f51;&#x5361;&#x9a71;&#x52a8;&#xff0c;SSD &#x5361;&#x9a71;&#x52a8;&#x7b49;" VSHIFT="12">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1599547758910" HGAP="124" ID="ID_1132329225" MODIFIED="1600130919386" STYLE="bubble" TEXT="&#x5e94;&#x7528;&#x7a0b;&#x5e8f;&#x4f7f;&#x7528;&#x5185;&#x5b58;&#xff0c;&#x7528;&#x6237;&#x6001;" VSHIFT="-33">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599548007639" ID="ID_1231880045" MODIFIED="1599551824454" TEXT="&#x5185;&#x5b58;&#x7533;&#x8bf7;">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599547882213" HGAP="47" ID="ID_1852076754" MODIFIED="1599551824453" TEXT="malloc() &#x7533;&#x8bf7;" VSHIFT="-27">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599550914851" ID="ID_1574184812" MODIFIED="1599551824453" TEXT="&#x5206;&#x914d;&#x7684;&#x5185;&#x5b58;&#x4e0d;&#x4fdd;&#x8bc1;&#x8fde;&#x7eed; ">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+</node>
+<node CREATED="1599616589397" ID="ID_1685795510" MODIFIED="1599616593439" TEXT="mmap&#xff08;MAP_ANON|MAP_SHARED&#xff09;">
+<node CREATED="1599617957114" ID="ID_961760686" MODIFIED="1599617970150" TEXT="Shmem">
+<node CREATED="1599618480420" ID="ID_1252129361" MODIFIED="1599618514348" TEXT="tmpfs&#x662f;&#x4e00;&#x79cd;&#x7279;&#x6b8a;&#x7684;Shmem,&#x7531;&#x7cfb;&#x7edf;&#x7ba1;&#x7406;&#xff0c;&#x4e0d;&#x4f53;&#x73b0;&#x5728;&#x8fdb;&#x7a0b;&#x5185;&#x5b58;&#x4e2d;"/>
+</node>
+<node CREATED="1599618410464" ID="ID_1722192252" MODIFIED="1599618417805" TEXT="&#x5c5e;&#x4e8e;&#x8fdb;&#x7a0b;RES"/>
+<node CREATED="1599618418342" ID="ID_1569443213" MODIFIED="1599618449213" TEXT="&#x4e5f;&#x5c5e;&#x4e8e;&#x8fdb;&#x7a0b;SHR"/>
+</node>
+</node>
+<node CREATED="1599550561858" ID="ID_195324500" MODIFIED="1599551824453" TEXT="&#x5185;&#x5b58;&#x91ca;&#x653e;">
+<font NAME="SansSerif" SIZE="16"/>
+<node CREATED="1599547904101" HGAP="56" ID="ID_40136485" MODIFIED="1599551824453" TEXT="free()&#x91ca;&#x653e;" VSHIFT="42">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+</node>
+<node CREATED="1599550578062" ID="ID_1845332807" MODIFIED="1599551824452" TEXT="&#x5185;&#x5b58;&#x6cc4;&#x6f0f;">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+</node>
+<node CREATED="1599616754934" HGAP="166" ID="ID_440475173" MODIFIED="1600130921940" STYLE="bubble" TEXT="&#x672a;&#x4f53;&#x73b0;&#x5728;&#x8fdb;&#x7a0b;&#x5185;&#x5b58;&#x4e2d;&#x7684;&#x60c5;&#x51b5;" VSHIFT="-83">
+<node CREATED="1599616791644" ID="ID_71894629" MODIFIED="1599616863274" TEXT="KernelStack&#xff08;&#x5185;&#x6838;&#x6808;&#xff09;"/>
+<node CREATED="1599616841467" ID="ID_897523670" MODIFIED="1599616868788" TEXT="VmallocUsed&#xff08;&#x5185;&#x6838;&#x901a;&#x8fc7; vmalloc &#x7533;&#x8bf7;&#x7684;&#x5185;&#x5b58;&#xff09;"/>
+<node CREATED="1599616796204" ID="ID_88578959" MODIFIED="1600131138024" TEXT="/proc/meminfo &#x4e2d;&#x7684; Slab&#xff08;&#x9ad8;&#x901f;&#x7f13;&#x5b58;&#xff09;kmallock&#x7533;&#x8bf7;&#x7684;&#x5185;&#x5b58;"/>
+<node CREATED="1599616872923" HGAP="16" ID="ID_1851436030" MODIFIED="1599617932849" TEXT="tmpfs&#x5360;&#x7528;" VSHIFT="25">
+<node CREATED="1599616929264" ID="ID_1718941459" MODIFIED="1599616930724" TEXT="&#x5e94;&#x7528;&#x7a0b;&#x5e8f;&#x4e3a;&#x4e86;&#x63d0;&#x5347;&#x6027;&#x80fd;&#xff0c;&#x4f1a;&#x907f;&#x514d;&#x5c06;&#x4e00;&#x4e9b;&#x65e0;&#x9700;&#x6301;&#x7eed;&#x5316;&#x5b58;&#x50a8;&#x7684;&#x6570;&#x636e;&#x5199;&#x5165;&#x5230;&#x78c1;&#x76d8;&#xff0c;&#x800c;&#x662f;&#x628a;&#x8fd9;&#x90e8;&#x5206;&#x4e34;&#x65f6;&#x6570;&#x636e;&#x5199;&#x5165;&#x5230;&#x5185;&#x5b58;&#x4e2d;&#xff0c;&#x7136;&#x540e;&#x5b9a;&#x671f;&#x6216;&#x8005;&#x5728;&#x4e0d;&#x9700;&#x8981;&#x8fd9;&#x90e8;&#x5206;&#x6570;&#x636e;&#x65f6;&#xff0c;&#x6e05;&#x7406;&#x6389;&#x8fd9;&#x90e8;&#x5206;&#x5185;&#x5bb9;&#x6765;&#x91ca;&#x653e;&#x51fa;&#x5185;&#x5b58;"/>
+<node CREATED="1599616704922" ID="ID_172439913" MODIFIED="1599616718461" TEXT="&#x5185;&#x5b58;&#x5360;&#x7528;&#x91cf;&#x4e0d;&#x4f1a;&#x4f53;&#x73b0;&#x5728;&#x8fdb;&#x7a0b;&#x5185;&#x5b58;&#x4e2d;"/>
+</node>
+</node>
+<node CREATED="1599551339672" HGAP="158" ID="ID_1485900923" MODIFIED="1600131025836" STYLE="bubble" TEXT="/proc/meminfo " VSHIFT="-80">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+</node>
+<node CREATED="1600130963350" HGAP="18" ID="ID_1418304089" MODIFIED="1600130975761" POSITION="right" TEXT="TCP/IP" VSHIFT="136"/>
+</node>
+</map>
