@@ -2,7 +2,7 @@
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1599547656210" ID="ID_392256453" MODIFIED="1600130881421" TEXT="Linux">
 <font NAME="SansSerif" SIZE="16"/>
-<node CREATED="1600130888377" ID="ID_1429847293" MODIFIED="1600130976824" POSITION="right" TEXT="&#x5185;&#x5b58;">
+<node CREATED="1600130888377" FOLDED="true" ID="ID_1429847293" MODIFIED="1600133542624" POSITION="right" TEXT="&#x5185;&#x5b58;">
 <node CREATED="1599547740364" HGAP="57" ID="ID_743474636" MODIFIED="1599551824455" STYLE="bubble" TEXT="&#x5185;&#x6838;&#x4f7f;&#x7528;&#x5185;&#x5b58;&#xff0c;&#x5185;&#x6838;&#x6001;" VSHIFT="-19">
 <font NAME="SansSerif" SIZE="16"/>
 <node CREATED="1599547985881" HGAP="11" ID="ID_1876816235" MODIFIED="1599551824455" TEXT="&#x5185;&#x5b58;&#x7533;&#x8bf7;" VSHIFT="-60">
@@ -126,6 +126,32 @@
 <font NAME="SansSerif" SIZE="16"/>
 </node>
 </node>
-<node CREATED="1600130963350" HGAP="18" ID="ID_1418304089" MODIFIED="1600130975761" POSITION="right" TEXT="TCP/IP" VSHIFT="136"/>
+<node CREATED="1600130963350" HGAP="18" ID="ID_1418304089" MODIFIED="1600130975761" POSITION="right" TEXT="TCP/IP" VSHIFT="136">
+<node CREATED="1600131239823" ID="ID_782830088" MODIFIED="1600133544432" STYLE="bubble" TEXT="&#x4e09;&#x6b21;&#x63e1;&#x624b;">
+<node CREATED="1600131302223" ID="ID_294108732" MODIFIED="1600133521994" TEXT="tcp_syn_retries">
+<node CREATED="1600131738676" ID="ID_1992186072" MODIFIED="1600131768268" TEXT="client--&gt;server&#x7684;&#x7b2c;&#x4e00;&#x4e2a;&#x63e1;&#x624b;&#x5305;"/>
+<node CREATED="1600131360057" ID="ID_1637831030" MODIFIED="1600131577716" TEXT="1+2+4+8+16+32+64=127&#x79d2;S&#x8d85;&#x65f6;&#xff0c;&#x4ea7;&#x751f;ETIMEOUT"/>
+<node CREATED="1600131609449" ID="ID_1072301756" MODIFIED="1600131659876" TEXT="? &#x8fd9;&#x4e2a;&#x521d;&#x59cb;&#x8d85;&#x65f6;1S&#x53ef;&#x4ee5;&#x8c03;&#xff0c;&#x5982;&#x4f55;&#x64cd;&#x4f5c;&#x5462;&#xff1f;">
+<font NAME="SansSerif" SIZE="19"/>
+</node>
+<node CREATED="1600131348508" HGAP="24" ID="ID_1677410033" MODIFIED="1600131789285" TEXT="&#x9ed8;&#x8ba4;6" VSHIFT="6"/>
+<node CREATED="1600131447048" ID="ID_1769140310" MODIFIED="1600131468345" TEXT="&#x5185;&#x90e8;&#x670d;&#x52a1;&#x5668;&#x63a8;&#x8350;&#x503c;2"/>
+</node>
+<node CREATED="1600133613151" ID="ID_1057560057" MODIFIED="1600133635216" TEXT="&#x56fe;&#x89e3;">
+<node CREATED="1600133407801" HGAP="240" ID="ID_1470395391" MODIFIED="1600134356780" VSHIFT="-169">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <img src="http://yum.2xi.com/chenke/tcpsynack.png" height="400" width="400" />
+    </p>
+  </body>
+</html></richcontent>
+</node>
+</node>
+</node>
+</node>
 </node>
 </map>
