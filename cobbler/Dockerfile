@@ -1,0 +1,30 @@
+ 
+FROM centos:7.2.1511
+MAINTAINER chenke@126.com
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/local-fs.target.wants/*; \
+rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+rm -f /lib/systemd/system/basic.target.wants/*;\
+rm -f /lib/systemd/system/anaconda.target.wants/*;
+VOLUME [ “/sys/fs/cgroup” ]
+RUN sed -i "/gpgcheck/ s/1/0/g" /etc/yum.repos.d/* && yum -y install epel-release && \
+sed -i "/gpgcheck/ s/1/0/g" /etc/yum.repos.d/* && \
+yum -y install cobbler wget curl cobbler-web dhcp bind syslinux pykickstart debmirror fence-agents file && \
+systemctl enable cobblerd && \
+systemctl enable rsyncd && \
+systemctl enable httpd && \
+systemctl enable tftp && \
+systemctl enable dhcpd
+# enable tftp
+RUN sed -i -e 's/\(^.*disable.*=\) yes/\1 no/' /etc/xinetd.d/tftp
+# create rsync file
+RUN touch /etc/xinetd.d/rsync
+EXPOSE 69
+EXPOSE 80
+EXPOSE 443
+EXPOSE 25151
+CMD ["/sbin/init"]
+

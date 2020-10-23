@@ -127,9 +127,9 @@
 </node>
 </node>
 <node CREATED="1600130963350" HGAP="18" ID="ID_1418304089" MODIFIED="1600130975761" POSITION="right" TEXT="TCP/IP" VSHIFT="136">
-<node CREATED="1600131239823" ID="ID_782830088" MODIFIED="1600133544432" STYLE="bubble" TEXT="&#x4e09;&#x6b21;&#x63e1;&#x624b;">
-<node CREATED="1600133613151" ID="ID_1057560057" MODIFIED="1600135841944" TEXT="&#x56fe;&#x89e3;">
-<node CREATED="1600133407801" HGAP="240" ID="ID_1470395391" MODIFIED="1600135496450" VSHIFT="-169">
+<node CREATED="1600131239823" ID="ID_782830088" MODIFIED="1600137075097" STYLE="bubble" TEXT="&#x4e09;&#x6b21;&#x63e1;&#x624b;">
+<node CREATED="1600133613151" ID="ID_1057560057" MODIFIED="1600137275167" TEXT="&#x56fe;&#x89e3;">
+<node CREATED="1600133407801" HGAP="240" ID="ID_1470395391" MODIFIED="1600137639273" VSHIFT="-169">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -139,8 +139,18 @@
       <img height="500" src="http://yum.2xi.com/chenke/tcpsynack_small.png" width="600" />
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <img height="500" width="600" src="http://yum.2xi.com/chenke/finwait.png" />
+      
+    </p>
+  </body>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1600131302223" HGAP="105" ID="ID_294108732" MODIFIED="1600136253877" TEXT="tcp_syn_retries" VSHIFT="-43">
@@ -154,11 +164,11 @@
 <font NAME="SansSerif" SIZE="15"/>
 </node>
 </node>
-<node CREATED="1600135811570" ID="ID_1570196524" MODIFIED="1600135814992" TEXT="tcp_max_syn_backlog">
+<node CREATED="1600135811570" HGAP="60" ID="ID_1570196524" MODIFIED="1600136893361" TEXT="tcp_max_syn_backlog" VSHIFT="-18">
 <node CREATED="1600135866624" ID="ID_1231706314" MODIFIED="1600135885013" TEXT="&#x5f53;&#x7cfb;&#x7edf;&#x4e2d;&#x79ef;&#x538b;&#x7684;&#x534a;&#x8fde;&#x63a5;&#x4e2a;&#x6570;&#x8d85;&#x8fc7;&#x4e86;&#x8be5;&#x503c;&#x540e;&#xff0c;&#x65b0;&#x7684; SYN &#x5305;&#x5c31;&#x4f1a;&#x88ab;&#x4e22;&#x5f03;"/>
 <node CREATED="1600135893663" ID="ID_181022639" MODIFIED="1600135984993" TEXT="&#x76ee;&#x524d;&#x7ebf;&#x4e0a;&#x503c;262144"/>
 </node>
-<node CREATED="1600136024069" ID="ID_613884537" MODIFIED="1600136205628" TEXT="tcp_syncookies">
+<node CREATED="1600136024069" HGAP="47" ID="ID_613884537" MODIFIED="1600136896859" TEXT="tcp_syncookies" VSHIFT="-12">
 <node CREATED="1600136027063" ID="ID_1557156537" MODIFIED="1600136059971" TEXT="&#x5728; Server &#x6536;&#x5230; SYN &#x5305;&#x65f6;&#xff0c;&#x4e0d;&#x53bb;&#x5206;&#x914d;&#x8d44;&#x6e90;&#x6765;&#x4fdd;&#x5b58; Client &#x7684;&#x4fe1;&#x606f;&#xff0c;&#x800c;&#x662f;&#x6839;&#x636e;&#x8fd9;&#x4e2a; SYN &#x5305;&#x8ba1;&#x7b97;&#x51fa;&#x4e00;&#x4e2a; Cookie &#x503c;&#xff0c;&#x7136;&#x540e;&#x5c06; Cookie &#x8bb0;&#x5f55;&#x5230; SYNACK &#x5305;&#x4e2d;&#x53d1;&#x9001;&#x51fa;&#x53bb;&#x3002;&#x5bf9;&#x4e8e;&#x6b63;&#x5e38;&#x7684;&#x8fde;&#x63a5;&#xff0c;&#x8be5; Cookies &#x503c;&#x4f1a;&#x968f;&#x7740; Client &#x7684; ACK &#x62a5;&#x6587;&#x88ab;&#x5e26;&#x56de;&#x6765;&#x3002;&#x7136;&#x540e; Server &#x518d;&#x6839;&#x636e;&#x8fd9;&#x4e2a; Cookie &#x68c0;&#x67e5;&#x8fd9;&#x4e2a; ACK &#x5305;&#x7684;&#x5408;&#x6cd5;&#x6027;&#xff0c;&#x5982;&#x679c;&#x5408;&#x6cd5;&#xff0c;&#x624d;&#x53bb;&#x521b;&#x5efa;&#x65b0;&#x7684; TCP &#x8fde;&#x63a5;&#x3002;"/>
 <node CREATED="1600136064574" ID="ID_41470774" MODIFIED="1600136073608" TEXT="&#x53ef;&#x4ee5;&#x9632;&#x6b62;&#x90e8;&#x5206; SYN Flood &#x653b;&#x51fb;"/>
 <node CREATED="1600136074862" ID="ID_1453184245" MODIFIED="1600136307396" TEXT="&#x63a8;&#x8350;&#x5f00;&#x542f;&#xff1a;net.ipv4.tcp_syncookies = 1">
@@ -170,6 +180,66 @@
 <node CREATED="1600136262161" ID="ID_506119236" MODIFIED="1600136269629" TEXT="&#x9ed8;&#x8ba4;&#x503c;5"/>
 <node CREATED="1600136269973" ID="ID_1200591245" MODIFIED="1600136303838" TEXT="&#x5185;&#x90e8;&#x670d;&#x52a1;&#x5668;&#x63a8;&#x8350;&#x503c;:net.ipv4.tcp_synack_retries = 2">
 <font NAME="SansSerif" SIZE="15"/>
+</node>
+</node>
+<node CREATED="1600136581307" ID="ID_660514633" MODIFIED="1600136583638" TEXT="somaxconn">
+<node CREATED="1600136584140" ID="ID_1041752274" MODIFIED="1600136723479" TEXT="&#x5168;&#x8fde;&#x63a5;&#x961f;&#x5217;&#x957f;&#x5ea6;"/>
+<node CREATED="1600136645120" ID="ID_1351179446" MODIFIED="1600136686831" TEXT="net.core.somaxconn=65535">
+<font NAME="SansSerif" SIZE="15"/>
+</node>
+<node CREATED="1600136688267" ID="ID_942027236" MODIFIED="1600136720077" TEXT="&#x9ed8;&#x8ba4;128,5.4&#x4ee5;&#x540e; 4096"/>
+</node>
+<node CREATED="1600136740616" HGAP="18" ID="ID_1276182641" MODIFIED="1600136778237" TEXT="tcp_abort_on_overflow" VSHIFT="21">
+<node CREATED="1600136744995" ID="ID_1153182752" MODIFIED="1600136771901" TEXT="&#x5168;&#x8fde;&#x63a5;&#x961f;&#x5217;&#x6ee1;&#x4e86;&#x540e;&#x4e22;&#x5f03;&#x8fd8;&#x662f;reset"/>
+<node CREATED="1600136793468" ID="ID_1056839718" MODIFIED="1600136810333" TEXT="&#x8be5;&#x503c;&#x9ed8;&#x8ba4;&#x4e3a; 0,&#x5373;&#x662f;&#x4e0d;&#x53d1;&#x9001;reset"/>
+<node CREATED="1600136811947" HGAP="21" ID="ID_75184632" MODIFIED="1600136857034" TEXT="&#x63a8;&#x8350;&#x503c; 0" VSHIFT="15">
+<font NAME="SansSerif" SIZE="15"/>
+<node CREATED="1600136850226" ID="ID_848430636" MODIFIED="1600136851866" TEXT="&#x7ed9;&#x4e86; Client &#x4e00;&#x4e2a;&#x91cd;&#x8bd5;&#x7684;&#x673a;&#x4f1a;"/>
+</node>
+</node>
+</node>
+<node CREATED="1600136881283" ID="ID_562138543" MODIFIED="1600137015724" STYLE="bubble" TEXT="&#x56db;&#x6b21;&#x6325;&#x624b;">
+<node CREATED="1600137024197" ID="ID_1450120930" MODIFIED="1600137034797" TEXT="&#x56fe;&#x89e3;">
+<node CREATED="1600137038077" ID="ID_167639847" LINK="http://yum.52digua.com/chenke/finwait.png" MODIFIED="1600137433557" TEXT=""/>
+<node CREATED="1600137545476" ID="ID_1067272666" MODIFIED="1600138399767">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <img height="500" width="600" src="http://yum.2xi.com/chenke/finwait.png" />
+    </p>
+  </body>
+</html></richcontent>
+</node>
+</node>
+<node CREATED="1600138497698" ID="ID_930436852" MODIFIED="1600138533642" TEXT="&#x5f53;&#x5e94;&#x7528;&#x7a0b;&#x5e8f;&#x8c03;&#x7528; close() &#x65f6;&#xff0c;&#x4f1a;&#x5411;&#x5bf9;&#x7aef;&#x53d1;&#x9001; FIN &#x5305;&#xff0c;&#x7136;&#x540e;&#x4f1a;&#x63a5;&#x6536; ACK&#xff1b;&#x5bf9;&#x7aef;&#x4e5f;&#x4f1a;&#x8c03;&#x7528; clsoe() &#x6765;&#x53d1;&#x9001; FIN&#xff0c;&#x7136;&#x540e;&#x672c;&#x7aef;&#x4e5f;&#x4f1a;&#x5411;&#x5bf9;&#x7aef;&#x56de; ACK&#xff0c;&#x8fd9;&#x5c31;&#x662f; TCP &#x7684;&#x56db;&#x6b21;&#x6325;&#x624b;&#x8fc7;&#x7a0b;&#x3002;"/>
+<node CREATED="1600152758762" ID="ID_248002561" MODIFIED="1600152803140" TEXT="CLOSE_WAIT">
+<node CREATED="1600152803742" ID="ID_1055434175" MODIFIED="1600152809782" TEXT="&#x65e0;&#x7cfb;&#x7edf;&#x914d;&#x7f6e;&#x9879;"/>
+<node CREATED="1600155281860" ID="ID_1755770763" MODIFIED="1600155296193" TEXT="&#x6570;&#x91cf;&#x5f88;&#x591a;&#x65f6;&#xff0c;&#x6700;&#x597d;&#x53bb;&#x6392;&#x67e5;&#x4e00;&#x4e0b;&#x4f60;&#x7684;&#x5e94;&#x7528;&#x7a0b;&#x5e8f;&#xff0c;&#x770b;&#x770b;&#x54ea;&#x91cc;&#x6f0f;&#x6389;&#x4e86; close()"/>
+</node>
+<node CREATED="1600152857583" HGAP="21" ID="ID_1224790881" MODIFIED="1600155299560" TEXT="FIN_WAIT_2" VSHIFT="19">
+<node CREATED="1600152859619" ID="ID_125425469" MODIFIED="1600152895678" TEXT="&#x6536;&#x4e0d;&#x5230;&#x88ab;&#x52a8;&#x7aef;&#x7684;FIN,&#x5219;&#x4e00;&#x76f4;&#x5c31;&#x5728;&#x8fd9;&#x4e2a;&#x72b6;&#x6001;"/>
+<node CREATED="1600152896159" ID="ID_1621079501" MODIFIED="1600152920234" TEXT="tcp_fin_timeout &#x9ed8;&#x8ba4;&#x4e3a; 60s"/>
+<node CREATED="1600152936110" ID="ID_1400081215" MODIFIED="1600152948813" TEXT="&#x6570;&#x636e;&#x4e2d;&#x5fc3;&#x5185;&#x90e8;&#x63a8;&#x8350;">
+<node CREATED="1600152949288" ID="ID_1392642257" MODIFIED="1600152953163" TEXT="net.ipv4.tcp_fin_timeout = 2">
+<font NAME="SansSerif" SIZE="15"/>
+</node>
+</node>
+</node>
+<node CREATED="1600153429471" HGAP="21" ID="ID_401691458" MODIFIED="1600155302147" TEXT="TIME_WAIT" VSHIFT="29">
+<node CREATED="1600153444336" ID="ID_414966583" MODIFIED="1600153519620" TEXT="TCP_TIMEWAIT_LEN &#x5185;&#x6838;&#x7f16;&#x8bd1;&#x624d;&#x80fd;&#x6539;&#xff0c;&#x9ed8;&#x8ba4;60s"/>
+<node CREATED="1600153550129" ID="ID_1549513859" MODIFIED="1600153567338" TEXT="tcp_max_tw_buckets &#x6700;&#x591a;time_wait&#x6570;"/>
+<node CREATED="1600153583091" ID="ID_996757322" MODIFIED="1600153606159" TEXT="&#x6570;&#x636e;&#x4e2d;&#x5fc3;&#x53ef;&#x8c03;&#x5c0f;&#xff1a;net.ipv4.tcp_max_tw_buckets = 10000">
+<font NAME="SansSerif" SIZE="15"/>
+</node>
+<node CREATED="1600154943760" ID="ID_1626306810" MODIFIED="1600155014215" TEXT="net.ipv4.tcp_tw_reuse = 1 #time_wait&#x590d;&#x7528;">
+<font NAME="SansSerif" SIZE="15"/>
+</node>
+<node CREATED="1600154972553" ID="ID_699802609" MODIFIED="1600155016303" TEXT="net.ipv4.tcp_tw_recycle = 0 #&#x4e3a;1&#x65f6;nat&#x4e0b;&#x673a;&#x5668;&#x8fde;&#x63a5;&#x4f1a;&#x6709;&#x95ee;&#x9898;">
+<font NAME="SansSerif" SIZE="15"/>
+<node CREATED="1600155023590" ID="ID_1657818153" MODIFIED="1600155057433" TEXT="5.4&#x4ee5;&#x540e;&#x4e3a;0&#x4e14;&#x5df2;&#x5220;&#x9664;&#x8fd9;&#x4e2a;&#x914d;&#x7f6e;&#x9879;"/>
 </node>
 </node>
 </node>
