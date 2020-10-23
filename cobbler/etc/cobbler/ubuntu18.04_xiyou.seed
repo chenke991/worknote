@@ -1,5 +1,5 @@
 # Mostly based on the Ubuntu installation guide
-# https://help.ubuntu.com/16.04/installation-guide/
+# https://help.ubuntu.com/18.04/installation-guide/
 # Debian sample
 # https://www.debian.org/releases/stable/example-preseed.txt
 
@@ -9,6 +9,7 @@ d-i debian-installer/locale string en_US
 # Keyboard selection.
 # Disable automatic (interactive) keymap detection.
 d-i console-setup/ask_detect boolean false
+d-i keyboard-configuration/xkb-keymap select us
 d-i keyboard-configuration/toggle select No toggling
 d-i keyboard-configuration/layoutcode string us
 d-i keyboard-configuration/variantcode string
@@ -16,7 +17,7 @@ d-i keyboard-configuration/variantcode string
 # netcfg will choose an interface that has link if possible. This makes it
 # skip displaying a list if there is more than one interface.
 #set $myhostname = $getVar('hostname',$getVar('name','cobbler')).replace("_","-")
-d-i netcfg/choose_interface select eno1
+d-i netcfg/choose_interface select auto
 d-i netcfg/get_hostname string $myhostname
 
 # If non-free firmware is needed for the network or other hardware, you can
@@ -48,43 +49,42 @@ d-i live-installer/net-image string http://$http_server/cobbler/links/$distro_na
 
 # Components to use for loading installer components (optional).
 #d-i mirror/udeb/components multiselect main, restricted
-#-- d-i partman-auto/disk string 
-d-i partman-iscsi/login/address string XXX
-d-i partman-iscsi/login/targets multiselect XXX
 
 # Disk Partitioning
 # Use LVM, and wipe out anything that already exists
+
 # You can choose one of the three predefined partitioning recipes:
 # - atomic: all files in one partition
 # - home:   separate /home partition
 # - multi:  separate /home, /usr, /var, and /tmp partitions
-d-i partman-auto/disk string /dev/sda
 d-i partman-auto/method string regular
-d-i partman-auto/purge_lvm_from_device boolean true
-d-i partman-lvm/device_remove_lvm boolean true
-d-i partman-md/device_remove_md boolean true
-d-i partman-lvm/confirm boolean true
-# Actualy use 50% for / and rest 50% for /TMP
-d-i partman-auto/expert_recipe string root ::  40960 1 40960 ext4                      \
-                      $primary{ }  $bootable{ }                            \
-                      method{ format } format{ }              \
-                      use_filesystem{ } filesystem{ ext4 }    \
-                      mountpoint{ / }                         \
-              .                                               \
-              8192 2 8192 linux-swap                         \
-                      method{ swap } format{ }                \
-              .                                               \
-              -1 3 -1 ext4                              \
-                      method{ format } format{ }              \
-                      use_filesystem{ } filesystem{ ext4 }    \
-                      mountpoint{ /data }                      \
-              .                                               \
+d-i partman-auto/expert_recipe string \
+    thisDoesNotMatter :: \
+    1000 50 1000 ext4 \
+    $primary{ } $bootable{ } \
+    method{ format } format{ } \
+    use_filesystem{ } filesystem{ ext4 } \
+    mountpoint{ /boot } \
+    . \
+    64 512 1000 linux-swap \
+    method{ swap } format{ } \
+    . \
+    1 700 10000 ext4 \
+    method{ format } format{ } \
+    use_filesystem{ } filesystem{ ext4 } \
+    mountpoint{ / } \
+    . \
+    500 1000 1000000000 ext4 \
+    method{ format } format{ } \
+    use_filesystem{ } filesystem{ ext4 } \
+    mountpoint{ /data } \
+    .
 
-d-i partman-auto/choose_recipe select root
+d-i partman-auto/choose_recipe select thisDoesNotMatter
 d-i partman-partitioning/confirm_write_new_label boolean true
-d-i partman/choose_partition select Finish partitioning and write changes to disk
+d-i partman/choose_partition select finish
 d-i partman/confirm boolean true
-#d-i partman/confirm_nooverwrite boolean true
+d-i partman/confirm_nooverwrite boolean true
 
 # If you just want to change the default filesystem from ext3 to something
 # else, you can do that without providing a full recipe.
@@ -92,7 +92,7 @@ d-i partman/confirm boolean true
 
 # root account and password
 d-i passwd/root-login boolean true
-d-i passwd/root-password-crypted password $1$IPPBXADM$Lx9IcXC2dCFfRc.x9Zhyf/
+d-i passwd/root-password-crypted password $default_password_crypted
 
 # skip creation of a normal user account.
 d-i passwd/make-user boolean false
@@ -138,8 +138,7 @@ tasksel tasksel/first multiselect standard
 # Individual additional packages to install
 # wget is REQUIRED otherwise quite a few things won't work
 # later in the build (like late-command scripts)
-#d-i pkgsel/include string ntp ssh wget
-d-i pkgsel/include string openssh-server
+d-i pkgsel/include string ntp ssh wget
 
 # Debian needs this for the installer to avoid any question for grub
 # Please verify that it suit your needs as it may overwrite any usb stick
