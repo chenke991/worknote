@@ -1,1 +1,1 @@
-saltxxy images: http://soft.2xi.com/soft/cobbler:v1.6.tar
+saltxxy images: http://saltxxy/soft/cobbler:v1.6.tar
