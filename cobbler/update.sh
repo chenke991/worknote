@@ -3,7 +3,7 @@
 IP=172.0.0.99
 for i in Dockerfile start.sh
 do
-   scp ${IP}:/data/cobbler/$i /Users/chenke/Documents/worknote/cobbler
+   scp -P59878 ${IP}:/data/cobbler/$i /Users/chenke/Documents/worknote/cobbler
 done
 #update to github
 sh /Users/chenke/Documents/worknote/githubUplod.sh
