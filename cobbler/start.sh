@@ -24,6 +24,7 @@ docker run \
 --net host \
 -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
 -v /data/cobbler/etc/cobbler/settings:/etc/cobbler/settings \
+-v /data/cobbler/etc/cobbler/bash:/var/www/cobbler/bash \
 -v /data/cobbler/etc/cobbler/start_in_docker.sh:/start_in_docker.sh \
 -v /data/cobbler/etc/cobbler/debmirror.conf:/etc/debmirror.conf \
 -v /data/cobbler/etc/cobbler/ubuntu18.04_xiyou.seed:/var/lib/cobbler/kickstarts/ubuntu18.04_xiyou.seed \
