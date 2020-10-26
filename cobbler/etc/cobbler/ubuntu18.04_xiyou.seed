@@ -1,3 +1,4 @@
+# https://blog.51cto.com/juestnow/2444873
 # Mostly based on the Ubuntu installation guide
 # https://help.ubuntu.com/18.04/installation-guide/
 # Debian sample
@@ -52,6 +53,11 @@ d-i live-installer/net-image string http://$http_server/cobbler/links/$distro_na
 
 # Disk Partitioning
 # Use LVM, and wipe out anything that already exists
+#清楚磁盘中所有的lvm分区
+d-i partman-lvm/device_remove_lvm boolean true
+
+# 清楚所有raid分区
+d-i partman-md/device_remove_md boolean true
 
 # You can choose one of the three predefined partitioning recipes:
 # - atomic: all files in one partition
@@ -181,4 +187,11 @@ d-i preseed/early_command string wget -O- \
 # d-i preseed/late_command string [command]
 d-i preseed/late_command string wget -O- \
    http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_late_default | \
-   chroot /target /bin/sh -s
+   chroot /target /bin/sh -s \
+   mkdir -p /target/root/.ssh ; \
+   wget -O /target/etc/apt/sources.list http://$http_server/cobbler/bash/sources.list.18 ; \
+   wget -P /target/root/ http://$http_server/cobbler/bash/ubuntu18.sh ; \
+   wget -P /target/root/.ssh http://$http_server/cobbler/bash/authorized_keys ; \
+   chmod 400 /target/root/.ssh/authorized_keys; \
+   cd /target ; \
+   chroot ./  sh /root/ubuntu18.sh
