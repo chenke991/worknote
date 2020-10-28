@@ -7,7 +7,7 @@ do
    scp -P59878 ${IP}:/data/cobbler/$i /Users/chenke/Documents/worknote/cobbler
 done
 
-for i in ubuntu18.04_xiyou.seed  dhcp.template settings start_in_docker.sh
+for i in ubuntu18.04*  dhcp.template settings start_in_docker.sh
 do
    scp -P59878 ${IP}:/data/cobbler/etc/cobbler/$i /Users/chenke/Documents/worknote/cobbler/etc/cobbler
 done

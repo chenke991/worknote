@@ -24,10 +24,13 @@ docker run \
 --net host \
 -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
 -v /data/cobbler/etc/cobbler/settings:/etc/cobbler/settings \
--v /data/cobbler/etc/cobbler/bash:/var/www/cobbler/bash \
+-v /data/cobbler/etc/cobbler/bash/sources.list.18:/var/www/cobbler/bash/sources.list.18 \
+-v /data/cobbler/etc/cobbler/bash/ubuntu18.sh:/var/www/cobbler/bash/ubuntu18.sh \
+-v /data/cobbler/etc/cobbler/bash/authorized_keys:/var/www/cobbler/bash/authorized_keys \
 -v /data/cobbler/etc/cobbler/start_in_docker.sh:/start_in_docker.sh \
 -v /data/cobbler/etc/cobbler/debmirror.conf:/etc/debmirror.conf \
 -v /data/cobbler/etc/cobbler/ubuntu18.04_xiyou.seed:/var/lib/cobbler/kickstarts/ubuntu18.04_xiyou.seed \
+-v /data/cobbler/etc/cobbler/ubuntu18.04_xiyou.seed.dell:/var/lib/cobbler/kickstarts/ubuntu18.04_xiyou.seed.dell \
 -v /data/cobbler/etc/cobbler/dhcp.template:/etc/cobbler/dhcp.template \
 -v /data/cobbler/var/www/cobbler/images:/var/www/cobbler/images \
 -v /data/cobbler/var/www/cobbler/ks_mirror:/var/www/cobbler/ks_mirror \
@@ -52,7 +55,7 @@ echo "
 - cobbler get-loaders 下载网络引导文件
 - cobbler distro list 查看已经存在的安装源
 - cobbler import --name="ubuntu18.04" --path=/mnt/ubuntu18.04    【导入安装源】
-- cobbler profile edit --name=ubuntu18.04-x86_64 --distro=ubuntu18.04-x86_64 --kickstart=/var/lib/cobbler/kickstarts/ubuntu18.04_xiyou.seed 指定发行版为ubuntu14，并指定 seed文件的名称和位置
+- cobbler profile edit --name=ubuntu18.04-x86_64 --distro=ubuntu18.04-x86_64 --kickstart=/var/lib/cobbler/kickstarts/ubuntu18.04_xiyou.seed.dell 指定发行版为ubuntu14，并指定 seed文件的名称和位置
 - cobbler report 查看profile使用的seed等
 "
 #-v /data/cobbler/var/lib/cobbler/config/:/var/lib/cobbler/config/ \
