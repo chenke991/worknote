@@ -129,7 +129,7 @@
 <node CREATED="1600130963350" HGAP="18" ID="ID_1418304089" MODIFIED="1600130975761" POSITION="right" TEXT="TCP/IP" VSHIFT="136">
 <node CREATED="1600131239823" ID="ID_782830088" MODIFIED="1600137075097" STYLE="bubble" TEXT="&#x4e09;&#x6b21;&#x63e1;&#x624b;">
 <node CREATED="1600133613151" ID="ID_1057560057" MODIFIED="1600137275167" TEXT="&#x56fe;&#x89e3;">
-<node CREATED="1600133407801" HGAP="240" ID="ID_1470395391" MODIFIED="1600137639273" VSHIFT="-169">
+<node CREATED="1600133407801" HGAP="240" ID="ID_1470395391" MODIFIED="1606705656222" VSHIFT="-169">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -147,10 +147,10 @@
   <body>
     <p>
       <img height="500" width="600" src="http://yum.2xi.com/chenke/finwait.png" />
-      
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 <node CREATED="1600131302223" HGAP="105" ID="ID_294108732" MODIFIED="1600136253877" TEXT="tcp_syn_retries" VSHIFT="-43">
