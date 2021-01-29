@@ -1,0 +1,42 @@
+网络性能工具：
+
+1,吞吐量(BPS)
+sar 网络接口吞吐量
+nethogs 进程网络吞吐量
+iftop IP地址网络吞吐量
+
+2,PPS
+sar
+/proc/net/dev
+
+3,连接数
+netstat 
+ss
+
+4,延迟
+ping
+hping3 TCP测试网络延迟
+
+5,连接跟踪数
+conntrack  查看和管理连接跟踪状况
+
+6,路由
+mtr\route\traceroute 查看路由并测试链路信息
+
+7,DNS
+dig\nslookup 排查DNS解析问题
+
+8,防火墙和NAT
+iptables
+
+9,网卡功能
+ethtool
+
+10,抓包
+tcpdump
+wireshark 抓包分析网络流量
+
+11,内核协议栈
+bcc
+systemtap 动态跟踪内核协议栈的行为
+
