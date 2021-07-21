@@ -54,9 +54,8 @@ def gen_child(date, starttime, endtime, title,doc,tv):
     tv.appendChild(a)
 #filename = sys.argv[1]
 
-def convertxls_to_xml(xlsfile,xmlfile):
+def convertxls_to_xml(xlsfile,xmlfiles):
     filename=xlsfile
-    xmlfile=xmlfile
     print(filename)
     data = pd.read_excel(filename)
     
@@ -97,14 +96,16 @@ def convertxls_to_xml(xlsfile,xmlfile):
             endtime1 = '000000'
             
             gen_child(date1, date1 + starttime1, date1 + endtime1, title,doc,tv)
-    fp = open(xmlfile,'w',encoding='utf-8')
-    doc.writexml(fp,indent='\t',addindent='\t',newl='\n')
+    for xmlfile in xmlfiles:
+      fp = open(xmlfile,'w',encoding='utf-8')
+      doc.writexml(fp,indent='\t',addindent='\t',newl='\n')
+      fp.close()
 
 #dowload excel file from url
 def dowload_xls(urlstr,xlspath):
     #自动创建目录
-    if not os.path.exists(xlspath):
-        os.makedirs(xlspath)
+    #if not os.path.exists(xlspath):
+    #    os.makedirs(xlspath)
 
     url=urlstr
     xlsnamestr=urlstr.split('/')[-1]
@@ -134,9 +135,9 @@ def mail_send(title,info):
     ip=get_wanip()
     info=info+str(ip)
     mail_host="smtp.qq.com"
-    mail_sender = "278@qq.com"
-    sender_pass='abc'
-    mail_receivers="chenke991@126.com"
+    mail_sender = "2738@qq.com"
+    sender_pass='wnsgb'
+    mail_receivers="chen1@126.com"
     msg=MIMEText(info,'plain','utf-8')
     msg['From']=formataddr(["CCTV", mail_sender]) 
     msg['To'] =  formataddr(["qq",mail_receivers])
@@ -155,7 +156,13 @@ xlsdir="/data/xlsdir/"
 startTime=datetime.datetime.now()
 timestampstr=startTime.strftime("%Y%m%d%H%M")
 xlspath=xlsdir+str(timestampstr)
-xlsurlstr='http://123.9/CGTN.xls'
+xlsurlstr='http://123.59/CGTN.xls'
+#xlsurlstr='http://123.59/GTN.xls'
+dirs=[xlspath,"/data/xml/latest"]
+for xpath in dirs:
+    if not os.path.exists(xpath):
+        os.makedirs(xpath)
+
 ok,xlspath_abs=dowload_xls(xlsurlstr,xlspath)
 if ok != 200:
 #    print("FUCK_ERROR,status_code is ",ok) 
@@ -164,11 +171,13 @@ if ok != 200:
     mail_send(title,info)
     raise Exception("FUCK_ERROR,download %s status_code is %s"%(xlsurlstr,ok))
 else:
-    xmlpath_abs=xlspath+"/"+'a.xml'
-    print(ok,xlspath_abs ,xmlpath_abs)
-    convertxls_to_xml(xlspath_abs,xmlpath_abs)
+    xmlpath_bak=xlspath+"/"+'a.xml'
+    xmlpath_online="/data/xml/latest/bb.xml"
+    xmlfiles=[xmlpath_bak,xmlpath_online]
+    print(ok,xlspath_abs ,xmlfiles)
+    convertxls_to_xml(xlspath_abs,xmlfiles)
     endTime=datetime.datetime.now()
     
     title="转换正常perfect"
-    info="It takes %s second\ndownload %s convert xls %s to xml %s ok\n"%((endTime-startTime),xlsurlstr,xlspath_abs,xmlpath_abs)
+    info="It takes %s second\ndownload %s convert xls %s to xml %s ok\n"%((endTime-startTime),xlsurlstr,xlspath_abs,xmlfiles)
     mail_send(title,info)
